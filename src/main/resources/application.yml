@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: service-staff-test
+  config:
+    enabled: true
+    import: cconfigserver:https://service-config.azurewebsites.net
+  cloud:
+    config:
+      username: root
+      password: P@nd@WWF_M
