@@ -3,7 +3,7 @@ spring:
     name: service-staff-test
   config:
     enabled: true
-    import: cconfigserver:https://service-config.azurewebsites.net
+    import: configserver:https://service-config.azurewebsites.net
   cloud:
     config:
       username: root
