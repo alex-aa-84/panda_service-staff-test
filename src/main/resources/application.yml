@@ -6,5 +6,5 @@ spring:
     import: configserver:https://service-config.azurewebsites.net
   cloud:
     config:
-      username: root
-      password: P@nd@WWF_M
+      username: ${EUR_USER}
+      password: ${EUR_PASS}
