@@ -6,6 +6,8 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @Entity
@@ -19,27 +21,29 @@ public class PersonalInformation {
     @Column(unique = true, nullable = false)
     private Long id;
 
-    private Long user_id;
+    @NotEmpty(message = "userId_vacio")
+    @Column(unique = true, nullable = false)
+    private Long userId;
 
     private String names;
-    private String surname_paternal;
-    private String surname_maternal;
-    private String surname_married;
+    private String surnamePaternal;
+    private String surnameMaternal;
+    private String surnameMarried;
 
     @Temporal(TemporalType.DATE)
-    private Date birth_date;
+    private Date birthDate;
 
+    @NotNull(message = "civilStatus_nula")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    @JoinColumn(name="civil_status_id", referencedColumnName = "id")
+    @JoinColumn(referencedColumnName = "id")
     @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
-    private CivilStatus civil_status_id;
+    private CivilStatus civilStatus;
 
+    @NotNull(message = "bloodType_nula")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    @JoinColumn(name="blood_type_id", referencedColumnName = "id")
+    @JoinColumn(referencedColumnName = "id")
     @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
-    private BloodType blood_type_id;
+    private BloodType bloodType;
 
     private Long country_id;
 

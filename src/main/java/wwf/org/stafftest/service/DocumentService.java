@@ -8,7 +8,8 @@ public interface DocumentService {
     public List<Document> listAllDocument();
     public Document getDocument(Long id);
 
-    public Document createDocument(Document document, Long userId);
-    public Document updateDocument(Document document, Long userId);
-    public Document deleteDocument(Long id, Long userId);
+    public Document createDocument(Document document);
+    public Document updateDocument(Document document);
+    public Boolean deleteDocument(Long id);
+    public Document findByDocument(String document);
 }

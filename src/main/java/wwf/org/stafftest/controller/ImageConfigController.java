@@ -1,0 +1,51 @@
+package wwf.org.stafftest.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import wwf.org.stafftest.entity.ImageConfig;
+import wwf.org.stafftest.service.ImageConfigService;
+
+import java.io.IOException;
+
+@CrossOrigin(origins = {"${settings.cors_origin}", "${settings.cors_origin_pro}"}, maxAge = 3600,
+        allowedHeaders={"Origin", "X-Requested-With", "Content-Type", "Accept", "x-client-key", "x-client-token", "x-client-secret", "Authorization"}, methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.OPTIONS, RequestMethod.HEAD, RequestMethod.DELETE, RequestMethod.PUT})
+@RestController
+@RequestMapping(value="/wwf/image")
+public class ImageConfigController {
+
+    @Autowired
+    private ImageConfigService imageConfigService;
+
+    @PostMapping()
+    public ResponseEntity<ImageConfig> updateImage(@RequestParam("imageFile") MultipartFile file) throws IOException {
+
+        ImageConfig img = new ImageConfig();
+        //img.setImage(compressBytes(file.getBytes()));
+        img.setImage(file.getBytes());
+        img.setType(file.getContentType());
+        img.setName(file.getOriginalFilename());
+
+        ImageConfig imgR = imageConfigService.createImage(img);
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(imgR);
+    }
+
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<ImageConfig> uploadImage(@RequestParam("imageFile") MultipartFile file, @PathVariable("id") Long id) throws IOException {
+
+        ImageConfig img = new ImageConfig();
+        img.setId(id);
+        img.setImage(file.getBytes());
+        img.setType(file.getContentType());
+        img.setName(file.getOriginalFilename());
+
+        ImageConfig imgR = imageConfigService.updateImage(img);
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(imgR);
+    }
+
+}

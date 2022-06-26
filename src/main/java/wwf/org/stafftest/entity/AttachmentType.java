@@ -3,6 +3,8 @@ package wwf.org.stafftest.entity;
 import lombok.Data;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @Entity
@@ -15,8 +17,9 @@ public class AttachmentType {
     @Column(unique = true, nullable = false)
     private Long id;
 
+    @NotEmpty(message = "attachmentType_nula")
     @Column(unique = true, nullable = false)
-    private String attachment_type;
+    private String attachmentType;
 
     private String description;
     private Integer attribute1;

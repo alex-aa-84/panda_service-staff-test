@@ -6,11 +6,15 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name="per_permission_submodules")
+@Table(name="per_permission_submodules", uniqueConstraints = {
+        @UniqueConstraint(columnNames = {"permissionModule", "submodule", "route"})
+})
 @Data
 public class PermissionSubmodule {
     @Id
@@ -18,14 +22,19 @@ public class PermissionSubmodule {
     @Column(unique = true, nullable = false)
     private Long id;
 
-    @OneToMany(fetch = FetchType.LAZY)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    @JoinColumn(name="permission_module_id", referencedColumnName = "id")
+    @NotNull(message = "permissionModule_nula")
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+    @JoinColumn(referencedColumnName = "id")
     @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
-    private List<PermissionModule> permission_module_id;
+    private PermissionModule permissionModule;
 
-    @Column(unique = true, nullable = false)
-    private Long submodule_id;
+    @NotEmpty(message = "submodule_vacio")
+    @Column(nullable = false)
+    private String submodule;
+
+    @NotEmpty(message = "route_vacio")
+    @Column(nullable = false)
+    private String route;
 
     private String description;
     private Integer attribute1;

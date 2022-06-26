@@ -28,40 +28,56 @@ public class OtherInformationTypeServiceImpl implements OtherInformationTypeServ
     }
 
     @Override
-    public OtherInformationType createOtherInformationType(OtherInformationType otherInformationType, Long userId) {
+    public OtherInformationType createOtherInformationType(OtherInformationType otherInformationType) {
         otherInformationType.setStatus("CREATED");
-        otherInformationType.setCreate_by(userId);
         otherInformationType.setCreation_date(new Date());
-        otherInformationType.setLast_update_by(userId);
         otherInformationType.setLast_update_date(new Date());
 
         return otherInformationTypeRepository.save(otherInformationType);
     }
 
     @Override
-    public OtherInformationType updateOtherInformationType(OtherInformationType otherInformationType, Long userId) {
+    public OtherInformationType updateOtherInformationType(OtherInformationType otherInformationType) {
         OtherInformationType otherInformationTypeDB = getOtherInformationType(otherInformationType.getId());
         if(null == otherInformationTypeDB){
             return null;
         }
 
-        otherInformationType.setLast_update_by(userId);
-        otherInformationType.setLast_update_date(new Date());
+        otherInformationTypeDB.setOtherInformationType(otherInformationType.getOtherInformationType());
+        otherInformationTypeDB.setDescription(otherInformationType.getDescription());
 
-        return otherInformationTypeRepository.save(otherInformationType);
-    }
+        otherInformationTypeDB.setAttribute1(otherInformationType.getAttribute1());
+        otherInformationTypeDB.setAttribute2(otherInformationType.getAttribute2());
+        otherInformationTypeDB.setAttribute3(otherInformationType.getAttribute3());
+        otherInformationTypeDB.setAttribute4(otherInformationType.getAttribute4());
+        otherInformationTypeDB.setAttribute5(otherInformationType.getAttribute5());
+        otherInformationTypeDB.setAttribute6(otherInformationType.getAttribute6());
+        otherInformationTypeDB.setAttribute7(otherInformationType.getAttribute7());
+        otherInformationTypeDB.setAttribute8(otherInformationType.getAttribute8());
+        otherInformationTypeDB.setAttribute9(otherInformationType.getAttribute9());
+        otherInformationTypeDB.setAttribute10(otherInformationType.getAttribute10());
 
-    @Override
-    public OtherInformationType deleteOtherInformationType(Long id, Long userId) {
-        OtherInformationType otherInformationTypeDB = getOtherInformationType(id);
-        if(null == otherInformationTypeDB){
-            return null;
-        }
+        otherInformationTypeDB.setStatus(otherInformationType.getStatus());
 
-        otherInformationTypeDB.setStatus("DELETED");
-        otherInformationTypeDB.setLast_update_by(userId);
+        otherInformationTypeDB.setLast_update_by(otherInformationType.getLast_update_by());
         otherInformationTypeDB.setLast_update_date(new Date());
 
         return otherInformationTypeRepository.save(otherInformationTypeDB);
+    }
+
+    @Override
+    public Boolean deleteOtherInformationType(Long id) {
+        OtherInformationType otherInformationTypeDB = getOtherInformationType(id);
+        if(null == otherInformationTypeDB){
+            return false;
+        }
+
+        otherInformationTypeRepository.deleteById(id);
+        return true;
+    }
+
+    @Override
+    public OtherInformationType findByOtherInformationType(String otherInformationType) {
+        return otherInformationTypeRepository.findByOtherInformationType(otherInformationType);
     }
 }

@@ -6,6 +6,7 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @Entity
@@ -18,18 +19,21 @@ public class Document {
     @Column(unique = true, nullable = false)
     private Long id;
 
-    private Long user_id;
+    private Long userId;
 
+    @NotNull(message = "documentType_nula")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    @JoinColumn(name="document_type_id", referencedColumnName = "id")
+    @JoinColumn(referencedColumnName = "id")
     @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
-    private DocumentType document_type_id;
+    private DocumentType documentType;
 
     @Column(unique = true, nullable = false)
     private String document;
 
-    private String details;
+    @Temporal(TemporalType.DATE)
+    private Date expirationDate ;
+
+    private String description;
     private Integer attribute1;
     private Integer attribute2;
     private Integer attribute3;

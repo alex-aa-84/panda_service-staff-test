@@ -6,6 +6,8 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @Entity
@@ -18,18 +20,19 @@ public class Profession {
     @Column(unique = true, nullable = false)
     private Long id;
 
-    private Long user_id;
+    private Long userId;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    @JoinColumn(name="profession_type_id", referencedColumnName = "id")
+    @NotNull(message = "professionType_nula")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(referencedColumnName = "id")
     @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
-    private ProfessionType profession_type_id;
+    private ProfessionType professionType;
 
+    @NotEmpty(message = "name_profession_vacio")
     @Column(unique = true, nullable = false)
-    private String description;
+    private String name;
 
-    private String details;
+    private String description;
     private Integer attribute1;
     private Integer attribute2;
     private Integer attribute3;

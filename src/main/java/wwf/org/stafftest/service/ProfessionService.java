@@ -8,7 +8,10 @@ public interface ProfessionService {
     public List<Profession> listAllProfession();
     public Profession getProfession(Long id);
 
-    public Profession createProfession(Profession profession, Long userId);
-    public Profession updateProfession(Profession profession, Long userId);
-    public Profession deleteProfession(Long id, Long userId);
+    public Profession createProfession(Profession profession);
+    public Profession updateProfession(Profession profession);
+    public Boolean deleteProfession(Long id);
+
+    public Profession findByName(String name);
+
 }

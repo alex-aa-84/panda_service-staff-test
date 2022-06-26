@@ -3,6 +3,7 @@ package wwf.org.stafftest.entity;
 import lombok.Data;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.util.Date;
 
 @Entity
@@ -15,8 +16,9 @@ public class CivilStatus {
     @Column(unique = true, nullable = false)
     private Long id;
 
+    @NotEmpty(message = "civilStatus_vacio")
     @Column(unique = true, nullable = false)
-    private String civil_status;
+    private String civilStatus;
 
     private String description;
     private Integer attribute1;

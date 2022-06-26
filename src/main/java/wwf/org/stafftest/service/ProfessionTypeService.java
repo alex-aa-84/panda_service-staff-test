@@ -8,7 +8,8 @@ public interface ProfessionTypeService {
     public List<ProfessionType> listAllProfessionType();
     public ProfessionType getProfessionType(Long id);
 
-    public ProfessionType createProfessionType(ProfessionType professionType, Long userId);
-    public ProfessionType updateProfessionType(ProfessionType professionType, Long userId);
-    public ProfessionType deleteProfessionType(Long id, Long userId);
+    public ProfessionType createProfessionType(ProfessionType professionType);
+    public ProfessionType updateProfessionType(ProfessionType professionType);
+    public Boolean deleteProfessionType(Long id);
+    public ProfessionType findByProfessionType(String professionType);
 }

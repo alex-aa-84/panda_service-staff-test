@@ -3,6 +3,7 @@ package wwf.org.stafftest.entity;
 import lombok.Data;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.util.Date;
 
 @Entity
@@ -15,6 +16,7 @@ public class Relationship {
     @Column(unique = true, nullable = false)
     private Long id;
 
+    @NotEmpty(message = "relationship_vacio")
     @Column(unique = true, nullable = false)
     private String relationship;
 

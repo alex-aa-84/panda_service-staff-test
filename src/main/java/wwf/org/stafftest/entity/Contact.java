@@ -6,12 +6,12 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.Date;
 
 @Entity
-@Table(name="st_contacts", uniqueConstraints = {
-        @UniqueConstraint(columnNames = {"telephone_number", "email"})
-})
+@Table(name="st_contacts")
 @Data
 public class Contact {
 
@@ -20,15 +20,15 @@ public class Contact {
     @Column(unique = true, nullable = false)
     private Long id;
 
-    private Long user_id;
+    private Long userId;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    @JoinColumn(name="contact_type_id", referencedColumnName = "id")
+    @NotNull(message = "contactType_nula")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(referencedColumnName = "id")
     @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
-    private ContactType contact_type_id;
+    private ContactType contactType;
 
-    private String telephone_number;
+    private String phoneNumber;
 
     private String email;
 
@@ -58,4 +58,8 @@ public class Contact {
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date last_update_date;
+
+    @Column(unique = true, nullable = false)
+    @Size(min=32, max = 32)
+    private String ctrlMd5;
 }

@@ -8,7 +8,8 @@ public interface TerritorialOrgFirstService {
     public List<TerritorialOrgFirst> listAllTerritorialOrgFirst();
     public TerritorialOrgFirst getTerritorialOrgFirst(Long id);
 
-    public TerritorialOrgFirst createTerritorialOrgFirst(TerritorialOrgFirst territorialOrgFirst, Long userId);
-    public TerritorialOrgFirst updateTerritorialOrgFirst(TerritorialOrgFirst territorialOrgFirst, Long userId);
-    public TerritorialOrgFirst deleteTerritorialOrgFirst(Long id, Long userId);
+    public TerritorialOrgFirst createTerritorialOrgFirst(TerritorialOrgFirst territorialOrgFirst);
+    public TerritorialOrgFirst updateTerritorialOrgFirst(TerritorialOrgFirst territorialOrgFirst);
+    public Boolean deleteTerritorialOrgFirst(Long id);
+    public TerritorialOrgFirst findByCountryIdAndName(Long countryId, String name);
 }

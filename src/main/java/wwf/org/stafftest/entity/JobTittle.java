@@ -3,6 +3,7 @@ package wwf.org.stafftest.entity;
 import lombok.Data;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.util.Date;
 
 @Entity
@@ -15,8 +16,9 @@ public class JobTittle {
     @Column(unique = true, nullable = false)
     private Long id;
 
+    @NotEmpty(message = "jobTitle_vacio")
     @Column(unique = true, nullable = false)
-    private String job_title;
+    private String jobTitle;
 
     private String description;
     private Integer attribute1;

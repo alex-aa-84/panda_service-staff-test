@@ -8,7 +8,7 @@ public interface OtherInformationService {
     public List<OtherInformation> listAllOtherInformation();
     public OtherInformation getOtherInformation(Long id);
 
-    public OtherInformation createOtherInformation(OtherInformation otherInformation, Long userId);
-    public OtherInformation updateOtherInformation(OtherInformation otherInformation, Long userId);
-    public OtherInformation deleteOtherInformation(Long id, Long userId);
+    public OtherInformation createOtherInformation(OtherInformation otherInformation);
+    public OtherInformation updateOtherInformation(OtherInformation otherInformation);
+    public Boolean deleteOtherInformation(Long id);
 }

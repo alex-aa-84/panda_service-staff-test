@@ -6,11 +6,15 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name="to_territorial_org_three")
+@Table(name="to_territorial_org_three", uniqueConstraints = {
+        @UniqueConstraint(columnNames = {"territorialOrgTwo", "name"})
+})
 @Data
 public class TerritorialOrgThree {
 
@@ -19,13 +23,14 @@ public class TerritorialOrgThree {
     @Column(unique = true, nullable = false)
     private Long id;
 
-    @OneToMany(fetch = FetchType.LAZY)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    @JoinColumn(name="territorial_org_two_id", referencedColumnName = "id")
+    @NotNull(message = "territorialOrgTwo_nula")
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+    @JoinColumn(referencedColumnName = "id")
     @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
-    private List<TerritorialOrgTwo> territorial_org_two_id;
+    private TerritorialOrgTwo territorialOrgTwo;
 
-    @Column(unique = true, nullable = false)
+    @NotEmpty(message = "name_territorio_generico_vacio")
+    @Column(nullable = false)
     private String name;
 
     private Integer attribute1;

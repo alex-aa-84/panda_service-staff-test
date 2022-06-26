@@ -28,40 +28,56 @@ public class DocumentTypeServiceImpl implements DocumentTypeService {
     }
 
     @Override
-    public DocumentType createDocumentType(DocumentType documentType, Long userId) {
+    public DocumentType createDocumentType(DocumentType documentType) {
         documentType.setStatus("CREATED");
-        documentType.setCreate_by(userId);
         documentType.setCreation_date(new Date());
-        documentType.setLast_update_by(userId);
         documentType.setLast_update_date(new Date());
 
         return documentTypeRepository.save(documentType);
     }
 
     @Override
-    public DocumentType updateDocumentType(DocumentType documentType, Long userId) {
+    public DocumentType updateDocumentType(DocumentType documentType) {
         DocumentType documentTypeDB = getDocumentType(documentType.getId());
         if(null == documentTypeDB){
             return null;
         }
 
-        documentType.setLast_update_by(userId);
-        documentType.setLast_update_date(new Date());
+        documentTypeDB.setDocumentType(documentType.getDocumentType());
+        documentTypeDB.setDescription(documentType.getDescription());
 
-        return documentTypeRepository.save(documentType);
-    }
+        documentTypeDB.setAttribute1(documentType.getAttribute1());
+        documentTypeDB.setAttribute2(documentType.getAttribute2());
+        documentTypeDB.setAttribute3(documentType.getAttribute3());
+        documentTypeDB.setAttribute4(documentType.getAttribute4());
+        documentTypeDB.setAttribute5(documentType.getAttribute5());
+        documentTypeDB.setAttribute6(documentType.getAttribute6());
+        documentTypeDB.setAttribute7(documentType.getAttribute7());
+        documentTypeDB.setAttribute8(documentType.getAttribute8());
+        documentTypeDB.setAttribute9(documentType.getAttribute9());
+        documentTypeDB.setAttribute10(documentType.getAttribute10());
 
-    @Override
-    public DocumentType deleteDocumentType(Long id, Long userId) {
-        DocumentType documentTypeDB = getDocumentType(id);
-        if(null == documentTypeDB){
-            return null;
-        }
+        documentTypeDB.setStatus(documentType.getStatus());
 
-        documentTypeDB.setStatus("DELETED");
-        documentTypeDB.setLast_update_by(userId);
+        documentTypeDB.setLast_update_by(documentType.getLast_update_by());
         documentTypeDB.setLast_update_date(new Date());
 
         return documentTypeRepository.save(documentTypeDB);
+    }
+
+    @Override
+    public Boolean deleteDocumentType(Long id) {
+        DocumentType documentTypeDB = getDocumentType(id);
+        if(null == documentTypeDB){
+            return false;
+        }
+
+        documentTypeRepository.deleteById(id);
+        return true;
+    }
+
+    @Override
+    public DocumentType findByDocumentType(String documentType) {
+        return documentTypeRepository.findByDocumentType(documentType);
     }
 }

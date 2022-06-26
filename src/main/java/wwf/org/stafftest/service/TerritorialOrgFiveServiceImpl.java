@@ -5,8 +5,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import wwf.org.stafftest.entity.TerritorialOrgFirst;
 import wwf.org.stafftest.entity.TerritorialOrgFive;
+import wwf.org.stafftest.entity.TerritorialOrgFour;
 import wwf.org.stafftest.repository.TerritorialOrgFiveRepository;
 
+import javax.persistence.Column;
+import javax.validation.constraints.NotEmpty;
 import java.util.Date;
 import java.util.List;
 
@@ -28,40 +31,56 @@ public class TerritorialOrgFiveServiceImpl implements TerritorialOrgFiveService 
     }
 
     @Override
-    public TerritorialOrgFive createTerritorialOrgFive(TerritorialOrgFive territorialOrgFive, Long userId) {
+    public TerritorialOrgFive createTerritorialOrgFive(TerritorialOrgFive territorialOrgFive) {
         territorialOrgFive.setStatus("CREATED");
-        territorialOrgFive.setCreate_by(userId);
         territorialOrgFive.setCreation_date(new Date());
-        territorialOrgFive.setLast_update_by(userId);
         territorialOrgFive.setLast_update_date(new Date());
 
         return territorialOrgFiveRepository.save(territorialOrgFive);
     }
 
     @Override
-    public TerritorialOrgFive updateTerritorialOrgFive(TerritorialOrgFive territorialOrgFive, Long userId) {
+    public TerritorialOrgFive updateTerritorialOrgFive(TerritorialOrgFive territorialOrgFive) {
         TerritorialOrgFive territorialOrgFiveDB = getTerritorialOrgFive(territorialOrgFive.getId());
         if(null == territorialOrgFiveDB){
             return null;
         }
 
-        territorialOrgFive.setLast_update_by(userId);
-        territorialOrgFive.setLast_update_date(new Date());
+        territorialOrgFiveDB.setTerritorialOrgFour(territorialOrgFive.getTerritorialOrgFour());
+        territorialOrgFiveDB.setName(territorialOrgFive.getName());
 
-        return territorialOrgFiveRepository.save(territorialOrgFive);
-    }
+        territorialOrgFiveDB.setAttribute1(territorialOrgFive.getAttribute1());
+        territorialOrgFiveDB.setAttribute2(territorialOrgFive.getAttribute2());
+        territorialOrgFiveDB.setAttribute3(territorialOrgFive.getAttribute3());
+        territorialOrgFiveDB.setAttribute4(territorialOrgFive.getAttribute4());
+        territorialOrgFiveDB.setAttribute5(territorialOrgFive.getAttribute5());
+        territorialOrgFiveDB.setAttribute6(territorialOrgFive.getAttribute6());
+        territorialOrgFiveDB.setAttribute7(territorialOrgFive.getAttribute7());
+        territorialOrgFiveDB.setAttribute8(territorialOrgFive.getAttribute8());
+        territorialOrgFiveDB.setAttribute9(territorialOrgFive.getAttribute9());
+        territorialOrgFiveDB.setAttribute10(territorialOrgFive.getAttribute10());
 
-    @Override
-    public TerritorialOrgFive deleteTerritorialOrgFive(Long id, Long userId) {
-        TerritorialOrgFive territorialOrgFiveDB = getTerritorialOrgFive(id);
-        if(null == territorialOrgFiveDB){
-            return null;
-        }
+        territorialOrgFiveDB.setStatus(territorialOrgFive.getStatus());
 
-        territorialOrgFiveDB.setStatus("DELETED");
-        territorialOrgFiveDB.setLast_update_by(userId);
+        territorialOrgFiveDB.setLast_update_by(territorialOrgFive.getLast_update_by());
         territorialOrgFiveDB.setLast_update_date(new Date());
 
         return territorialOrgFiveRepository.save(territorialOrgFiveDB);
+    }
+
+    @Override
+    public Boolean deleteTerritorialOrgFive(Long id) {
+        TerritorialOrgFive territorialOrgFiveDB = getTerritorialOrgFive(id);
+        if(null == territorialOrgFiveDB){
+            return false;
+        }
+
+        territorialOrgFiveRepository.deleteById(id);
+        return true;
+    }
+
+    @Override
+    public TerritorialOrgFive findByTerritorialOrgFourAndName(TerritorialOrgFour territorialOrgFour, String name) {
+        return territorialOrgFiveRepository.findByTerritorialOrgFourAndName(territorialOrgFour, name);
     }
 }

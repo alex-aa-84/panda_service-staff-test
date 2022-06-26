@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import wwf.org.stafftest.entity.Address;
 import wwf.org.stafftest.entity.Attachment;
 import wwf.org.stafftest.repository.AttachmentRepository;
+import wwf.org.stafftest.serviceApi.MD5Util;
 
 import java.util.Date;
 import java.util.List;
@@ -28,40 +29,56 @@ public class AttachmentServiceImpl implements AttachmentService{
     }
 
     @Override
-    public Attachment createAttachment(Attachment attachment, Long userId) {
+    public Attachment createAttachment(Attachment attachment) {
         attachment.setStatus("CREATED");
-        attachment.setCreate_by(userId);
         attachment.setCreation_date(new Date());
-        attachment.setLast_update_by(userId);
         attachment.setLast_update_date(new Date());
+
+        String md5 = MD5Util.string2MD5(attachment.toString());
+        attachment.setCtrlMd5(md5);
 
         return attachmentRepository.save(attachment);
     }
 
     @Override
-    public Attachment updateAttachment(Attachment attachment, Long userId) {
+    public Attachment updateAttachment(Attachment attachment) {
         Attachment attachmentDB = getAttachment(attachment.getId());
         if(null == attachmentDB){
             return null;
         }
 
-        attachment.setLast_update_by(userId);
-        attachment.setLast_update_date(new Date());
+        attachmentDB.setUserId(attachment.getUserId());
+        attachmentDB.setAttachmentType(attachment.getAttachmentType());
+        attachmentDB.setImageConfig(attachment.getImageConfig());
+        attachmentDB.setDescription(attachment.getDescription());
 
-        return attachmentRepository.save(attachment);
-    }
+        attachmentDB.setAttribute1(attachment.getAttribute1());
+        attachmentDB.setAttribute2(attachment.getAttribute2());
+        attachmentDB.setAttribute3(attachment.getAttribute3());
+        attachmentDB.setAttribute4(attachment.getAttribute4());
+        attachmentDB.setAttribute5(attachment.getAttribute5());
+        attachmentDB.setAttribute6(attachment.getAttribute6());
+        attachmentDB.setAttribute7(attachment.getAttribute7());
+        attachmentDB.setAttribute8(attachment.getAttribute8());
+        attachmentDB.setAttribute9(attachment.getAttribute9());
+        attachmentDB.setAttribute10(attachment.getAttribute10());
 
-    @Override
-    public Attachment deleteAttachment(Long id, Long userId) {
-        Attachment attachmentDB = getAttachment(id);
-        if(null == attachmentDB){
-            return null;
-        }
+        attachmentDB.setStatus(attachment.getStatus());
 
-        attachmentDB.setStatus("DELETED");
-        attachmentDB.setLast_update_by(userId);
+        attachmentDB.setLast_update_by(attachment.getLast_update_by());
         attachmentDB.setLast_update_date(new Date());
 
         return attachmentRepository.save(attachmentDB);
+    }
+
+    @Override
+    public Boolean deleteAttachment(Long id) {
+        Attachment attachmentDB = getAttachment(id);
+        if(null == attachmentDB){
+            return false;
+        }
+
+        attachmentRepository.deleteById(id);
+        return true;
     }
 }

@@ -7,6 +7,8 @@ import wwf.org.stafftest.entity.TerritorialOrgFirst;
 import wwf.org.stafftest.entity.TerritorialOrgTwo;
 import wwf.org.stafftest.repository.TerritorialOrgTwoRepository;
 
+import javax.persistence.Column;
+import javax.validation.constraints.NotEmpty;
 import java.util.Date;
 import java.util.List;
 
@@ -28,40 +30,56 @@ public class TerritorialOrgTwoServiceImpl implements TerritorialOrgTwoService {
     }
 
     @Override
-    public TerritorialOrgTwo createTerritorialOrgTwo(TerritorialOrgTwo territorialOrgTwo, Long userId) {
+    public TerritorialOrgTwo createTerritorialOrgTwo(TerritorialOrgTwo territorialOrgTwo) {
         territorialOrgTwo.setStatus("CREATED");
-        territorialOrgTwo.setCreate_by(userId);
         territorialOrgTwo.setCreation_date(new Date());
-        territorialOrgTwo.setLast_update_by(userId);
         territorialOrgTwo.setLast_update_date(new Date());
 
         return territorialOrgTwoRepository.save(territorialOrgTwo);
     }
 
     @Override
-    public TerritorialOrgTwo updateTerritorialOrgTwo(TerritorialOrgTwo territorialOrgTwo, Long userId) {
+    public TerritorialOrgTwo updateTerritorialOrgTwo(TerritorialOrgTwo territorialOrgTwo) {
         TerritorialOrgTwo territorialOrgTwoDB = getTerritorialOrgTwo(territorialOrgTwo.getId());
         if(null == territorialOrgTwoDB){
             return null;
         }
 
-        territorialOrgTwo.setLast_update_by(userId);
-        territorialOrgTwo.setLast_update_date(new Date());
+        territorialOrgTwoDB.setTerritorialOrgFirst(territorialOrgTwo.getTerritorialOrgFirst());
+        territorialOrgTwoDB.setName(territorialOrgTwo.getName());
 
-        return territorialOrgTwoRepository.save(territorialOrgTwo);
-    }
+        territorialOrgTwoDB.setAttribute1(territorialOrgTwo.getAttribute1());
+        territorialOrgTwoDB.setAttribute2(territorialOrgTwo.getAttribute2());
+        territorialOrgTwoDB.setAttribute3(territorialOrgTwo.getAttribute3());
+        territorialOrgTwoDB.setAttribute4(territorialOrgTwo.getAttribute4());
+        territorialOrgTwoDB.setAttribute5(territorialOrgTwo.getAttribute5());
+        territorialOrgTwoDB.setAttribute6(territorialOrgTwo.getAttribute6());
+        territorialOrgTwoDB.setAttribute7(territorialOrgTwo.getAttribute7());
+        territorialOrgTwoDB.setAttribute8(territorialOrgTwo.getAttribute8());
+        territorialOrgTwoDB.setAttribute9(territorialOrgTwo.getAttribute9());
+        territorialOrgTwoDB.setAttribute10(territorialOrgTwo.getAttribute10());
 
-    @Override
-    public TerritorialOrgTwo deleteTerritorialOrgTwo(Long id, Long userId) {
-        TerritorialOrgTwo territorialOrgTwoDB = getTerritorialOrgTwo(id);
-        if(null == territorialOrgTwoDB){
-            return null;
-        }
+        territorialOrgTwoDB.setStatus(territorialOrgTwo.getStatus());
 
-        territorialOrgTwoDB.setStatus("DELETED");
-        territorialOrgTwoDB.setLast_update_by(userId);
+        territorialOrgTwoDB.setLast_update_by(territorialOrgTwo.getLast_update_by());
         territorialOrgTwoDB.setLast_update_date(new Date());
 
         return territorialOrgTwoRepository.save(territorialOrgTwoDB);
+    }
+
+    @Override
+    public Boolean deleteTerritorialOrgTwo(Long id) {
+        TerritorialOrgTwo territorialOrgTwoDB = getTerritorialOrgTwo(id);
+        if(null == territorialOrgTwoDB){
+            return false;
+        }
+
+        territorialOrgTwoRepository.deleteById(id);
+        return true;
+    }
+
+    @Override
+    public TerritorialOrgTwo findBydTerritorialOrgFirstAndName(TerritorialOrgFirst territorialOrgFirst, String name) {
+        return territorialOrgTwoRepository.findBydTerritorialOrgFirstAndName(territorialOrgFirst, name);
     }
 }

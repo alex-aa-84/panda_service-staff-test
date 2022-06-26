@@ -6,6 +6,7 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @Entity
@@ -18,30 +19,29 @@ public class JobSetting {
     @Column(unique = true, nullable = false)
     private Long id;
 
-    private Long user_id;
+    private Long userId;
 
     @Column(unique = true, nullable = false)
     private String code;
 
-    private Long user_id_supervisor;
+    private Long userIdSupervisor;
 
-    @OneToOne(fetch = FetchType.LAZY, optional = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    @JoinColumn(name="permission_header_id", referencedColumnName = "id")
+    @NotNull(message = "permissionHeader_nula")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(referencedColumnName = "id")
     @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
-    private PermissionHeader permission_header_id;
+    private PermissionHeader permissionHeader;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    @JoinColumn(name="job_title_id", referencedColumnName = "id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(referencedColumnName = "id")
     @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
-    private JobTittle job_title_id;
+    private JobTittle jobTittle;
 
     @Temporal(TemporalType.DATE)
-    private Date employment_start_date;
+    private Date employmentStartDate;
 
     @Temporal(TemporalType.DATE)
-    private Date employment_end_date;
+    private Date employmentEndDate;
 
     private Integer workload;
     private Boolean flexible;

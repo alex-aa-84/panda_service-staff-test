@@ -7,6 +7,8 @@ import wwf.org.stafftest.entity.Address;
 import wwf.org.stafftest.entity.TerritorialOrgFirst;
 import wwf.org.stafftest.repository.TerritorialOrgFirstRepository;
 
+import javax.persistence.Column;
+import javax.validation.constraints.NotEmpty;
 import java.util.Date;
 import java.util.List;
 
@@ -28,40 +30,56 @@ public class TerritorialOrgFirstServiceImpl implements TerritorialOrgFirstServic
     }
 
     @Override
-    public TerritorialOrgFirst createTerritorialOrgFirst(TerritorialOrgFirst territorialOrgFirst, Long userId) {
+    public TerritorialOrgFirst createTerritorialOrgFirst(TerritorialOrgFirst territorialOrgFirst) {
         territorialOrgFirst.setStatus("CREATED");
-        territorialOrgFirst.setCreate_by(userId);
         territorialOrgFirst.setCreation_date(new Date());
-        territorialOrgFirst.setLast_update_by(userId);
         territorialOrgFirst.setLast_update_date(new Date());
 
         return territorialOrgFirstRepository.save(territorialOrgFirst);
     }
 
     @Override
-    public TerritorialOrgFirst updateTerritorialOrgFirst(TerritorialOrgFirst territorialOrgFirst, Long userId) {
+    public TerritorialOrgFirst updateTerritorialOrgFirst(TerritorialOrgFirst territorialOrgFirst) {
         TerritorialOrgFirst territorialOrgFirstDB = getTerritorialOrgFirst(territorialOrgFirst.getId());
         if(null == territorialOrgFirstDB){
             return null;
         }
 
-        territorialOrgFirst.setLast_update_by(userId);
-        territorialOrgFirst.setLast_update_date(new Date());
+        territorialOrgFirstDB.setCountryId(territorialOrgFirst.getCountryId());
+        territorialOrgFirstDB.setName(territorialOrgFirst.getName());
 
-        return territorialOrgFirstRepository.save(territorialOrgFirst);
-    }
+        territorialOrgFirstDB.setAttribute1(territorialOrgFirst.getAttribute1());
+        territorialOrgFirstDB.setAttribute2(territorialOrgFirst.getAttribute2());
+        territorialOrgFirstDB.setAttribute3(territorialOrgFirst.getAttribute3());
+        territorialOrgFirstDB.setAttribute4(territorialOrgFirst.getAttribute4());
+        territorialOrgFirstDB.setAttribute5(territorialOrgFirst.getAttribute5());
+        territorialOrgFirstDB.setAttribute6(territorialOrgFirst.getAttribute6());
+        territorialOrgFirstDB.setAttribute7(territorialOrgFirst.getAttribute7());
+        territorialOrgFirstDB.setAttribute8(territorialOrgFirst.getAttribute8());
+        territorialOrgFirstDB.setAttribute9(territorialOrgFirst.getAttribute9());
+        territorialOrgFirstDB.setAttribute10(territorialOrgFirst.getAttribute10());
 
-    @Override
-    public TerritorialOrgFirst deleteTerritorialOrgFirst(Long id, Long userId) {
-        TerritorialOrgFirst territorialOrgFirstDB = getTerritorialOrgFirst(id);
-        if(null == territorialOrgFirstDB){
-            return null;
-        }
+        territorialOrgFirstDB.setStatus(territorialOrgFirst.getStatus());
 
-        territorialOrgFirstDB.setStatus("DELETED");
-        territorialOrgFirstDB.setLast_update_by(userId);
+        territorialOrgFirstDB.setLast_update_by(territorialOrgFirst.getLast_update_by());
         territorialOrgFirstDB.setLast_update_date(new Date());
 
         return territorialOrgFirstRepository.save(territorialOrgFirstDB);
+    }
+
+    @Override
+    public Boolean deleteTerritorialOrgFirst(Long id) {
+        TerritorialOrgFirst territorialOrgFirstDB = getTerritorialOrgFirst(id);
+        if(null == territorialOrgFirstDB){
+            return false;
+        }
+
+        territorialOrgFirstRepository.deleteById(id);
+        return true;
+    }
+
+    @Override
+    public TerritorialOrgFirst findByCountryIdAndName(Long countryId, String name) {
+        return territorialOrgFirstRepository.findByCountryIdAndName(countryId, name);
     }
 }

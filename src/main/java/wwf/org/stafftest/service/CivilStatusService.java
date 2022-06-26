@@ -8,7 +8,8 @@ public interface CivilStatusService {
     public List<CivilStatus> listAllCivilStatus();
     public CivilStatus getCivilStatus(Long id);
 
-    public CivilStatus createCivilStatus(CivilStatus civilStatus, Long userId);
-    public CivilStatus updateCivilStatus(CivilStatus civilStatus, Long userId);
-    public CivilStatus deleteCivilStatus(Long id, Long userId);
+    public CivilStatus createCivilStatus(CivilStatus civilStatus);
+    public CivilStatus updateCivilStatus(CivilStatus civilStatus);
+    public Boolean deleteCivilStatus(Long id);
+    public CivilStatus findByCivilStatus(String civilStatus);
 }

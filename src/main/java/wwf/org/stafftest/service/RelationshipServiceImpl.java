@@ -28,40 +28,56 @@ public class RelationshipServiceImpl implements RelationshipService {
     }
 
     @Override
-    public Relationship createRelationship(Relationship relationship, Long userId) {
+    public Relationship createRelationship(Relationship relationship) {
         relationship.setStatus("CREATED");
-        relationship.setCreate_by(userId);
         relationship.setCreation_date(new Date());
-        relationship.setLast_update_by(userId);
         relationship.setLast_update_date(new Date());
 
         return relationshipRepository.save(relationship);
     }
 
     @Override
-    public Relationship updateRelationship(Relationship relationship, Long userId) {
+    public Relationship updateRelationship(Relationship relationship) {
         Relationship relationshipDB = getRelationship(relationship.getId());
         if(null == relationshipDB){
             return null;
         }
 
-        relationship.setLast_update_by(userId);
-        relationship.setLast_update_date(new Date());
+        relationshipDB.setRelationship(relationship.getRelationship());
+        relationshipDB.setDescription(relationship.getDescription());
 
-        return relationshipRepository.save(relationship);
-    }
+        relationshipDB.setAttribute1(relationship.getAttribute1());
+        relationshipDB.setAttribute2(relationship.getAttribute2());
+        relationshipDB.setAttribute3(relationship.getAttribute3());
+        relationshipDB.setAttribute4(relationship.getAttribute4());
+        relationshipDB.setAttribute5(relationship.getAttribute5());
+        relationshipDB.setAttribute6(relationship.getAttribute6());
+        relationshipDB.setAttribute7(relationship.getAttribute7());
+        relationshipDB.setAttribute8(relationship.getAttribute8());
+        relationshipDB.setAttribute9(relationship.getAttribute9());
+        relationshipDB.setAttribute10(relationship.getAttribute10());
 
-    @Override
-    public Relationship deleteRelationship(Long id, Long userId) {
-        Relationship relationshipDB = getRelationship(id);
-        if(null == relationshipDB){
-            return null;
-        }
+        relationshipDB.setStatus(relationship.getStatus());
 
-        relationshipDB.setStatus("DELETED");
-        relationshipDB.setLast_update_by(userId);
+        relationshipDB.setLast_update_by(relationship.getLast_update_by());
         relationshipDB.setLast_update_date(new Date());
 
         return relationshipRepository.save(relationshipDB);
+    }
+
+    @Override
+    public Boolean deleteRelationship(Long id) {
+        Relationship relationshipDB = getRelationship(id);
+        if(null == relationshipDB){
+            return false;
+        }
+
+        relationshipRepository.deleteById(id);
+        return true;
+    }
+
+    @Override
+    public Relationship findByRelationship(String relationship) {
+        return relationshipRepository.findByRelationship(relationship);
     }
 }

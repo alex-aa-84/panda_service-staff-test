@@ -28,40 +28,56 @@ public class ProfessionTypeServiceImpl implements ProfessionTypeService {
     }
 
     @Override
-    public ProfessionType createProfessionType(ProfessionType professionType, Long userId) {
+    public ProfessionType createProfessionType(ProfessionType professionType) {
         professionType.setStatus("CREATED");
-        professionType.setCreate_by(userId);
         professionType.setCreation_date(new Date());
-        professionType.setLast_update_by(userId);
         professionType.setLast_update_date(new Date());
 
         return professionTypeRepository.save(professionType);
     }
 
     @Override
-    public ProfessionType updateProfessionType(ProfessionType professionType, Long userId) {
+    public ProfessionType updateProfessionType(ProfessionType professionType) {
         ProfessionType professionTypeDB = getProfessionType(professionType.getId());
         if(null == professionTypeDB){
             return null;
         }
 
-        professionType.setLast_update_by(userId);
-        professionType.setLast_update_date(new Date());
+        professionTypeDB.setProfessionType(professionType.getProfessionType());
+        professionTypeDB.setDescription(professionType.getDescription());
 
-        return professionTypeRepository.save(professionType);
-    }
+        professionTypeDB.setAttribute1(professionType.getAttribute1());
+        professionTypeDB.setAttribute2(professionType.getAttribute2());
+        professionTypeDB.setAttribute3(professionType.getAttribute3());
+        professionTypeDB.setAttribute4(professionType.getAttribute4());
+        professionTypeDB.setAttribute5(professionType.getAttribute5());
+        professionTypeDB.setAttribute6(professionType.getAttribute6());
+        professionTypeDB.setAttribute7(professionType.getAttribute7());
+        professionTypeDB.setAttribute8(professionType.getAttribute8());
+        professionTypeDB.setAttribute9(professionType.getAttribute9());
+        professionTypeDB.setAttribute10(professionType.getAttribute10());
 
-    @Override
-    public ProfessionType deleteProfessionType(Long id, Long userId) {
-        ProfessionType professionTypeDB = getProfessionType(id);
-        if(null == professionTypeDB){
-            return null;
-        }
+        professionTypeDB.setStatus(professionType.getStatus());
 
-        professionTypeDB.setStatus("DELETED");
-        professionTypeDB.setLast_update_by(userId);
+        professionTypeDB.setLast_update_by(professionType.getLast_update_by());
         professionTypeDB.setLast_update_date(new Date());
 
         return professionTypeRepository.save(professionTypeDB);
+    }
+
+    @Override
+    public Boolean deleteProfessionType(Long id) {
+        ProfessionType professionTypeDB = getProfessionType(id);
+        if(null == professionTypeDB){
+            return false;
+        }
+
+        professionTypeRepository.deleteById(id);
+        return true;
+    }
+
+    @Override
+    public ProfessionType findByProfessionType(String professionType) {
+        return professionTypeRepository.findByProfessionType(professionType);
     }
 }

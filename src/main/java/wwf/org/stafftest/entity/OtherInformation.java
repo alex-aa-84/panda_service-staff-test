@@ -6,12 +6,12 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.Date;
 
 @Entity
-@Table(name = "st_other_informations", uniqueConstraints = {
-        @UniqueConstraint(columnNames = {"detail_1", "detail_2"})
-})
+@Table(name = "st_other_informations")
 @Data
 public class OtherInformation {
 
@@ -20,16 +20,16 @@ public class OtherInformation {
     @Column(unique = true, nullable = false)
     private Long id;
 
-    private Long user_id;
+    private Long userId;
 
+    @NotNull(message = "otherInformationType_nula")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    @JoinColumn(name="other_information_type_id", referencedColumnName = "id")
+    @JoinColumn(referencedColumnName = "id")
     @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
-    private OtherInformationType other_information_type_id;
+    private OtherInformationType otherInformationType;
 
-    private String detail_1;
-    private String detail_2;
+    private String description1;
+    private String description2;
 
     private Integer attribute1;
     private Integer attribute2;
@@ -56,5 +56,9 @@ public class OtherInformation {
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date last_update_date;
+
+    @Column(unique = true, nullable = false)
+    @Size(min=32, max = 32)
+    private String ctrlMd5;
 
 }

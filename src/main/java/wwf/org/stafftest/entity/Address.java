@@ -6,6 +6,8 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.Date;
 
 @Entity
@@ -18,49 +20,44 @@ public class Address {
     @Column(unique = true, nullable = false)
     private Long id;
 
-    private Long user_id;
+    private Long userId;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    @JoinColumn(name="address_type_id", referencedColumnName = "id")
+    @NotNull(message = "address_type_id_nula")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(referencedColumnName = "id")
     @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
-    private AddressType address_type_id;
+    private AddressType addressType;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    @JoinColumn(name="territorial_org_first_id", referencedColumnName = "id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(referencedColumnName = "id")
     @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
-    private TerritorialOrgFirst territorial_org_first_id;
+    private TerritorialOrgFirst territorialOrgFirst;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    @JoinColumn(name="territorial_org_two_id", referencedColumnName = "id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(referencedColumnName = "id")
     @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
-    private TerritorialOrgTwo territorial_org_two_id;
+    private TerritorialOrgTwo territorialOrgTwo;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    @JoinColumn(name="territorial_org_three_id", referencedColumnName = "id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(referencedColumnName = "id")
     @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
-    private TerritorialOrgThree territorial_org_three_id;
+    private TerritorialOrgThree territorialOrgThree;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    @JoinColumn(name="territorial_org_four_id", referencedColumnName = "id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(referencedColumnName = "id")
     @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
-    private TerritorialOrgFour territorial_org_four_id;
+    private TerritorialOrgFour territorialOrgFour;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    @JoinColumn(name="territorial_org_five_id", referencedColumnName = "id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(referencedColumnName = "id")
     @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
-    private TerritorialOrgFive territorial_org_five_id;
+    private TerritorialOrgFive territorialOrgFive;
 
     private String neighborhood;
     private String street;
     private String number;
-    private String between_street;
-    private String postal_code;
+    private String betweenStreet;
+    private String postalCode;
     private String building;
     private String tower;
     private String floor;
@@ -94,5 +91,9 @@ public class Address {
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date last_update_date;
+
+    @Column(unique = true, nullable = false)
+    @Size(min=32, max = 32)
+    private String ctrlMd5;
 
 }

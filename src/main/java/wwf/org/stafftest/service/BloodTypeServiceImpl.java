@@ -28,40 +28,56 @@ public class BloodTypeServiceImpl implements BloodTypeService{
     }
 
     @Override
-    public BloodType createBloodType(BloodType bloodType, Long userId) {
+    public BloodType createBloodType(BloodType bloodType) {
         bloodType.setStatus("CREATED");
-        bloodType.setCreate_by(userId);
         bloodType.setCreation_date(new Date());
-        bloodType.setLast_update_by(userId);
         bloodType.setLast_update_date(new Date());
 
         return bloodTypeRepository.save(bloodType);
     }
 
     @Override
-    public BloodType updateBloodType(BloodType bloodType, Long userId) {
+    public BloodType updateBloodType(BloodType bloodType) {
         BloodType bloodTypeDB = getBloodType(bloodType.getId());
         if(null == bloodTypeDB){
             return null;
         }
 
-        bloodType.setLast_update_by(userId);
-        bloodType.setLast_update_date(new Date());
+        bloodTypeDB.setBloodType(bloodType.getBloodType());
+        bloodTypeDB.setDescription(bloodType.getDescription());
 
-        return bloodTypeRepository.save(bloodType);
-    }
+        bloodTypeDB.setAttribute1(bloodType.getAttribute1());
+        bloodTypeDB.setAttribute2(bloodType.getAttribute2());
+        bloodTypeDB.setAttribute3(bloodType.getAttribute3());
+        bloodTypeDB.setAttribute4(bloodType.getAttribute4());
+        bloodTypeDB.setAttribute5(bloodType.getAttribute5());
+        bloodTypeDB.setAttribute6(bloodType.getAttribute6());
+        bloodTypeDB.setAttribute7(bloodType.getAttribute7());
+        bloodTypeDB.setAttribute8(bloodType.getAttribute8());
+        bloodTypeDB.setAttribute9(bloodType.getAttribute9());
+        bloodTypeDB.setAttribute10(bloodType.getAttribute10());
 
-    @Override
-    public BloodType deleteBloodType(Long id, Long userId) {
-        BloodType bloodTypeDB = getBloodType(id);
-        if(null == bloodTypeDB){
-            return null;
-        }
+        bloodTypeDB.setStatus(bloodType.getStatus());
 
-        bloodTypeDB.setStatus("DELETED");
-        bloodTypeDB.setLast_update_by(userId);
+        bloodTypeDB.setLast_update_by(bloodType.getLast_update_by());
         bloodTypeDB.setLast_update_date(new Date());
 
         return bloodTypeRepository.save(bloodTypeDB);
+    }
+
+    @Override
+    public Boolean deleteBloodType(Long id) {
+        BloodType bloodTypeDB = getBloodType(id);
+        if(null == bloodTypeDB){
+            return false;
+        }
+
+        bloodTypeRepository.deleteById(id);
+        return true;
+    }
+
+    @Override
+    public BloodType findByBloodType(String bloodType) {
+        return bloodTypeRepository.findByBloodType(bloodType);
     }
 }

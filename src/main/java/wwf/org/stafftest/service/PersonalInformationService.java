@@ -8,7 +8,8 @@ public interface PersonalInformationService {
     public List<PersonalInformation> listAllPersonalInformation();
     public PersonalInformation getPersonalInformation(Long id);
 
-    public PersonalInformation createPersonalInformation(PersonalInformation personalInformation, Long userId);
-    public PersonalInformation updatePersonalInformation(PersonalInformation personalInformation, Long userId);
-    public PersonalInformation deletePersonalInformation(Long id, Long userId);
+    public PersonalInformation createPersonalInformation(PersonalInformation personalInformation);
+    public PersonalInformation updatePersonalInformation(PersonalInformation personalInformation);
+    public Boolean deletePersonalInformation(Long id);
+    public PersonalInformation findByUserId(Long userId);
 }

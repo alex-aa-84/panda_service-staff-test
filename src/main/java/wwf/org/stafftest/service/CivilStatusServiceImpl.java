@@ -28,40 +28,56 @@ public class CivilStatusServiceImpl implements CivilStatusService {
     }
 
     @Override
-    public CivilStatus createCivilStatus(CivilStatus civilStatus, Long userId) {
+    public CivilStatus createCivilStatus(CivilStatus civilStatus) {
         civilStatus.setStatus("CREATED");
-        civilStatus.setCreate_by(userId);
         civilStatus.setCreation_date(new Date());
-        civilStatus.setLast_update_by(userId);
         civilStatus.setLast_update_date(new Date());
 
         return civilStatusRepository.save(civilStatus);
     }
 
     @Override
-    public CivilStatus updateCivilStatus(CivilStatus civilStatus, Long userId) {
+    public CivilStatus updateCivilStatus(CivilStatus civilStatus) {
         CivilStatus civilStatusDB = getCivilStatus(civilStatus.getId());
         if(null == civilStatusDB){
             return null;
         }
 
-        civilStatus.setLast_update_by(userId);
-        civilStatus.setLast_update_date(new Date());
+        civilStatusDB.setCivilStatus(civilStatus.getCivilStatus());
+        civilStatusDB.setDescription(civilStatus.getDescription());
 
-        return civilStatusRepository.save(civilStatus);
-    }
+        civilStatusDB.setAttribute1(civilStatus.getAttribute1());
+        civilStatusDB.setAttribute2(civilStatus.getAttribute2());
+        civilStatusDB.setAttribute3(civilStatus.getAttribute3());
+        civilStatusDB.setAttribute4(civilStatus.getAttribute4());
+        civilStatusDB.setAttribute5(civilStatus.getAttribute5());
+        civilStatusDB.setAttribute6(civilStatus.getAttribute6());
+        civilStatusDB.setAttribute7(civilStatus.getAttribute7());
+        civilStatusDB.setAttribute8(civilStatus.getAttribute8());
+        civilStatusDB.setAttribute9(civilStatus.getAttribute9());
+        civilStatusDB.setAttribute10(civilStatus.getAttribute10());
 
-    @Override
-    public CivilStatus deleteCivilStatus(Long id, Long userId) {
-        CivilStatus civilStatusDB = getCivilStatus(id);
-        if(null == civilStatusDB){
-            return null;
-        }
+        civilStatusDB.setStatus(civilStatus.getStatus());
 
-        civilStatusDB.setStatus("DELETED");
-        civilStatusDB.setLast_update_by(userId);
+        civilStatusDB.setLast_update_by(civilStatus.getLast_update_by());
         civilStatusDB.setLast_update_date(new Date());
 
         return civilStatusRepository.save(civilStatusDB);
+    }
+
+    @Override
+    public Boolean deleteCivilStatus(Long id) {
+        CivilStatus civilStatusDB = getCivilStatus(id);
+        if(null == civilStatusDB){
+            return false;
+        }
+
+        civilStatusRepository.deleteById(id);
+        return true;
+    }
+
+    @Override
+    public CivilStatus findByCivilStatus(String civilStatus) {
+        return civilStatusRepository.findByCivilStatus(civilStatus);
     }
 }

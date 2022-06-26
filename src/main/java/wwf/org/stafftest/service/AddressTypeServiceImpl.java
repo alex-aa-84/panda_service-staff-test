@@ -7,6 +7,8 @@ import wwf.org.stafftest.entity.Address;
 import wwf.org.stafftest.entity.AddressType;
 import wwf.org.stafftest.repository.AddressTypeRepository;
 
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import java.util.Date;
 import java.util.List;
 
@@ -28,40 +30,56 @@ public class AddressTypeServiceImpl implements AddressTypeService{
     }
 
     @Override
-    public AddressType createAddressType(AddressType addressType, Long userId) {
+    public AddressType createAddressType(AddressType addressType) {
         addressType.setStatus("CREATED");
-        addressType.setCreate_by(userId);
         addressType.setCreation_date(new Date());
-        addressType.setLast_update_by(userId);
         addressType.setLast_update_date(new Date());
 
         return addressTypeRepository.save(addressType);
     }
 
     @Override
-    public AddressType updateAddressType(AddressType addressType, Long userId) {
+    public AddressType updateAddressType(AddressType addressType) {
         AddressType addressTypeDB = getAddressType(addressType.getId());
         if(null == addressTypeDB){
             return null;
         }
 
-        addressType.setLast_update_by(userId);
-        addressType.setLast_update_date(new Date());
+        addressTypeDB.setAddressType(addressType.getAddressType());
+        addressTypeDB.setDescription(addressType.getDescription());
 
-        return addressTypeRepository.save(addressType);
-    }
+        addressTypeDB.setAttribute1(addressType.getAttribute1());
+        addressTypeDB.setAttribute2(addressType.getAttribute2());
+        addressTypeDB.setAttribute3(addressType.getAttribute3());
+        addressTypeDB.setAttribute4(addressType.getAttribute4());
+        addressTypeDB.setAttribute5(addressType.getAttribute5());
+        addressTypeDB.setAttribute6(addressType.getAttribute6());
+        addressTypeDB.setAttribute7(addressType.getAttribute7());
+        addressTypeDB.setAttribute8(addressType.getAttribute8());
+        addressTypeDB.setAttribute9(addressType.getAttribute9());
+        addressTypeDB.setAttribute10(addressType.getAttribute10());
 
-    @Override
-    public AddressType deleteAddressType(Long id, Long userId) {
-        AddressType addressTypeDB = getAddressType(id);
-        if(null == addressTypeDB){
-            return null;
-        }
+        addressTypeDB.setStatus(addressType.getStatus());
 
-        addressTypeDB.setStatus("DELETED");
-        addressTypeDB.setLast_update_by(userId);
+        addressTypeDB.setLast_update_by(addressType.getLast_update_by());
         addressTypeDB.setLast_update_date(new Date());
 
         return addressTypeRepository.save(addressTypeDB);
+    }
+
+    @Override
+    public Boolean deleteAddressType(Long id) {
+        AddressType addressTypeDB = getAddressType(id);
+        if(null == addressTypeDB){
+            return false;
+        }
+
+        addressTypeRepository.deleteById(id);
+        return true;
+    }
+
+    @Override
+    public AddressType findByAddressType(String addressType) {
+        return addressTypeRepository.findByAddressType(addressType);
     }
 }

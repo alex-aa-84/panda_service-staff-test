@@ -3,6 +3,8 @@ package wwf.org.stafftest.entity;
 import lombok.Data;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @Entity
@@ -15,8 +17,9 @@ public class ProfessionType {
     @Column(unique = true, nullable = false)
     private Long id;
 
+    @NotEmpty(message = "professionType_vacia")
     @Column(unique = true, nullable = false)
-    private String profession_type;
+    private String professionType;
 
     private String description;
     private Integer attribute1;

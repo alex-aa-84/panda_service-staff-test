@@ -28,40 +28,56 @@ public class JobTittleServiceImpl implements JobTittleService{
     }
 
     @Override
-    public JobTittle createJobTittle(JobTittle jobTittle, Long userId) {
+    public JobTittle createJobTittle(JobTittle jobTittle) {
         jobTittle.setStatus("CREATED");
-        jobTittle.setCreate_by(userId);
         jobTittle.setCreation_date(new Date());
-        jobTittle.setLast_update_by(userId);
         jobTittle.setLast_update_date(new Date());
 
         return jobTitleRepository.save(jobTittle);
     }
 
     @Override
-    public JobTittle updateJobTittle(JobTittle jobTittle, Long userId) {
+    public JobTittle updateJobTittle(JobTittle jobTittle) {
         JobTittle jobTittleDB = getJobTittle(jobTittle.getId());
         if(null == jobTittleDB){
             return null;
         }
 
-        jobTittle.setLast_update_by(userId);
-        jobTittle.setLast_update_date(new Date());
+        jobTittleDB.setJobTitle(jobTittle.getJobTitle());
+        jobTittleDB.setDescription(jobTittle.getDescription());
 
-        return jobTitleRepository.save(jobTittle);
-    }
+        jobTittleDB.setAttribute1(jobTittle.getAttribute1());
+        jobTittleDB.setAttribute2(jobTittle.getAttribute2());
+        jobTittleDB.setAttribute3(jobTittle.getAttribute3());
+        jobTittleDB.setAttribute4(jobTittle.getAttribute4());
+        jobTittleDB.setAttribute5(jobTittle.getAttribute5());
+        jobTittleDB.setAttribute6(jobTittle.getAttribute6());
+        jobTittleDB.setAttribute7(jobTittle.getAttribute7());
+        jobTittleDB.setAttribute8(jobTittle.getAttribute8());
+        jobTittleDB.setAttribute9(jobTittle.getAttribute9());
+        jobTittleDB.setAttribute10(jobTittle.getAttribute10());
 
-    @Override
-    public JobTittle deleteJobTittle(Long id, Long userId) {
-        JobTittle jobTittleDB = getJobTittle(id);
-        if(null == jobTittleDB){
-            return null;
-        }
+        jobTittleDB.setStatus(jobTittle.getStatus());
 
-        jobTittleDB.setStatus("DELETED");
-        jobTittleDB.setLast_update_by(userId);
+        jobTittleDB.setLast_update_by(jobTittle.getLast_update_by());
         jobTittleDB.setLast_update_date(new Date());
 
         return jobTitleRepository.save(jobTittleDB);
+    }
+
+    @Override
+    public Boolean deleteJobTittle(Long id) {
+        JobTittle jobTittleDB = getJobTittle(id);
+        if(null == jobTittleDB){
+            return false;
+        }
+
+        jobTitleRepository.deleteById(id);
+        return true;
+    }
+
+    @Override
+    public JobTittle findByJobTitle(String jobTitle) {
+        return jobTitleRepository.findByJobTitle(jobTitle);
     }
 }

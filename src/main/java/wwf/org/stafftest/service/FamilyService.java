@@ -8,7 +8,7 @@ public interface FamilyService {
     public List<Family> listAllFamily();
     public Family getFamily(Long id);
 
-    public Family createFamily(Family family, Long userId);
-    public Family updateFamily(Family family, Long userId);
-    public Family deleteFamily(Long id, Long userId);
+    public Family createFamily(Family family);
+    public Family updateFamily(Family family);
+    public Boolean deleteFamily(Long id);
 }

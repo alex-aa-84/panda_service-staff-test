@@ -3,6 +3,7 @@ package wwf.org.stafftest.entity;
 import lombok.Data;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.util.Date;
 
 @Entity
@@ -15,8 +16,9 @@ public class PermissionHeader {
     @Column(unique = true, nullable = false)
     private Long id;
 
-    private Long tenant_id;
+    private Long tenantId;
 
+    @NotEmpty(message = "permission_vacio")
     @Column(unique = true, nullable = false)
     private String permission;
 

@@ -8,7 +8,8 @@ public interface OtherInformationTypeService {
     public List<OtherInformationType> listAllOtherInformationType();
     public OtherInformationType getOtherInformationType(Long id);
 
-    public OtherInformationType createOtherInformationType(OtherInformationType otherInformationType, Long userId);
-    public OtherInformationType updateOtherInformationType(OtherInformationType otherInformationType, Long userId);
-    public OtherInformationType deleteOtherInformationType(Long id, Long userId);
+    public OtherInformationType createOtherInformationType(OtherInformationType otherInformationType);
+    public OtherInformationType updateOtherInformationType(OtherInformationType otherInformationType);
+    public Boolean deleteOtherInformationType(Long id);
+    public OtherInformationType findByOtherInformationType(String otherInformationType);
 }

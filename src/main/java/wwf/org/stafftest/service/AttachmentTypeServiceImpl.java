@@ -8,6 +8,8 @@ import wwf.org.stafftest.entity.Attachment;
 import wwf.org.stafftest.entity.AttachmentType;
 import wwf.org.stafftest.repository.AttachmentTypeRepository;
 
+import javax.persistence.Column;
+import javax.validation.constraints.NotEmpty;
 import java.util.Date;
 import java.util.List;
 
@@ -30,40 +32,57 @@ public class AttachmentTypeServiceImpl implements AttachmentTypeService{
     }
 
     @Override
-    public AttachmentType createAttachmentType(AttachmentType attachmentType, Long userId) {
+    public AttachmentType createAttachmentType(AttachmentType attachmentType) {
         attachmentType.setStatus("CREATED");
-        attachmentType.setCreate_by(userId);
         attachmentType.setCreation_date(new Date());
-        attachmentType.setLast_update_by(userId);
         attachmentType.setLast_update_date(new Date());
 
         return attachmentTypeRepository.save(attachmentType);
     }
 
     @Override
-    public AttachmentType updateAttachmentType(AttachmentType attachmentType, Long userId) {
+    public AttachmentType updateAttachmentType(AttachmentType attachmentType) {
         AttachmentType attachmentTypeBD = getAttachmentType(attachmentType.getId());
         if(null == attachmentTypeBD){
             return null;
         }
 
-        attachmentType.setLast_update_by(userId);
-        attachmentType.setLast_update_date(new Date());
+        attachmentTypeBD.setAttachmentType(attachmentType.getAttachmentType());
 
-        return attachmentTypeRepository.save(attachmentType);
-    }
+        attachmentTypeBD.setDescription(attachmentType.getDescription());
 
-    @Override
-    public AttachmentType deleteAttachmentType(Long id, Long userId) {
-        AttachmentType attachmentTypeBD = getAttachmentType(id);
-        if(null == attachmentTypeBD){
-            return null;
-        }
+        attachmentTypeBD.setAttribute1(attachmentType.getAttribute1());
+        attachmentTypeBD.setAttribute2(attachmentType.getAttribute2());
+        attachmentTypeBD.setAttribute3(attachmentType.getAttribute3());
+        attachmentTypeBD.setAttribute4(attachmentType.getAttribute4());
+        attachmentTypeBD.setAttribute5(attachmentType.getAttribute5());
+        attachmentTypeBD.setAttribute6(attachmentType.getAttribute6());
+        attachmentTypeBD.setAttribute7(attachmentType.getAttribute7());
+        attachmentTypeBD.setAttribute8(attachmentType.getAttribute8());
+        attachmentTypeBD.setAttribute9(attachmentType.getAttribute9());
+        attachmentTypeBD.setAttribute10(attachmentType.getAttribute10());
 
-        attachmentTypeBD.setStatus("DELETED");
-        attachmentTypeBD.setLast_update_by(userId);
+        attachmentTypeBD.setStatus(attachmentType.getStatus());
+
+        attachmentTypeBD.setLast_update_by(attachmentType.getLast_update_by());
         attachmentTypeBD.setLast_update_date(new Date());
 
         return attachmentTypeRepository.save(attachmentTypeBD);
+    }
+
+    @Override
+    public Boolean deleteAttachmentType(Long id) {
+        AttachmentType attachmentTypeBD = getAttachmentType(id);
+        if(null == attachmentTypeBD){
+            return false;
+        }
+
+        attachmentTypeRepository.deleteById(id);
+        return true;
+    }
+
+    @Override
+    public AttachmentType findByAttachmentType(String attachmentType) {
+        return attachmentTypeRepository.findByAttachmentType(attachmentType);
     }
 }

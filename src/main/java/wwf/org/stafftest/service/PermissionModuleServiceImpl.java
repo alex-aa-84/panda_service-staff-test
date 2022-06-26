@@ -4,9 +4,12 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import wwf.org.stafftest.entity.Address;
+import wwf.org.stafftest.entity.PermissionHeader;
 import wwf.org.stafftest.entity.PermissionModule;
 import wwf.org.stafftest.repository.PermissionModuleRepository;
 
+import javax.persistence.Column;
+import javax.validation.constraints.NotEmpty;
 import java.util.Date;
 import java.util.List;
 
@@ -28,40 +31,57 @@ public class PermissionModuleServiceImpl implements PermissionModuleService {
     }
 
     @Override
-    public PermissionModule createPermissionModule(PermissionModule permissionModule, Long userId) {
+    public PermissionModule createPermissionModule(PermissionModule permissionModule) {
         permissionModule.setStatus("CREATED");
-        permissionModule.setCreate_by(userId);
         permissionModule.setCreation_date(new Date());
-        permissionModule.setLast_update_by(userId);
         permissionModule.setLast_update_date(new Date());
 
         return permissionModuleRepository.save(permissionModule);
     }
 
     @Override
-    public PermissionModule updatePermissionModule(PermissionModule permissionModule, Long userId) {
+    public PermissionModule updatePermissionModule(PermissionModule permissionModule) {
         PermissionModule permissionModuleBD = getPermissionModule(permissionModule.getId());
         if(null == permissionModuleBD){
             return null;
         }
 
-        permissionModule.setLast_update_by(userId);
-        permissionModule.setLast_update_date(new Date());
+        permissionModuleBD.setPermissionHeader(permissionModule.getPermissionHeader());
+        permissionModuleBD.setModuleId(permissionModule.getModuleId());
+        permissionModuleBD.setDescription(permissionModule.getDescription());
 
-        return permissionModuleRepository.save(permissionModule);
-    }
+        permissionModuleBD.setAttribute1(permissionModule.getAttribute1());
+        permissionModuleBD.setAttribute2(permissionModule.getAttribute2());
+        permissionModuleBD.setAttribute3(permissionModule.getAttribute3());
+        permissionModuleBD.setAttribute4(permissionModule.getAttribute4());
+        permissionModuleBD.setAttribute5(permissionModule.getAttribute5());
+        permissionModuleBD.setAttribute6(permissionModule.getAttribute6());
+        permissionModuleBD.setAttribute7(permissionModule.getAttribute7());
+        permissionModuleBD.setAttribute8(permissionModule.getAttribute8());
+        permissionModuleBD.setAttribute9(permissionModule.getAttribute9());
+        permissionModuleBD.setAttribute10(permissionModule.getAttribute10());
 
-    @Override
-    public PermissionModule deletePermissionModule(Long id, Long userId) {
-        PermissionModule permissionModuleBD = getPermissionModule(id);
-        if(null == permissionModuleBD){
-            return null;
-        }
+        permissionModuleBD.setStatus(permissionModule.getStatus());
 
-        permissionModuleBD.setStatus("DELETED");
-        permissionModuleBD.setLast_update_by(userId);
+        permissionModuleBD.setLast_update_by(permissionModule.getLast_update_by());
         permissionModuleBD.setLast_update_date(new Date());
 
         return permissionModuleRepository.save(permissionModuleBD);
+    }
+
+    @Override
+    public Boolean deletePermissionModule(Long id) {
+        PermissionModule permissionModuleBD = getPermissionModule(id);
+        if(null == permissionModuleBD){
+            return false;
+        }
+
+        permissionModuleRepository.deleteById(id);
+        return true;
+    }
+
+    @Override
+    public PermissionModule findByPermissionHeaderAndModuleId(PermissionHeader permissionHeader, Long moduleId) {
+        return permissionModuleRepository.findByPermissionHeaderAndModuleId(permissionHeader, moduleId);
     }
 }

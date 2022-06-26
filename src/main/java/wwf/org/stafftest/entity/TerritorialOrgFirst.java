@@ -3,10 +3,13 @@ package wwf.org.stafftest.entity;
 import lombok.Data;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.util.Date;
 
 @Entity
-@Table(name="to_territorial_org_first")
+@Table(name="to_territorial_org_first", uniqueConstraints = {
+        @UniqueConstraint(columnNames = {"countryId", "name"})
+})
 @Data
 public class TerritorialOrgFirst {
 
@@ -15,9 +18,10 @@ public class TerritorialOrgFirst {
     @Column(unique = true, nullable = false)
     private Long id;
 
-    private Long country_id;
+    private Long countryId;
 
-    @Column(unique = true, nullable = false)
+    @NotEmpty(message = "name_territorio_generico_vacio")
+    @Column(nullable = false)
     private String name;
 
     private Integer attribute1;

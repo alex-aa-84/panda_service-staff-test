@@ -8,7 +8,9 @@ public interface JobSettingService {
     public List<JobSetting> listAllJobSetting();
     public JobSetting getJobSetting(Long id);
 
-    public JobSetting createJobSetting(JobSetting jobSetting, Long userId);
-    public JobSetting updateJobSetting(JobSetting jobSetting, Long userId);
-    public JobSetting deleteJobSetting(Long id, Long userId);
+    public JobSetting createJobSetting(JobSetting jobSetting);
+    public JobSetting updateJobSetting(JobSetting jobSetting);
+    public Boolean deleteJobSetting(Long id);
+
+    public JobSetting findByCode(String code);
 }

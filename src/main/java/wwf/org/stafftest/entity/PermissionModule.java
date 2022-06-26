@@ -6,11 +6,15 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name = "per_permission_modules")
+@Table(name = "per_permission_modules", uniqueConstraints = {
+        @UniqueConstraint(columnNames = {"permissionHeader", "moduleId"})
+})
 @Data
 public class PermissionModule {
     @Id
@@ -18,14 +22,15 @@ public class PermissionModule {
     @Column(unique = true, nullable = false)
     private Long id;
 
-    @OneToMany(fetch = FetchType.LAZY)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    @JoinColumn(name="permission_header_id", referencedColumnName = "id")
+    @NotNull(message = "permissionHeader_nula")
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+    @JoinColumn(referencedColumnName = "id")
     @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
-    private List<PermissionHeader> permission_header_id;
+    private PermissionHeader permissionHeader;
 
-    @Column(unique = true, nullable = false)
-    private Long module_id;
+    @NotEmpty(message = "module_id_vacio")
+    @Column(nullable = false)
+    private Long moduleId;
 
     private String description;
     private Integer attribute1;

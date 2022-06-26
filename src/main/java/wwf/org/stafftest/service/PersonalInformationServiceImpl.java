@@ -1,12 +1,17 @@
 package wwf.org.stafftest.service;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import wwf.org.stafftest.entity.Address;
+import wwf.org.stafftest.entity.BloodType;
+import wwf.org.stafftest.entity.CivilStatus;
 import wwf.org.stafftest.entity.PersonalInformation;
 import wwf.org.stafftest.repository.PersonalInformationRepository;
 
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 import java.util.List;
 
@@ -28,40 +33,64 @@ public class PersonalInformationServiceImpl implements PersonalInformationServic
     }
 
     @Override
-    public PersonalInformation createPersonalInformation(PersonalInformation personalInformation, Long userId) {
+    public PersonalInformation createPersonalInformation(PersonalInformation personalInformation) {
         personalInformation.setStatus("CREATED");
-        personalInformation.setCreate_by(userId);
         personalInformation.setCreation_date(new Date());
-        personalInformation.setLast_update_by(userId);
         personalInformation.setLast_update_date(new Date());
 
         return personalInformationRepository.save(personalInformation);
     }
 
     @Override
-    public PersonalInformation updatePersonalInformation(PersonalInformation personalInformation, Long userId) {
+    public PersonalInformation updatePersonalInformation(PersonalInformation personalInformation) {
         PersonalInformation personalInformationDB = getPersonalInformation(personalInformation.getId());
         if(null == personalInformationDB){
             return null;
         }
 
-        personalInformation.setLast_update_by(userId);
-        personalInformation.setLast_update_date(new Date());
+        personalInformationDB.setUserId(personalInformation.getUserId());
 
-        return personalInformationRepository.save(personalInformation);
-    }
+        personalInformationDB.setNames(personalInformation.getNames());
+        personalInformationDB.setSurnamePaternal(personalInformation.getSurnamePaternal());
+        personalInformationDB.setSurnameMaternal(personalInformation.getSurnameMaternal());
+        personalInformationDB.setSurnameMarried(personalInformation.getSurnameMarried());
+        personalInformationDB.setBirthDate(personalInformation.getBirthDate());
+        personalInformationDB.setCivilStatus(personalInformation.getCivilStatus());
+        personalInformationDB.setBloodType(personalInformation.getBloodType());
+        personalInformationDB.setCountry_id(personalInformation.getCountry_id());
 
-    @Override
-    public PersonalInformation deletePersonalInformation(Long id, Long userId) {
-        PersonalInformation personalInformationDB = getPersonalInformation(id);
-        if(null == personalInformationDB){
-            return null;
-        }
+        personalInformationDB.setAttribute1(personalInformation.getAttribute1());
+        personalInformationDB.setAttribute2(personalInformation.getAttribute2());
+        personalInformationDB.setAttribute3(personalInformation.getAttribute3());
+        personalInformationDB.setAttribute4(personalInformation.getAttribute4());
+        personalInformationDB.setAttribute5(personalInformation.getAttribute5());
+        personalInformationDB.setAttribute6(personalInformation.getAttribute6());
+        personalInformationDB.setAttribute7(personalInformation.getAttribute7());
+        personalInformationDB.setAttribute8(personalInformation.getAttribute8());
+        personalInformationDB.setAttribute9(personalInformation.getAttribute9());
+        personalInformationDB.setAttribute10(personalInformation.getAttribute10());
 
-        personalInformationDB.setStatus("DELETED");
-        personalInformationDB.setLast_update_by(userId);
+        personalInformationDB.setStatus(personalInformation.getStatus());
+
+        personalInformationDB.setLast_update_by(personalInformation.getLast_update_by());
         personalInformationDB.setLast_update_date(new Date());
 
         return personalInformationRepository.save(personalInformationDB);
+    }
+
+    @Override
+    public Boolean deletePersonalInformation(Long id) {
+        PersonalInformation personalInformationDB = getPersonalInformation(id);
+        if(null == personalInformationDB){
+            return false;
+        }
+
+        personalInformationRepository.deleteById(id);
+        return true;
+    }
+
+    @Override
+    public PersonalInformation findByUserId(Long userId) {
+        return personalInformationRepository.findByUserId(userId);
     }
 }

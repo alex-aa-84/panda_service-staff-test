@@ -7,6 +7,8 @@ import wwf.org.stafftest.entity.Address;
 import wwf.org.stafftest.entity.PermissionHeader;
 import wwf.org.stafftest.repository.PermissionHeaderRepository;
 
+import javax.persistence.Column;
+import javax.validation.constraints.NotEmpty;
 import java.util.Date;
 import java.util.List;
 
@@ -28,40 +30,58 @@ public class PermissionHeaderServiceImpl implements PermissionHeaderService{
     }
 
     @Override
-    public PermissionHeader createPermissionHeader(PermissionHeader permissionHeader, Long userId) {
+    public PermissionHeader createPermissionHeader(PermissionHeader permissionHeader) {
         permissionHeader.setStatus("CREATED");
-        permissionHeader.setCreate_by(userId);
         permissionHeader.setCreation_date(new Date());
-        permissionHeader.setLast_update_by(userId);
         permissionHeader.setLast_update_date(new Date());
 
         return permissionHeaderRepository.save(permissionHeader);
     }
 
     @Override
-    public PermissionHeader updatePermissionHeader(PermissionHeader permissionHeader, Long userId) {
+    public PermissionHeader updatePermissionHeader(PermissionHeader permissionHeader) {
         PermissionHeader permissionHeaderBD = getPermissionHeader(permissionHeader.getId());
         if(null == permissionHeaderBD){
             return null;
         }
 
-        permissionHeader.setLast_update_by(userId);
-        permissionHeader.setLast_update_date(new Date());
+        permissionHeaderBD.setTenantId(permissionHeader.getTenantId());
+        permissionHeaderBD.setPermission(permissionHeader.getPermission());
+        permissionHeaderBD.setDescription(permissionHeader.getDescription());
 
-        return permissionHeaderRepository.save(permissionHeader);
+        permissionHeaderBD.setAttribute1(permissionHeader.getAttribute1());
+        permissionHeaderBD.setAttribute2(permissionHeader.getAttribute2());
+        permissionHeaderBD.setAttribute3(permissionHeader.getAttribute3());
+        permissionHeaderBD.setAttribute4(permissionHeader.getAttribute4());
+        permissionHeaderBD.setAttribute5(permissionHeader.getAttribute5());
+        permissionHeaderBD.setAttribute6(permissionHeader.getAttribute6());
+        permissionHeaderBD.setAttribute7(permissionHeader.getAttribute7());
+        permissionHeaderBD.setAttribute8(permissionHeader.getAttribute8());
+        permissionHeaderBD.setAttribute9(permissionHeader.getAttribute9());
+        permissionHeaderBD.setAttribute10(permissionHeader.getAttribute10());
+
+        permissionHeaderBD.setStatus(permissionHeader.getStatus());
+
+        permissionHeaderBD.setLast_update_by(permissionHeader.getLast_update_by());
+        permissionHeaderBD.setLast_update_date(new Date());
+
+
+        return permissionHeaderRepository.save(permissionHeaderBD);
     }
 
     @Override
-    public PermissionHeader deletePermissionHeader(Long id, Long userId) {
+    public Boolean deletePermissionHeader(Long id) {
         PermissionHeader permissionHeaderBD = getPermissionHeader(id);
         if(null == permissionHeaderBD){
-            return null;
+            return false;
         }
 
-        permissionHeaderBD.setStatus("DELETED");
-        permissionHeaderBD.setLast_update_by(userId);
-        permissionHeaderBD.setLast_update_date(new Date());
+        permissionHeaderRepository.deleteById(id);
+        return true;
+    }
 
-        return permissionHeaderRepository.save(permissionHeaderBD);
+    @Override
+    public PermissionHeader findByPermission(String permission) {
+        return permissionHeaderRepository.findByPermission(permission);
     }
 }

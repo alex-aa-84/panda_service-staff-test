@@ -1,6 +1,7 @@
 package wwf.org.stafftest.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.util.Date;
 
 import lombok.Data;
@@ -15,8 +16,9 @@ public class AddressType {
     @Column(unique = true, nullable = false)
     private Long id;
 
+    @NotEmpty(message = "addressType_vacio")
     @Column(unique = true, nullable = false)
-    private String address_type;
+    private String addressType;
 
     private String description;
     private Integer attribute1;

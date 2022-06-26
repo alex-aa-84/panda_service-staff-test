@@ -5,8 +5,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import wwf.org.stafftest.entity.TerritorialOrgFirst;
 import wwf.org.stafftest.entity.TerritorialOrgFour;
+import wwf.org.stafftest.entity.TerritorialOrgThree;
 import wwf.org.stafftest.repository.TerritorialOrgFourRepository;
 
+import javax.persistence.Column;
+import javax.validation.constraints.NotEmpty;
 import java.util.Date;
 import java.util.List;
 
@@ -28,40 +31,56 @@ public class TerritorialOrgFourServiceImpl implements TerritorialOrgFourService 
     }
 
     @Override
-    public TerritorialOrgFour createTerritorialOrgFour(TerritorialOrgFour territorialOrgFour, Long userId) {
+    public TerritorialOrgFour createTerritorialOrgFour(TerritorialOrgFour territorialOrgFour) {
         territorialOrgFour.setStatus("CREATED");
-        territorialOrgFour.setCreate_by(userId);
         territorialOrgFour.setCreation_date(new Date());
-        territorialOrgFour.setLast_update_by(userId);
         territorialOrgFour.setLast_update_date(new Date());
 
         return territorialOrgFourRepository.save(territorialOrgFour);
     }
 
     @Override
-    public TerritorialOrgFour updateTerritorialOrgFour(TerritorialOrgFour territorialOrgFour, Long userId) {
+    public TerritorialOrgFour updateTerritorialOrgFour(TerritorialOrgFour territorialOrgFour) {
         TerritorialOrgFour territorialOrgFourDB = getTerritorialOrgFour(territorialOrgFour.getId());
         if(null == territorialOrgFourDB){
             return null;
         }
 
-        territorialOrgFour.setLast_update_by(userId);
-        territorialOrgFour.setLast_update_date(new Date());
+        territorialOrgFourDB.setTerritorialOrgThree(territorialOrgFour.getTerritorialOrgThree());
+        territorialOrgFourDB.setName(territorialOrgFour.getName());
 
-        return territorialOrgFourRepository.save(territorialOrgFour);
-    }
+        territorialOrgFourDB.setAttribute1(territorialOrgFour.getAttribute1());
+        territorialOrgFourDB.setAttribute2(territorialOrgFour.getAttribute2());
+        territorialOrgFourDB.setAttribute3(territorialOrgFour.getAttribute3());
+        territorialOrgFourDB.setAttribute4(territorialOrgFour.getAttribute4());
+        territorialOrgFourDB.setAttribute5(territorialOrgFour.getAttribute5());
+        territorialOrgFourDB.setAttribute6(territorialOrgFour.getAttribute6());
+        territorialOrgFourDB.setAttribute7(territorialOrgFour.getAttribute7());
+        territorialOrgFourDB.setAttribute8(territorialOrgFour.getAttribute8());
+        territorialOrgFourDB.setAttribute9(territorialOrgFour.getAttribute9());
+        territorialOrgFourDB.setAttribute10(territorialOrgFour.getAttribute10());
 
-    @Override
-    public TerritorialOrgFour deleteTerritorialOrgFour(Long id, Long userId) {
-        TerritorialOrgFour territorialOrgFourDB = getTerritorialOrgFour(id);
-        if(null == territorialOrgFourDB){
-            return null;
-        }
+        territorialOrgFourDB.setStatus(territorialOrgFour.getStatus());
 
-        territorialOrgFourDB.setStatus("DELETED");
-        territorialOrgFourDB.setLast_update_by(userId);
+        territorialOrgFourDB.setLast_update_by(territorialOrgFour.getLast_update_by());
         territorialOrgFourDB.setLast_update_date(new Date());
 
         return territorialOrgFourRepository.save(territorialOrgFourDB);
+    }
+
+    @Override
+    public Boolean deleteTerritorialOrgFour(Long id) {
+        TerritorialOrgFour territorialOrgFourDB = getTerritorialOrgFour(id);
+        if(null == territorialOrgFourDB){
+            return false;
+        }
+
+        territorialOrgFourRepository.deleteById(id);
+        return true;
+    }
+
+    @Override
+    public TerritorialOrgFour findByTerritorialOrgThreeAndName(TerritorialOrgThree territorialOrgThree, String name) {
+        return territorialOrgFourRepository.findByTerritorialOrgThreeAndName(territorialOrgThree, name);
     }
 }

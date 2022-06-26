@@ -8,7 +8,8 @@ public interface AttachmentTypeService {
     public List<AttachmentType> listAllAttachmentType();
     public AttachmentType getAttachmentType(Long id);
 
-    public AttachmentType createAttachmentType(AttachmentType attachmentType, Long userId);
-    public AttachmentType updateAttachmentType(AttachmentType attachmentType, Long userId);
-    public AttachmentType deleteAttachmentType(Long id, Long userId);
+    public AttachmentType createAttachmentType(AttachmentType attachmentType);
+    public AttachmentType updateAttachmentType(AttachmentType attachmentType);
+    public Boolean deleteAttachmentType(Long id);
+    public AttachmentType findByAttachmentType(String attachmentType);
 }
