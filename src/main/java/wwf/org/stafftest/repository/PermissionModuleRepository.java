@@ -5,5 +5,5 @@ import wwf.org.stafftest.entity.PermissionHeader;
 import wwf.org.stafftest.entity.PermissionModule;
 
 public interface PermissionModuleRepository extends JpaRepository<PermissionModule, Long> {
-    public PermissionModule findByPermissionHeaderAndModuleId(PermissionHeader permissionHeader, Long moduleId);
+    public PermissionModule findByPermissionHeaderIdAndModuleId(Long permissionHeaderId, Long moduleId);
 }

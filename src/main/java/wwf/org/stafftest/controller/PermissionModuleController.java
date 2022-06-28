@@ -47,7 +47,7 @@ public class PermissionModuleController {
     @PostMapping()
     public ResponseEntity<PermissionModule> createData(@Valid @RequestBody PermissionModule data, BindingResult result){
 
-        PermissionModule dataBD = service.findByPermissionHeaderAndModuleId(data.getPermissionHeader(), data.getModuleId());
+        PermissionModule dataBD = service.findByPermissionHeaderIdAndModuleId(data.getPermissionHeader(), data.getModuleId());
 
         if (null != dataBD){
             FieldError err = new FieldError("Error", "registroExistente", "registroExistenteBD");

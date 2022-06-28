@@ -13,7 +13,7 @@ import java.util.List;
 
 @Entity
 @Table(name="per_permission_submodules", uniqueConstraints = {
-        @UniqueConstraint(columnNames = {"permissionModule", "submodule", "route"})
+        @UniqueConstraint(columnNames = {"permissionModuleId", "submodule", "route"})
 })
 @Data
 public class PermissionSubmodule {
@@ -24,7 +24,7 @@ public class PermissionSubmodule {
 
     @NotNull(message = "permissionModule_nula")
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
-    @JoinColumn(referencedColumnName = "id")
+    @JoinColumn(referencedColumnName = "id", name = "permissionModuleId")
     @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
     private PermissionModule permissionModule;
 

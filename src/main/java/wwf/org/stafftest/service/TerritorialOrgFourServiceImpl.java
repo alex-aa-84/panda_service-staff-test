@@ -46,7 +46,7 @@ public class TerritorialOrgFourServiceImpl implements TerritorialOrgFourService 
             return null;
         }
 
-        territorialOrgFourDB.setTerritorialOrgThree(territorialOrgFour.getTerritorialOrgThree());
+        //territorialOrgFourDB.setTerritorialOrgThree(territorialOrgFour.getTerritorialOrgThree());
         territorialOrgFourDB.setName(territorialOrgFour.getName());
 
         territorialOrgFourDB.setAttribute1(territorialOrgFour.getAttribute1());
@@ -80,7 +80,8 @@ public class TerritorialOrgFourServiceImpl implements TerritorialOrgFourService 
     }
 
     @Override
-    public TerritorialOrgFour findByTerritorialOrgThreeAndName(TerritorialOrgThree territorialOrgThree, String name) {
-        return territorialOrgFourRepository.findByTerritorialOrgThreeAndName(territorialOrgThree, name);
+    public TerritorialOrgFour findByTerritorialOrgThreeIdAndName(TerritorialOrgThree territorialOrgThree, String name) {
+        //return territorialOrgFourRepository.findByTerritorialOrgThreeIdAndName(territorialOrgThree.getId(), name);
+        return null;
     }
 }
