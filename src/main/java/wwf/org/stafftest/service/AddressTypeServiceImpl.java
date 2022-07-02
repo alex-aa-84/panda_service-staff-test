@@ -3,7 +3,6 @@ package wwf.org.stafftest.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import wwf.org.stafftest.entity.Address;
 import wwf.org.stafftest.entity.AddressType;
 import wwf.org.stafftest.repository.AddressTypeRepository;
 
