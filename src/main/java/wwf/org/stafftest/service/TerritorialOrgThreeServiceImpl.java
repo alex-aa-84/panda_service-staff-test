@@ -46,7 +46,7 @@ public class TerritorialOrgThreeServiceImpl implements TerritorialOrgThreeServic
             return null;
         }
 
-        //territorialOrgThreeDB.setTerritorialOrgTwo(territorialOrgThree.getTerritorialOrgTwo());
+        territorialOrgThreeDB.setTerritorialOrgTwo(territorialOrgThree.getTerritorialOrgTwo());
         territorialOrgThreeDB.setName(territorialOrgThree.getName());
 
         territorialOrgThreeDB.setAttribute1(territorialOrgThree.getAttribute1());
@@ -81,7 +81,6 @@ public class TerritorialOrgThreeServiceImpl implements TerritorialOrgThreeServic
 
     @Override
     public TerritorialOrgThree findByTerritorialOrgTwoIdAndName(TerritorialOrgTwo territorialOrgTwo, String name) {
-      //return territorialOrgThreeRepository.findByTerritorialOrgTwoIdAndName(territorialOrgTwo.getId(), name);
-        return null;
+      return territorialOrgThreeRepository.findByTerritorialOrgTwoIdAndName(territorialOrgTwo.getId(), name);
     }
 }

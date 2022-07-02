@@ -6,6 +6,6 @@ import wwf.org.stafftest.entity.TerritorialOrgThree;
 import wwf.org.stafftest.entity.TerritorialOrgTwo;
 
 public interface TerritorialOrgFourRepository extends JpaRepository<TerritorialOrgFour, Long> {
-    //public TerritorialOrgFour findByTerritorialOrgThreeIdAndName(Long territorialOrgThreeId, String name);
+    public TerritorialOrgFour findByTerritorialOrgThreeIdAndName(Long territorialOrgThreeId, String name);
 
 }

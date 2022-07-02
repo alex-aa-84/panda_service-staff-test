@@ -12,9 +12,9 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name="to_territorial_org_two"/*, uniqueConstraints = {
+@Table(name="to_territorial_org_two", uniqueConstraints = {
         @UniqueConstraint(columnNames = {"territorialOrgFirstId", "name"})
-}*/)
+})
 @Data
 public class TerritorialOrgTwo {
 
@@ -23,11 +23,11 @@ public class TerritorialOrgTwo {
     @Column(unique = true, nullable = false)
     private Long id;
 
-    /*@NotNull(message = "territorialOrgFirst_nula")
+    @NotNull(message = "territorialOrgFirst_nula")
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     @JoinColumn(referencedColumnName = "id", name = "territorialOrgFirstId")
     @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
-    private TerritorialOrgFirst territorialOrgFirst;*/
+    private TerritorialOrgFirst territorialOrgFirst;
 
     @NotEmpty(message = "name_territorio_generico_vacio")
     @Column(nullable = false)

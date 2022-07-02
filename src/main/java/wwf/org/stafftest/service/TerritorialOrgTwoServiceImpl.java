@@ -45,7 +45,7 @@ public class TerritorialOrgTwoServiceImpl implements TerritorialOrgTwoService {
             return null;
         }
 
-        //territorialOrgTwoDB.setTerritorialOrgFirst(territorialOrgTwo.getTerritorialOrgFirst());
+        territorialOrgTwoDB.setTerritorialOrgFirst(territorialOrgTwo.getTerritorialOrgFirst());
         territorialOrgTwoDB.setName(territorialOrgTwo.getName());
 
         territorialOrgTwoDB.setAttribute1(territorialOrgTwo.getAttribute1());
@@ -80,7 +80,6 @@ public class TerritorialOrgTwoServiceImpl implements TerritorialOrgTwoService {
 
     @Override
     public TerritorialOrgTwo findByTerritorialOrgFirstIdAndName(TerritorialOrgFirst territorialOrgFirst, String name) {
-        //return territorialOrgTwoRepository.findByTerritorialOrgFirstIdAndName(territorialOrgFirst.getId(), name);
-        return null;
+        return territorialOrgTwoRepository.findByTerritorialOrgFirstIdAndName(territorialOrgFirst.getId(), name);
     }
 }
