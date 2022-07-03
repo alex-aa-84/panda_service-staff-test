@@ -38,7 +38,7 @@ spring:
       resourceserver:
         jwt:
           jwk-set-uri: https://login.microsoftonline.com/3363f614-6ea7-4f25-bc97-aadc48a24082/discovery/v2.0/keys
-          issuer-uri: https://login.microsoftonline.com/63363f614-6ea7-4f25-bc97-aadc48a24082/v2.0
+          issuer-uri: https://login.microsoftonline.com/3363f614-6ea7-4f25-bc97-aadc48a24082/v2.0
 
 logging:
   pattern:
