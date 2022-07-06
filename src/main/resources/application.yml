@@ -12,7 +12,7 @@ spring:
     name: service-staff-test
   datasource:
     driverClassName: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://cheiru.mysql.database.azure.com/panda_test?useSSL=true&requireSSL=false&serverTimezone=UTC
+    url: jdbc:mysql://181.123.9.70/panda_ts?useSSL=true&requireSSL=false&serverTimezone=UTC
     username: ${USER_BD}
     password: ${PASS_BD}
 
