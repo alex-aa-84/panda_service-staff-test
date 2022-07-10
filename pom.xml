@@ -9,10 +9,13 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>wwf.org</groupId>
-	<artifactId>service-staff-test</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>service-staff-test</name>
-	<description>Demo project for Spring Boot</description>
+	<artifactId>serviceStaffApiTs</artifactId>
+	<version>v1.0</version>
+
+	<packaging>war</packaging>
+
+	<name>service-staff</name>
+	<description>Api Service Staff WWF Mundo</description>
 	<properties>
 		<java.version>17</java.version>
 		<spring-cloud.version>2021.0.2</spring-cloud.version>
@@ -72,6 +75,13 @@
 			<scope>test</scope>
 		</dependency>
 
+		<!--Para no generar conflicto entre server y el servidor enbebido-->
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-tomcat</artifactId>
+			<scope>provided</scope>
+		</dependency>
 
 
 	</dependencies>
