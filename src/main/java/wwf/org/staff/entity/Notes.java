@@ -2,37 +2,33 @@ package wwf.org.staff.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.Date;
 
 @Entity
-@Table(name = "per_permission_modules", uniqueConstraints = {
-        @UniqueConstraint(columnNames = {"permissionHeaderId", "moduleId"})
-})
+@Table(name="nm_notes")
 @Data
-public class PermissionModule {
+public class Notes {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(unique = true, nullable = false)
     private Long id;
 
-    @NotNull(message = "permissionHeader_nula")
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    @JoinColumn(referencedColumnName = "id", name = "permissionHeaderId")
+    @NotNull(message = "staffModule_nula")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(referencedColumnName = "id")
     @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
-    private PermissionHeader permissionHeader;
+    private StaffModule staffModule;
 
-    @NotEmpty(message = "module_id_vacio")
-    @Column(nullable = false)
-    private Long moduleId;
+    private Long referenceId;
 
-    private String description;
+    @Lob
+    private String note;
+
     private Integer attribute1;
     private Integer attribute2;
     private Integer attribute3;
@@ -58,4 +54,9 @@ public class PermissionModule {
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date last_update_date;
+
+    @Column(unique = true, nullable = false)
+    @Size(min=32, max = 32)
+    private String ctrlMd5;
+
 }

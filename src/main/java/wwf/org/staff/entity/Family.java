@@ -9,7 +9,7 @@ import javax.validation.constraints.Size;
 import java.util.Date;
 
 @Entity
-@Table(name="fl_familys")
+@Table(name="st_familys")
 @Data
 public class Family {
 

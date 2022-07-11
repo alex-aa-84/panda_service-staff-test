@@ -2,6 +2,8 @@ package wwf.org.staff.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
@@ -21,17 +23,17 @@ public class PermissionSubmodule {
 
     @NotNull(message = "permissionModule_nula")
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(referencedColumnName = "id", name = "permissionModuleId")
     @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
     private PermissionModule permissionModule;
 
-    @NotEmpty(message = "submodule_vacio")
-    @Column(nullable = false)
-    private String submodule;
-
-    @NotEmpty(message = "route_vacio")
-    @Column(nullable = false)
-    private String route;
+    @NotNull(message = "permissionSubmodule_nula")
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JoinColumn(referencedColumnName = "id", name = "permissionSubmoduleId")
+    @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
+    private StaffModule staffModule;
 
     private String description;
     private Integer attribute1;

@@ -7,7 +7,7 @@ import javax.validation.constraints.NotEmpty;
 import java.util.Date;
 
 @Entity
-@Table(name="st_attachment_types")
+@Table(name="at_attachment_types")
 @Data
 public class AttachmentType {
 

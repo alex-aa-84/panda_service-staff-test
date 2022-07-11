@@ -11,11 +11,11 @@ import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @Entity
-@Table(name = "per_permission_modules", uniqueConstraints = {
-        @UniqueConstraint(columnNames = {"permissionHeaderId", "moduleId"})
+@Table(name = "per_permission_workflow", uniqueConstraints = {
+        @UniqueConstraint(columnNames = {"permissiongeaderId", "step", "stateId"})
 })
 @Data
-public class PermissionModule {
+public class PermisionWorkflow {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(unique = true, nullable = false)
@@ -28,9 +28,24 @@ public class PermissionModule {
     @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
     private PermissionHeader permissionHeader;
 
-    @NotEmpty(message = "module_id_vacio")
+    @NotEmpty(message = "step_vacio")
     @Column(nullable = false)
-    private Long moduleId;
+    private Number step;
+
+    @NotEmpty(message = "workflowState_vacio")
+    @Column(nullable = false)
+    private Long workflowStateId;
+
+    @NotEmpty(message = "nextworkflowState_vacio")
+    @Column(nullable = false)
+    private Long nextWorkflowStateId;
+
+    @NotEmpty(message = "rejectionWorkflowState_vacio")
+    @Column(nullable = false)
+    private Long rejectionWorkflowStateId;
+
+    @Column(nullable = false)
+    private Long sendEmail;
 
     private String description;
     private Integer attribute1;

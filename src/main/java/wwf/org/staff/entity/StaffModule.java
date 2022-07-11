@@ -7,32 +7,43 @@ import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @Entity
-@Table(name = "per_permission_modules", uniqueConstraints = {
-        @UniqueConstraint(columnNames = {"permissionHeaderId", "moduleId"})
+@Table(name="st_staff_modules",  uniqueConstraints = {
+        @UniqueConstraint(columnNames = {"moduleId", "submodule"})
 })
 @Data
-public class PermissionModule {
+public class StaffModule {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(unique = true, nullable = false)
     private Long id;
 
-    @NotNull(message = "permissionHeader_nula")
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    @JoinColumn(referencedColumnName = "id", name = "permissionHeaderId")
-    @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
-    private PermissionHeader permissionHeader;
-
     @NotEmpty(message = "module_id_vacio")
     @Column(nullable = false)
     private Long moduleId;
 
+    @NotEmpty(message = "modulo_vacio")
+    @Column(nullable = false)
+    private String submodule;
+
     private String description;
+
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JoinColumn(referencedColumnName = "id")
+    @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
+    private ImageConfig imageConfig;
+
+    @NotEmpty(message = "router_link_vacio")
+    @Column(nullable = false)
+    private String routerLink;
+
+    @NotEmpty(message = "servicio_vacio")
+    @Column(nullable = false)
+    private String serviceUrl;
+
     private Integer attribute1;
     private Integer attribute2;
     private Integer attribute3;

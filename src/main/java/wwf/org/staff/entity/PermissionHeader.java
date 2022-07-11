@@ -7,7 +7,9 @@ import javax.validation.constraints.NotEmpty;
 import java.util.Date;
 
 @Entity
-@Table(name = "per_permission_headers")
+@Table(name = "per_permission_headers", uniqueConstraints = {
+        @UniqueConstraint(columnNames = {"workflowId", "permission"})
+})
 @Data
 public class PermissionHeader {
 
@@ -18,8 +20,11 @@ public class PermissionHeader {
 
     private Long tenantId;
 
+    // Se definira si es para timesheet, permisos, rodados, etc...
+    private Long workflowId;
+
     @NotEmpty(message = "permission_vacio")
-    @Column(unique = true, nullable = false)
+    @Column(nullable = false)
     private String permission;
 
     private String description;

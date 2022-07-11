@@ -7,7 +7,7 @@ import javax.validation.constraints.NotEmpty;
 import java.util.Date;
 
 @Entity
-@Table(name="jb_job_titles")
+@Table(name="st_job_titles")
 @Data
 public class JobTittle {
 

@@ -26,9 +26,7 @@ public class Contact {
     @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
     private ContactType contactType;
 
-    private String phoneNumber;
-
-    private String email;
+    private String value;
 
     private String description;
     private Integer attribute1;

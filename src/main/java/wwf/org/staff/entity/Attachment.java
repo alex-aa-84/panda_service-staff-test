@@ -11,7 +11,7 @@ import javax.validation.constraints.Size;
 import java.util.Date;
 
 @Entity
-@Table(name="st_attachments")
+@Table(name="at_attachments")
 @Data
 public class Attachment {
 

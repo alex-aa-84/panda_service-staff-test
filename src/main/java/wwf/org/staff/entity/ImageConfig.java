@@ -7,7 +7,7 @@ import javax.validation.constraints.Size;
 import java.util.Date;
 
 @Entity
-@Table(name="im_images_repository")
+@Table(name="at_images_repository")
 @Data
 public class ImageConfig {
 

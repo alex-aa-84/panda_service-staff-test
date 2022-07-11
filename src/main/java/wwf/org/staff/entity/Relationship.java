@@ -7,7 +7,7 @@ import javax.validation.constraints.NotEmpty;
 import java.util.Date;
 
 @Entity
-@Table(name="fl_relationships")
+@Table(name="st_relationships")
 @Data
 public class Relationship {
 

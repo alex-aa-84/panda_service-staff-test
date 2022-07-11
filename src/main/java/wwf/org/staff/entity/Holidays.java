@@ -2,8 +2,6 @@ package wwf.org.staff.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
@@ -11,26 +9,22 @@ import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @Entity
-@Table(name = "per_permission_modules", uniqueConstraints = {
-        @UniqueConstraint(columnNames = {"permissionHeaderId", "moduleId"})
-})
+@Table(name="rp_holidays")
 @Data
-public class PermissionModule {
+public class Holidays {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(unique = true, nullable = false)
     private Long id;
 
-    @NotNull(message = "permissionHeader_nula")
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    @JoinColumn(referencedColumnName = "id", name = "permissionHeaderId")
+    @NotNull(message = "holidayType_nula")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(referencedColumnName = "id")
     @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
-    private PermissionHeader permissionHeader;
+    private HolidayType holidayType;
 
-    @NotEmpty(message = "module_id_vacio")
-    @Column(nullable = false)
-    private Long moduleId;
+    @Temporal(TemporalType.DATE)
+    private Date holiday;
 
     private String description;
     private Integer attribute1;
@@ -58,4 +52,5 @@ public class PermissionModule {
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date last_update_date;
+
 }
