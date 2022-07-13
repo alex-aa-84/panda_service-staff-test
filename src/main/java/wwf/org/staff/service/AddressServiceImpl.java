@@ -95,9 +95,4 @@ public class AddressServiceImpl implements AddressService{
         addressRepository.deleteById(id);
         return true;
     }
-
-    @Override
-    public Address findByNeighborhoodAndStreetAndNumber(String neighborhood, String street, String number) {
-        return addressRepository.findByNeighborhoodAndStreetAndNumber(neighborhood, street, number);
-    }
 }

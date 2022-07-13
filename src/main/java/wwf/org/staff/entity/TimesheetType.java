@@ -15,9 +15,9 @@ public class TimesheetType {
     @Column(unique = true, nullable = false)
     private Long id;
 
-    @NotEmpty(message = "timesheetType_vacio")
+    //puede ser proyectsheet, solicitudes o descanso obligatorio (Feriado)
     @Column(unique = true, nullable = false)
-    private String timesheetType;
+    private String name;
 
     private String description;
     private Integer attribute1;

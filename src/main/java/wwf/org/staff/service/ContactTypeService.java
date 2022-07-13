@@ -11,5 +11,5 @@ public interface ContactTypeService {
     public ContactType createContactType(ContactType contactType);
     public ContactType updateContactType(ContactType contactType);
     public Boolean deleteContactType(Long id);
-    public ContactType findByContactType(String contactType);
+    public ContactType findByName(String name);
 }

@@ -19,7 +19,6 @@ public class PersonalInformation {
     @Column(unique = true, nullable = false)
     private Long id;
 
-    @NotEmpty(message = "userId_vacio")
     @Column(unique = true, nullable = false)
     private Long userId;
 
@@ -31,13 +30,11 @@ public class PersonalInformation {
     @Temporal(TemporalType.DATE)
     private Date birthDate;
 
-    @NotNull(message = "civilStatus_nula")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(referencedColumnName = "id")
     @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
     private CivilStatus civilStatus;
 
-    @NotNull(message = "bloodType_nula")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(referencedColumnName = "id")
     @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})

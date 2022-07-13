@@ -4,5 +4,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import wwf.org.staff.entity.OtherInformationType;
 
 public interface OtherInformationTypeRepository extends JpaRepository<OtherInformationType, Long> {
-    public OtherInformationType findByOtherInformationType(String otherInformationType);
+    public OtherInformationType findByName(String name);
 }

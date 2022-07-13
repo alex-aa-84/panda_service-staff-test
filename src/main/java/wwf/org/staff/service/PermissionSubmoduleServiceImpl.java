@@ -45,8 +45,8 @@ public class PermissionSubmoduleServiceImpl implements PermissionSubmoduleServic
         }
 
         permissionSubmoduleDB.setPermissionModule(permissionSubmodule.getPermissionModule());
-        permissionSubmoduleDB.setSubmodule(permissionSubmodule.getSubmodule());
-        permissionSubmoduleDB.setRoute(permissionSubmodule.getRoute());
+        permissionSubmoduleDB.setStaffModule(permissionSubmodule.getStaffModule());
+
         permissionSubmoduleDB.setDescription(permissionSubmodule.getDescription());
 
         permissionSubmoduleDB.setAttribute1(permissionSubmodule.getAttribute1());
@@ -80,7 +80,7 @@ public class PermissionSubmoduleServiceImpl implements PermissionSubmoduleServic
     }
 
     @Override
-    public PermissionSubmodule findByPermissionModuleIdAndSubmoduleAndRoute(PermissionModule permissionModule, String submodule, String route) {
-        return permissionSubmoduleRepository.findByPermissionModuleIdAndSubmoduleAndRoute(permissionModule.getModuleId(), submodule, route);
+    public PermissionSubmodule findByPermissionModuleIdAndSubmoduleAndRoute(Long permissionModuleId, String submodule, String route) {
+        return permissionSubmoduleRepository.findByPermissionModuleIdAndSubmoduleAndRoute(permissionModuleId, submodule, route);
     }
 }

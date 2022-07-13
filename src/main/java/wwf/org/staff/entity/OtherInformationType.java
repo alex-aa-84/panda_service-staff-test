@@ -16,9 +16,8 @@ public class OtherInformationType {
     @Column(unique = true, nullable = false)
     private Long id;
 
-    @NotEmpty(message = "otherInformationType_vacio")
     @Column(unique = true, nullable = false)
-    private String otherInformationType;
+    private String name;
 
     private String description;
     private Integer attribute1;

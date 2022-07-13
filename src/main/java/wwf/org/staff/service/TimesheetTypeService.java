@@ -13,5 +13,5 @@ public interface TimesheetTypeService {
     public TimesheetType updateTimesheetType(TimesheetType value);
     public Boolean deleteTimesheetType(Long id);
 
-    public TimesheetType findByTimesheetType(String val);
+    public TimesheetType findByName(String name);
 }

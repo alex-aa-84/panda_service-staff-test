@@ -42,7 +42,7 @@ public class BloodTypeServiceImpl implements BloodTypeService{
             return null;
         }
 
-        bloodTypeDB.setBloodType(bloodType.getBloodType());
+        bloodTypeDB.setName(bloodType.getName());
         bloodTypeDB.setDescription(bloodType.getDescription());
 
         bloodTypeDB.setAttribute1(bloodType.getAttribute1());
@@ -76,7 +76,7 @@ public class BloodTypeServiceImpl implements BloodTypeService{
     }
 
     @Override
-    public BloodType findByBloodType(String bloodType) {
-        return bloodTypeRepository.findByBloodType(bloodType);
+    public BloodType findByName(String name) {
+        return bloodTypeRepository.findByName(name);
     }
 }

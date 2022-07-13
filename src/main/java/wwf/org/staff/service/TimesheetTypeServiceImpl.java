@@ -46,7 +46,7 @@ public class TimesheetTypeServiceImpl implements TimesheetTypeService{
             return null;
         }
 
-        bd.setTimesheetType(value.getTimesheetType());
+        bd.setName(value.getName());
 
         bd.setDescription(value.getDescription());
 
@@ -81,7 +81,7 @@ public class TimesheetTypeServiceImpl implements TimesheetTypeService{
     }
 
     @Override
-    public TimesheetType findByTimesheetType(String val) {
-        return repository.findByTimesheetType(val);
+    public TimesheetType findByName(String name) {
+        return repository.findByName(name);
     }
 }

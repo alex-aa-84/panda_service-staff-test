@@ -20,11 +20,9 @@ public class StaffModule {
     @Column(unique = true, nullable = false)
     private Long id;
 
-    @NotEmpty(message = "module_id_vacio")
     @Column(nullable = false)
     private Long moduleId;
 
-    @NotEmpty(message = "modulo_vacio")
     @Column(nullable = false)
     private String submodule;
 
@@ -36,11 +34,9 @@ public class StaffModule {
     @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
     private ImageConfig imageConfig;
 
-    @NotEmpty(message = "router_link_vacio")
     @Column(nullable = false)
     private String routerLink;
 
-    @NotEmpty(message = "servicio_vacio")
     @Column(nullable = false)
     private String serviceUrl;
 

@@ -78,7 +78,7 @@ public class PermissionModuleServiceImpl implements PermissionModuleService {
     }
 
     @Override
-    public PermissionModule findByPermissionHeaderIdAndModuleId(PermissionHeader permissionHeader, Long moduleId) {
-        return permissionModuleRepository.findByPermissionHeaderIdAndModuleId(permissionHeader.getId(), moduleId);
+    public PermissionModule findByPermissionHeaderIdAndModuleId(Long permissionHeaderId, Long moduleId) {
+        return permissionModuleRepository.findByPermissionHeaderIdAndModuleId(permissionHeaderId, moduleId);
     }
 }

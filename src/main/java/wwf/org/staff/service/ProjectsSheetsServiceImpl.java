@@ -45,12 +45,14 @@ public class ProjectsSheetsServiceImpl implements ProjectsSheetsService{
             return null;
         }
 
-        bd.setTimesheetType(value.getTimesheetType());
+        bd.setTimesheetVersion(value.getTimesheetVersion());
         bd.setFiscalYear(value.getFiscalYear());
         bd.setMonthFiscalYear(value.getMonthFiscalYear());
         bd.setUserId(value.getUserId());
         bd.setProjects(value.getProjects());
         bd.setBudgetHours(value.getBudgetHours());
+        bd.setAvailableHours(value.getAvailableHours());
+        bd.setUsedHours(value.getUsedHours());
         bd.setTimesheetCycle(value.getTimesheetCycle());
 
         bd.setDescription(value.getDescription());
@@ -86,8 +88,8 @@ public class ProjectsSheetsServiceImpl implements ProjectsSheetsService{
     }
 
     @Override
-    public ProjectsSheets findByFiscalYearAndMonthFiscalYearAndUserIdAndProjectsId(Integer year, Integer month, Long user, Projects projects) {
-        return repository.findByFiscalYearAndMonthFiscalYearAndUserIdAndProjectsId(year, month, user, projects);
+    public ProjectsSheets findByFiscalYearAndMonthFiscalYearAndUserIdAndProjectId(Integer year, Integer month, Long user, Long projectId) {
+        return repository.findByFiscalYearAndMonthFiscalYearAndUserIdAndProjectId(year, month, user, projectId);
     }
 
 

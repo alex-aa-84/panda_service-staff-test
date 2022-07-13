@@ -16,9 +16,8 @@ public class BloodType {
     @Column(unique = true, nullable = false)
     private Long id;
 
-    @NotEmpty(message = "bloodType_vacio")
     @Column(unique = true, nullable = false)
-    private String bloodType;
+    private String name;
 
     private String description;
     private Integer attribute1;

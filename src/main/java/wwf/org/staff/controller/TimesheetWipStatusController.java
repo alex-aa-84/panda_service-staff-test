@@ -7,8 +7,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
-import wwf.org.staff.entity.TimesheetWipStatus;
-import wwf.org.staff.service.TimesheetWipStatusService;
+import wwf.org.staff.entity.WorkflowWipStatus;
+import wwf.org.staff.service.TimesheetVersionService;
 import wwf.org.staff.serviceApi.FormatMessage;
 
 import javax.validation.Valid;
@@ -21,13 +21,13 @@ import java.util.List;
 public class TimesheetWipStatusController {
 
     @Autowired
-    private TimesheetWipStatusService service;
+    private TimesheetVersionService service;
 
     private FormatMessage formatMessage = new FormatMessage();
 
     @GetMapping
-    public ResponseEntity<List<TimesheetWipStatus>> listData(){
-        List<TimesheetWipStatus> data = service.listAllTimesheetWipStatus();
+    public ResponseEntity<List<WorkflowWipStatus>> listData(){
+        List<WorkflowWipStatus> data = service.listAllTimesheetWipStatus();
         if(data.isEmpty()){
             return ResponseEntity.noContent().build();
         }
@@ -36,8 +36,8 @@ public class TimesheetWipStatusController {
     }
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<TimesheetWipStatus> getData(@PathVariable("id") Long id){
-        TimesheetWipStatus data = service.getTimesheetWipStatus(id);
+    public ResponseEntity<WorkflowWipStatus> getData(@PathVariable("id") Long id){
+        WorkflowWipStatus data = service.getTimesheetWipStatus(id);
         if(null == data){
             return ResponseEntity.notFound().build();
         }
@@ -45,9 +45,9 @@ public class TimesheetWipStatusController {
     }
 
     @PostMapping()
-    public ResponseEntity<TimesheetWipStatus> createData(@Valid @RequestBody TimesheetWipStatus data, BindingResult result){
+    public ResponseEntity<WorkflowWipStatus> createData(@Valid @RequestBody WorkflowWipStatus data, BindingResult result){
 
-        TimesheetWipStatus dataBD = service.findByTimesheetWipStatus(data.getTimesheetWipStatus());
+        WorkflowWipStatus dataBD = service.findByTimesheetWipStatus(data.getTimesheetWipStatus());
 
         if (null != dataBD){
             FieldError err = new FieldError("Error", "registroExistente", "registroExistenteBD");
@@ -62,13 +62,13 @@ public class TimesheetWipStatusController {
     }
 
     @PutMapping()
-    public ResponseEntity<TimesheetWipStatus> updateData(@Valid @RequestBody TimesheetWipStatus data, BindingResult result){
+    public ResponseEntity<WorkflowWipStatus> updateData(@Valid @RequestBody WorkflowWipStatus data, BindingResult result){
 
         if(result.hasErrors()){
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, formatMessage.format(result));
         }
 
-        TimesheetWipStatus dataUp = service.updateTimesheetWipStatus(data);
+        WorkflowWipStatus dataUp = service.updateTimesheetWipStatus(data);
         if(null == dataUp){
             return ResponseEntity.notFound().build();
         }

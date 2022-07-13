@@ -11,6 +11,4 @@ public interface AddressService {
     public Address createAddress(Address address);
     public Address updateAddress(Address address);
     public Boolean deleteAddress(Long id);
-
-    public Address findByNeighborhoodAndStreetAndNumber(String neighborhood, String street, String number);
 }

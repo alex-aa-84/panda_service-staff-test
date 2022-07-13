@@ -16,9 +16,8 @@ public class JobTittle {
     @Column(unique = true, nullable = false)
     private Long id;
 
-    @NotEmpty(message = "jobTitle_vacio")
     @Column(unique = true, nullable = false)
-    private String jobTitle;
+    private String name;
 
     private String description;
     private Integer attribute1;

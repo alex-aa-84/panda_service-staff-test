@@ -11,5 +11,5 @@ public interface BloodTypeService {
     public BloodType createBloodType(BloodType bloodType);
     public BloodType updateBloodType(BloodType bloodType);
     public Boolean deleteBloodType(Long id);
-    public BloodType findByBloodType(String bloodType);
+    public BloodType findByName(String name);
 }

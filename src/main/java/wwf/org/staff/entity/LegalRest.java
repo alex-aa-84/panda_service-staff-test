@@ -8,9 +8,13 @@ import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @Entity
-@Table(name="rp_legal_rest")
+@Table(name="rp_legal_rest", uniqueConstraints = {
+        @UniqueConstraint(columnNames = {"userId", "startDate", "endDate"})
+})
 @Data
 public class LegalRest {
+    ///Descanso Legal
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(unique = true, nullable = false)

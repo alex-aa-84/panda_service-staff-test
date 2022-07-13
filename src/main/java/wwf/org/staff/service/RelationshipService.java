@@ -11,5 +11,5 @@ public interface RelationshipService {
     public Relationship createRelationship(Relationship relationship);
     public Relationship updateRelationship(Relationship relationship);
     public Boolean deleteRelationship(Long id);
-    public Relationship findByRelationship(String relationship);
+    public Relationship findByName(String name);
 }

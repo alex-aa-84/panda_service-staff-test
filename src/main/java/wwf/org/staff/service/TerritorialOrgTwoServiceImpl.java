@@ -77,7 +77,7 @@ public class TerritorialOrgTwoServiceImpl implements TerritorialOrgTwoService {
     }
 
     @Override
-    public TerritorialOrgTwo findByTerritorialOrgFirstIdAndName(TerritorialOrgFirst territorialOrgFirst, String name) {
-        return territorialOrgTwoRepository.findByTerritorialOrgFirstIdAndName(territorialOrgFirst.getId(), name);
+    public TerritorialOrgTwo findByTerritorialOrgFirstIdAndName(Long territorialOrgFirstId, String name) {
+        return territorialOrgTwoRepository.findByTerritorialOrgFirstIdAndName(territorialOrgFirstId, name);
     }
 }

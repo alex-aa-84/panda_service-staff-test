@@ -20,7 +20,6 @@ public class OtherInformation {
 
     private Long userId;
 
-    @NotNull(message = "otherInformationType_nula")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(referencedColumnName = "id")
     @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})

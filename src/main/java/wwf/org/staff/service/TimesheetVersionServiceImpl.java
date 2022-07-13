@@ -3,32 +3,32 @@ package wwf.org.staff.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import wwf.org.staff.entity.TimesheetWipStatus;
-import wwf.org.staff.repository.TimesheetWipStatusRepository;
+import wwf.org.staff.entity.TimesheetVersion;
+import wwf.org.staff.repository.TimesheetVersionRepository;
 
 import java.util.Date;
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class TimesheetWipStatusServiceImpl implements TimesheetWipStatusService{
+public class TimesheetVersionServiceImpl implements TimesheetVersionService {
 
     @Autowired
-    private TimesheetWipStatusRepository repository;
+    private TimesheetVersionRepository repository;
 
 
     @Override
-    public List<TimesheetWipStatus> listAllTimesheetWipStatus() {
+    public List<TimesheetVersion> listAllTimesheetVersion() {
         return repository.findAll();
     }
 
     @Override
-    public TimesheetWipStatus getTimesheetWipStatus(Long id) {
+    public TimesheetVersion getTimesheetVersion(Long id) {
         return repository.findById(id).orElse(null);
     }
 
     @Override
-    public TimesheetWipStatus createTimesheetWipStatus(TimesheetWipStatus value) {
+    public TimesheetVersion createTimesheetVersion(TimesheetVersion value) {
         value.setStatus("CREATED");
         value.setCreation_date(new Date());
         value.setLast_update_date(new Date());
@@ -37,13 +37,13 @@ public class TimesheetWipStatusServiceImpl implements TimesheetWipStatusService{
     }
 
     @Override
-    public TimesheetWipStatus updateTimesheetWipStatus(TimesheetWipStatus value) {
-        TimesheetWipStatus bd = getTimesheetWipStatus(value.getId());
+    public TimesheetVersion updateTimesheetVersion(TimesheetVersion value) {
+        TimesheetVersion bd = getTimesheetVersion(value.getId());
         if(null == bd){
             return null;
         }
 
-        bd.setTimesheetWipStatus(value.getTimesheetWipStatus());
+        bd.setName(value.getName());
 
         bd.setDescription(value.getDescription());
 
@@ -67,8 +67,8 @@ public class TimesheetWipStatusServiceImpl implements TimesheetWipStatusService{
     }
 
     @Override
-    public Boolean deleteTimesheetWipStatus(Long id) {
-        TimesheetWipStatus bd = getTimesheetWipStatus(id);
+    public Boolean deleteTimesheetVersion(Long id) {
+        TimesheetVersion bd = getTimesheetVersion(id);
         if(null == bd){
             return false;
         }
@@ -78,7 +78,7 @@ public class TimesheetWipStatusServiceImpl implements TimesheetWipStatusService{
     }
 
     @Override
-    public TimesheetWipStatus findByTimesheetWipStatus(String val) {
-        return repository.findByTimesheetWipStatus(val);
+    public TimesheetVersion findByName(String name) {
+        return repository.findByName(name);
     }
 }

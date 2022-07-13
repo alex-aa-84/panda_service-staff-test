@@ -12,5 +12,5 @@ public interface AddressTypeService {
     public AddressType createAddressType(AddressType addressType);
     public AddressType updateAddressType(AddressType addressType);
     public Boolean deleteAddressType(Long id);
-    public AddressType findByAddressType(String addressType);
+    public AddressType findByName(String name);
 }

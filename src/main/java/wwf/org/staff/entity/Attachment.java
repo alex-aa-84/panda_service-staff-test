@@ -22,7 +22,6 @@ public class Attachment {
 
     private Long userId;
 
-    @NotNull(message = "attachmenType_nula")
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(referencedColumnName = "id")
     @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})

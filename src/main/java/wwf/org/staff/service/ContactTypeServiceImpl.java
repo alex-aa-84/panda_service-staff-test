@@ -42,7 +42,7 @@ public class ContactTypeServiceImpl implements ContactTypeService{
             return null;
         }
 
-        contactTypeDB.setContactType(contactType.getContactType());
+        contactTypeDB.setName(contactType.getName());
 
         contactTypeDB.setDescription(contactType.getDescription());
 
@@ -77,7 +77,7 @@ public class ContactTypeServiceImpl implements ContactTypeService{
     }
 
     @Override
-    public ContactType findByContactType(String contactType) {
-        return contactTypeRepository.findByContactType(contactType);
+    public ContactType findByName(String name) {
+        return contactTypeRepository.findByName(name);
     }
 }

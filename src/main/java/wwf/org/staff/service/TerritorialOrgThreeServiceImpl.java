@@ -77,7 +77,7 @@ public class TerritorialOrgThreeServiceImpl implements TerritorialOrgThreeServic
     }
 
     @Override
-    public TerritorialOrgThree findByTerritorialOrgTwoIdAndName(TerritorialOrgTwo territorialOrgTwo, String name) {
-      return territorialOrgThreeRepository.findByTerritorialOrgTwoIdAndName(territorialOrgTwo.getId(), name);
+    public TerritorialOrgThree findByTerritorialOrgTwoIdAndName(Long territorialOrgTwoId, String name) {
+        return territorialOrgThreeRepository.findByTerritorialOrgTwoIdAndName(territorialOrgTwoId, name);
     }
 }

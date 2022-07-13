@@ -16,9 +16,8 @@ public class ContactType {
     @Column(unique = true, nullable = false)
     private Long id;
 
-    @NotEmpty(message = "contactType_vacio")
     @Column(unique = true, nullable = false)
-    private String contactType;
+    private String name;
 
     private String description;
     private Integer attribute1;

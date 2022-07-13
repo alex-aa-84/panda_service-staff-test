@@ -45,8 +45,8 @@ public class ProjectsServiceImpl implements ProjectsService{
 
         bd.setFundingSource(value.getFundingSource());
         bd.setNumberProject(value.getNumberProject());
-        bd.setNameProject(value.getNameProject());
-        bd.setNameProjectShort(value.getNameProjectShort());
+        bd.setName(value.getName());
+        bd.setNameShort(value.getNameShort());
 
         bd.setUserId(value.getUserId());
         bd.setContractStartDate(bd.getContractStartDate());
@@ -84,7 +84,7 @@ public class ProjectsServiceImpl implements ProjectsService{
     }
 
     @Override
-    public Projects findByNumberProject(String val) {
-        return repository.findByNumberProject(val);
+    public Projects findByFundingSourceIdAndNumberProject(String fundingSourceId, String numberProject) {
+        return repository.findByFundingSourceIdAndNumberProject(fundingSourceId, numberProject);
     }
 }

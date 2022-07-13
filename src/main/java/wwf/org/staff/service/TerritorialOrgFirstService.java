@@ -11,5 +11,5 @@ public interface TerritorialOrgFirstService {
     public TerritorialOrgFirst createTerritorialOrgFirst(TerritorialOrgFirst territorialOrgFirst);
     public TerritorialOrgFirst updateTerritorialOrgFirst(TerritorialOrgFirst territorialOrgFirst);
     public Boolean deleteTerritorialOrgFirst(Long id);
-    public TerritorialOrgFirst findByCountryIdAndName(Long countryId, String name);
+    public TerritorialOrgFirst findByTerritorialOrgConfigIdAndName(Long territorialOrgConfigId, String name);
 }

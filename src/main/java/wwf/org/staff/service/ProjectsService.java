@@ -13,5 +13,5 @@ public interface ProjectsService {
     public Projects updateProjects(Projects value);
     public Boolean deleteProjects(Long id);
 
-    public Projects findByNumberProject(String val);
+    public Projects findByFundingSourceIdAndNumberProject(String fundingSourceId, String numberProject);
 }

@@ -4,5 +4,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import wwf.org.staff.entity.Relationship;
 
 public interface RelationshipRepository extends JpaRepository<Relationship, Long> {
-    public Relationship findByRelationship(String relationship);
+    public Relationship findByName(String name);
 }

@@ -4,5 +4,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import wwf.org.staff.entity.DocumentType;
 
 public interface DocumentTypeRepository extends JpaRepository<DocumentType, Long> {
-    public DocumentType findByDocumentType(String documentType);
+    public DocumentType findByName(String name);
 }

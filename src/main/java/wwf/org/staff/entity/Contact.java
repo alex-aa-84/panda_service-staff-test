@@ -20,7 +20,6 @@ public class Contact {
 
     private Long userId;
 
-    @NotNull(message = "contactType_nula")
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(referencedColumnName = "id")
     @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})

@@ -16,9 +16,8 @@ public class CivilStatus {
     @Column(unique = true, nullable = false)
     private Long id;
 
-    @NotEmpty(message = "civilStatus_vacio")
     @Column(unique = true, nullable = false)
-    private String civilStatus;
+    private String name;
 
     private String description;
     private Integer attribute1;

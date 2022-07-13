@@ -11,14 +11,15 @@ import java.util.Date;
 @Data
 public class Relationship {
 
+    //Relacion de Familia... Madre, Padre, Hermano, etc.
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(unique = true, nullable = false)
     private Long id;
 
-    @NotEmpty(message = "relationship_vacio")
     @Column(unique = true, nullable = false)
-    private String relationship;
+    private String name;
 
     private String description;
     private Integer attribute1;

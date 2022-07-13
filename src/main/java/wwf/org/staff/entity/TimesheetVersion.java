@@ -3,21 +3,20 @@ package wwf.org.staff.entity;
 import lombok.Data;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
 import java.util.Date;
 
 @Entity
-@Table(name = "ts_timesheet_wip_status")
+@Table(name = "ts_timesheet_version")
 @Data
-public class TimesheetWipStatus {
+public class TimesheetVersion {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(unique = true, nullable = false)
     private Long id;
 
-    @NotEmpty(message = "timesheetWipStatus_vacio")
+    //puede ser de version anual o mensual
     @Column(unique = true, nullable = false)
-    private String timesheetWipStatus;
+    private String name;
 
     private String description;
     private Integer attribute1;

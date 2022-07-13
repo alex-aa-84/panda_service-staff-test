@@ -5,5 +5,5 @@ import wwf.org.staff.entity.Projects;
 
 public interface ProjectsRepository extends JpaRepository<Projects, Long> {
 
-    public Projects findByNumberProject(String val);
+    public Projects findByFundingSourceIdAndNumberProject(String fundingSourceId, String numberProject);
 }

@@ -42,7 +42,7 @@ public class OtherInformationTypeServiceImpl implements OtherInformationTypeServ
             return null;
         }
 
-        otherInformationTypeDB.setOtherInformationType(otherInformationType.getOtherInformationType());
+        otherInformationTypeDB.setName(otherInformationType.getName());
         otherInformationTypeDB.setDescription(otherInformationType.getDescription());
 
         otherInformationTypeDB.setAttribute1(otherInformationType.getAttribute1());
@@ -76,7 +76,7 @@ public class OtherInformationTypeServiceImpl implements OtherInformationTypeServ
     }
 
     @Override
-    public OtherInformationType findByOtherInformationType(String otherInformationType) {
-        return otherInformationTypeRepository.findByOtherInformationType(otherInformationType);
+    public OtherInformationType findByName(String name) {
+        return otherInformationTypeRepository.findByName(name);
     }
 }

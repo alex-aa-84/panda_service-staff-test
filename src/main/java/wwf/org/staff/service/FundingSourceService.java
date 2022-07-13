@@ -14,6 +14,6 @@ public interface FundingSourceService {
     public FundingSource updateFundingSource(FundingSource value);
     public Boolean deleteFundingSource(Long id);
 
-    public FundingSource findByNumberFundingSource(String val);
+    public FundingSource findByNumberFundingSource(String numberfundingsource);
 
 }

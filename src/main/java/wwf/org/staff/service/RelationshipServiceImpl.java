@@ -42,7 +42,7 @@ public class RelationshipServiceImpl implements RelationshipService {
             return null;
         }
 
-        relationshipDB.setRelationship(relationship.getRelationship());
+        relationshipDB.setName(relationship.getName());
         relationshipDB.setDescription(relationship.getDescription());
 
         relationshipDB.setAttribute1(relationship.getAttribute1());
@@ -76,7 +76,7 @@ public class RelationshipServiceImpl implements RelationshipService {
     }
 
     @Override
-    public Relationship findByRelationship(String relationship) {
-        return relationshipRepository.findByRelationship(relationship);
+    public Relationship findByName(String name) {
+        return relationshipRepository.findByName(name);
     }
 }

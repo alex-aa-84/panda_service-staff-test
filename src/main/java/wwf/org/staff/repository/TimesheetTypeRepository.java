@@ -5,5 +5,5 @@ import wwf.org.staff.entity.TimesheetType;
 
 public interface TimesheetTypeRepository extends JpaRepository<TimesheetType, Long> {
 
-    public TimesheetType findByTimesheetType(String val);
+    public TimesheetType findByName(String name);
 }

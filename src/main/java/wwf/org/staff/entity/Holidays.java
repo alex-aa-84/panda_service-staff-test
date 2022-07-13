@@ -9,24 +9,28 @@ import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @Entity
-@Table(name="rp_holidays")
+@Table(name="rp_holidays", uniqueConstraints = {
+        @UniqueConstraint(columnNames = {"holidayTypeId", "holiday"})
+})
 @Data
 public class Holidays {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(unique = true, nullable = false)
     private Long id;
-
-    @NotNull(message = "holidayType_nula")
+    
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(referencedColumnName = "id")
+    @JoinColumn(referencedColumnName = "id", name = "holidayTypeId")
     @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
     private HolidayType holidayType;
+
+    private Integer calendarId;
 
     @Temporal(TemporalType.DATE)
     private Date holiday;
 
     private String description;
+
     private Integer attribute1;
     private Integer attribute2;
     private Integer attribute3;

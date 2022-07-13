@@ -20,13 +20,11 @@ public class Profession {
 
     private Long userId;
 
-    @NotNull(message = "professionType_nula")
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(referencedColumnName = "id")
     @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
     private ProfessionType professionType;
 
-    @NotEmpty(message = "name_profession_vacio")
     @Column(unique = true, nullable = false)
     private String name;
 

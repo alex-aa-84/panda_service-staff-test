@@ -78,7 +78,7 @@ public class PermissionHeaderServiceImpl implements PermissionHeaderService{
     }
 
     @Override
-    public PermissionHeader findByPermission(String permission) {
-        return permissionHeaderRepository.findByPermission(permission);
+    public PermissionHeader findByWorkflowIdAndPermission(Long workflowId, String permission) {
+        return permissionHeaderRepository.findByWorkflowIdAndPermission(workflowId, permission);
     }
 }

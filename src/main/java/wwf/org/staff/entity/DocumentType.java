@@ -17,9 +17,8 @@ public class DocumentType {
     @Column(unique = true, nullable = false)
     private Long id;
 
-    @NotEmpty(message = "documentType_vacio")
     @Column(unique = true, nullable = false)
-    private String documentType;
+    private String name;
 
     private String description;
     private Integer attribute1;

@@ -1,53 +1,42 @@
 package wwf.org.staff.entity;
 
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.Date;
+import java.util.List;
 
 @Entity
-@Table(name = "per_permission_workflow", uniqueConstraints = {
-        @UniqueConstraint(columnNames = {"permissiongeaderId", "step", "stateId"})
-})
+@Table(name="rp_request_permit_periods")
 @Data
-public class PermisionWorkflow {
+public class RequestPermitPeriods {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(unique = true, nullable = false)
     private Long id;
 
-    @NotNull(message = "permissionHeader_nula")
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(referencedColumnName = "id")
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @JoinColumn(referencedColumnName = "id", name = "permissionHeaderId")
     @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
-    private PermissionHeader permissionHeader;
+    private RequestPermitHeader requestPermitHeader;
 
-    @NotEmpty(message = "step_vacio")
-    @Column(nullable = false)
-    private Number step;
+    @Temporal(TemporalType.DATE)
+    private Date dateFrom;
 
-    @NotEmpty(message = "workflowState_vacio")
-    @Column(nullable = false)
-    private Long workflowStateId;
+    @Temporal(TemporalType.DATE)
+    private Date dateTo;
 
-    @NotEmpty(message = "nextworkflowState_vacio")
-    @Column(nullable = false)
-    private Long nextWorkflowStateId;
+    private Integer days;
 
-    @NotEmpty(message = "rejectionWorkflowState_vacio")
-    @Column(nullable = false)
-    private Long rejectionWorkflowStateId;
+    @OneToMany(mappedBy = "requestPermitPeriods", cascade = CascadeType.ALL)
+    private List<RequestPermitDays> requestPermitDays;
 
-    @Column(nullable = false)
-    private Long sendEmail;
-
-    private String description;
     private Integer attribute1;
     private Integer attribute2;
     private Integer attribute3;
@@ -73,4 +62,8 @@ public class PermisionWorkflow {
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date last_update_date;
+
+    @Column(unique = true, nullable = false)
+    @Size(min=32, max = 32)
+    private String ctrlMd5;
 }

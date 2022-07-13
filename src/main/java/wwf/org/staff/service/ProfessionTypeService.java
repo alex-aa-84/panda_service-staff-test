@@ -11,5 +11,5 @@ public interface ProfessionTypeService {
     public ProfessionType createProfessionType(ProfessionType professionType);
     public ProfessionType updateProfessionType(ProfessionType professionType);
     public Boolean deleteProfessionType(Long id);
-    public ProfessionType findByProfessionType(String professionType);
+    public ProfessionType findByName(String name);
 }

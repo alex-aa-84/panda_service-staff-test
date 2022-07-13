@@ -18,7 +18,6 @@ public class Notes {
     @Column(unique = true, nullable = false)
     private Long id;
 
-    @NotNull(message = "staffModule_nula")
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(referencedColumnName = "id")
     @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})

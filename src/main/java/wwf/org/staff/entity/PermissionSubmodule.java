@@ -21,14 +21,12 @@ public class PermissionSubmodule {
     @Column(unique = true, nullable = false)
     private Long id;
 
-    @NotNull(message = "permissionModule_nula")
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(referencedColumnName = "id", name = "permissionModuleId")
     @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
     private PermissionModule permissionModule;
 
-    @NotNull(message = "permissionSubmodule_nula")
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(referencedColumnName = "id", name = "permissionSubmoduleId")

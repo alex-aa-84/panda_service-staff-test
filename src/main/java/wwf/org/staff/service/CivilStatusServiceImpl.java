@@ -42,7 +42,7 @@ public class CivilStatusServiceImpl implements CivilStatusService {
             return null;
         }
 
-        civilStatusDB.setCivilStatus(civilStatus.getCivilStatus());
+        civilStatusDB.setName(civilStatus.getName());
         civilStatusDB.setDescription(civilStatus.getDescription());
 
         civilStatusDB.setAttribute1(civilStatus.getAttribute1());
@@ -76,7 +76,7 @@ public class CivilStatusServiceImpl implements CivilStatusService {
     }
 
     @Override
-    public CivilStatus findByCivilStatus(String civilStatus) {
-        return civilStatusRepository.findByCivilStatus(civilStatus);
+    public CivilStatus findByName(String name) {
+        return civilStatusRepository.findByName(name);
     }
 }

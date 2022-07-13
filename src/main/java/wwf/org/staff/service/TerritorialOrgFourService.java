@@ -12,5 +12,5 @@ public interface TerritorialOrgFourService {
     public TerritorialOrgFour createTerritorialOrgFour(TerritorialOrgFour territorialOrgFour);
     public TerritorialOrgFour updateTerritorialOrgFour(TerritorialOrgFour territorialOrgFour);
     public Boolean deleteTerritorialOrgFour(Long id);
-    public TerritorialOrgFour findByTerritorialOrgThreeIdAndName(TerritorialOrgThree territorialOrgThree, String name);
+    public TerritorialOrgFour findByTerritorialOrgThreeIdAndName(Long territorialOrgThreeId, String name);
 }

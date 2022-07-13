@@ -42,7 +42,7 @@ public class AddressTypeServiceImpl implements AddressTypeService{
             return null;
         }
 
-        addressTypeDB.setAddressType(addressType.getAddressType());
+        addressTypeDB.setName(addressType.getName());
         addressTypeDB.setDescription(addressType.getDescription());
 
         addressTypeDB.setAttribute1(addressType.getAttribute1());
@@ -76,7 +76,7 @@ public class AddressTypeServiceImpl implements AddressTypeService{
     }
 
     @Override
-    public AddressType findByAddressType(String addressType) {
-        return addressTypeRepository.findByAddressType(addressType);
+    public AddressType findByName(String name) {
+        return addressTypeRepository.findByName(name);
     }
 }

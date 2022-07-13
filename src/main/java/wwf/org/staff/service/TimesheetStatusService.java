@@ -13,5 +13,5 @@ public interface TimesheetStatusService {
     public TimesheetStatus updateTimesheetStatus(TimesheetStatus value);
     public Boolean deleteTimesheetStatus(Long id);
 
-    public TimesheetStatus findByTimesheetStatus(String val);
+    public TimesheetStatus findByName(String name);
 }

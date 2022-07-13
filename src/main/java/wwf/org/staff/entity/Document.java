@@ -19,7 +19,6 @@ public class Document {
 
     private Long userId;
 
-    @NotNull(message = "documentType_nula")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(referencedColumnName = "id")
     @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})

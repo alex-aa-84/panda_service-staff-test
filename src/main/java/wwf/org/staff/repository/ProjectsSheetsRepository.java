@@ -6,6 +6,6 @@ import wwf.org.staff.entity.ProjectsSheets;
 
 public interface ProjectsSheetsRepository extends JpaRepository<ProjectsSheets, Long> {
 
-    public ProjectsSheets findByFiscalYearAndMonthFiscalYearAndUserIdAndProjectsId(Integer year, Integer month, Long user, Projects projects);
+    public ProjectsSheets findByFiscalYearAndMonthFiscalYearAndUserIdAndProjectId(Integer year, Integer month, Long user, Long projectId);
 
 }

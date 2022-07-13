@@ -15,9 +15,8 @@ public class HolidayType {
     @Column(unique = true, nullable = false)
     private Long id;
 
-    @NotEmpty(message = "holidayType_nula")
     @Column(unique = true, nullable = false)
-    private String holidayType;
+    private String name;
 
     private String description;
     private Integer attribute1;

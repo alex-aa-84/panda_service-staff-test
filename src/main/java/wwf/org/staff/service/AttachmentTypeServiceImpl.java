@@ -43,7 +43,7 @@ public class AttachmentTypeServiceImpl implements AttachmentTypeService{
             return null;
         }
 
-        attachmentTypeBD.setAttachmentType(attachmentType.getAttachmentType());
+        attachmentTypeBD.setName(attachmentType.getName());
 
         attachmentTypeBD.setDescription(attachmentType.getDescription());
 
@@ -78,7 +78,7 @@ public class AttachmentTypeServiceImpl implements AttachmentTypeService{
     }
 
     @Override
-    public AttachmentType findByAttachmentType(String attachmentType) {
-        return attachmentTypeRepository.findByAttachmentType(attachmentType);
+    public AttachmentType findByName(String name) {
+        return attachmentTypeRepository.findByName(name);
     }
 }

@@ -42,7 +42,7 @@ public class JobTittleServiceImpl implements JobTittleService{
             return null;
         }
 
-        jobTittleDB.setJobTitle(jobTittle.getJobTitle());
+        jobTittleDB.setName(jobTittle.getName());
         jobTittleDB.setDescription(jobTittle.getDescription());
 
         jobTittleDB.setAttribute1(jobTittle.getAttribute1());
@@ -76,7 +76,7 @@ public class JobTittleServiceImpl implements JobTittleService{
     }
 
     @Override
-    public JobTittle findByJobTitle(String jobTitle) {
-        return jobTitleRepository.findByJobTitle(jobTitle);
+    public JobTittle findByName(String name) {
+        return jobTitleRepository.findByName(name);
     }
 }

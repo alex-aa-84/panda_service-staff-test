@@ -11,5 +11,5 @@ public interface PermissionHeaderService {
     public PermissionHeader createPermissionHeader(PermissionHeader permissionHeader);
     public PermissionHeader updatePermissionHeader(PermissionHeader permissionHeader);
     public Boolean deletePermissionHeader(Long id);
-    public PermissionHeader findByPermission(String permission);
+    public PermissionHeader findByWorkflowIdAndPermission(Long workflowId, String permission);
 }

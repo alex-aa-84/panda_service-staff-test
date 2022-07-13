@@ -15,9 +15,9 @@ public class TimesheetStatus {
     @Column(unique = true, nullable = false)
     private Long id;
 
-    @NotEmpty(message = "timesheetStatus_vacio")
+    //Puede ser Desfasado o Actual, Actual es el vigente y desfasado en caso que se hiciera una modificación
     @Column(unique = true, nullable = false)
-    private String timesheetStatus;
+    private String name;
 
     private String description;
     private Integer attribute1;

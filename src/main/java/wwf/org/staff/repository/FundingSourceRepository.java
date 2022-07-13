@@ -5,5 +5,5 @@ import wwf.org.staff.entity.FundingSource;
 
 public interface FundingSourceRepository extends JpaRepository<FundingSource, Long> {
 
-    public FundingSource findByNumberFundingSource(String val);
+    public FundingSource findByNumberFundingSource(String numberfundingsource);
 }

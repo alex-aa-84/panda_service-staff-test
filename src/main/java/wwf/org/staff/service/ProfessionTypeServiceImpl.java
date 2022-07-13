@@ -42,7 +42,7 @@ public class ProfessionTypeServiceImpl implements ProfessionTypeService {
             return null;
         }
 
-        professionTypeDB.setProfessionType(professionType.getProfessionType());
+        professionTypeDB.setName(professionType.getName());
         professionTypeDB.setDescription(professionType.getDescription());
 
         professionTypeDB.setAttribute1(professionType.getAttribute1());
@@ -76,7 +76,7 @@ public class ProfessionTypeServiceImpl implements ProfessionTypeService {
     }
 
     @Override
-    public ProfessionType findByProfessionType(String professionType) {
-        return professionTypeRepository.findByProfessionType(professionType);
+    public ProfessionType findByName(String name) {
+        return professionTypeRepository.findByName(name);
     }
 }

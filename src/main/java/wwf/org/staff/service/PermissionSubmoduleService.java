@@ -12,5 +12,5 @@ public interface PermissionSubmoduleService {
     public PermissionSubmodule createPermissionSubmodule(PermissionSubmodule permissionSubmodule);
     public PermissionSubmodule updatePermissionSubmodule(PermissionSubmodule permissionSubmodule);
     public Boolean deletePermissionSubmodule(Long id);
-    public PermissionSubmodule findByPermissionModuleIdAndSubmoduleAndRoute(PermissionModule permissionModule, String submodule, String route);
+    public PermissionSubmodule findByPermissionModuleIdAndSubmoduleAndRoute(Long permissionModuleId, String submodule, String route);
 }

@@ -20,7 +20,6 @@ public class Address {
 
     private Long userId;
 
-    @NotNull(message = "address_type_id_nula")
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(referencedColumnName = "id")
     @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})

@@ -42,7 +42,7 @@ public class DocumentTypeServiceImpl implements DocumentTypeService {
             return null;
         }
 
-        documentTypeDB.setDocumentType(documentType.getDocumentType());
+        documentTypeDB.setName(documentType.getName());
         documentTypeDB.setDescription(documentType.getDescription());
 
         documentTypeDB.setAttribute1(documentType.getAttribute1());
@@ -76,7 +76,7 @@ public class DocumentTypeServiceImpl implements DocumentTypeService {
     }
 
     @Override
-    public DocumentType findByDocumentType(String documentType) {
-        return documentTypeRepository.findByDocumentType(documentType);
+    public DocumentType findByName(String name) {
+        return documentTypeRepository.findByName(name);
     }
 }

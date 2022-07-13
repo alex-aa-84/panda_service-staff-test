@@ -48,8 +48,7 @@ public class ContactServiceImpl implements ContactService{
 
         contactDB.setUserId(contact.getUserId());
         contactDB.setContactType(contact.getContactType());
-        contactDB.setPhoneNumber(contact.getPhoneNumber());
-        contactDB.setEmail(contact.getEmail());
+        contactDB.setValue(contact.getValue());
         contactDB.setDescription(contact.getDescription());
 
         contactDB.setAttribute1(contact.getAttribute1());

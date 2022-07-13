@@ -5,5 +5,5 @@ import wwf.org.staff.entity.TimesheetStatus;
 
 public interface TimesheetStatusRepository extends JpaRepository<TimesheetStatus, Long> {
 
-    public TimesheetStatus findByTimesheetStatus(String val);
+    public TimesheetStatus findByName(String name);
 }

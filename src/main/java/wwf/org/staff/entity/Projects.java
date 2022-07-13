@@ -23,25 +23,21 @@ public class Projects {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(unique = true, nullable = false)
     private Long id;
-
-    @NotNull(message = "fundingSource_nula")
+    
     @ManyToOne(fetch = FetchType.LAZY, optional = false, cascade = {CascadeType.ALL})
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(referencedColumnName = "id", name = "fundingSourceId")
     @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
     private FundingSource fundingSource;
 
-    @NotEmpty(message = "numberProject_vacio")
     @Column(nullable = false)
     private String numberProject;
 
-    @NotEmpty(message = "nameProject_vacio")
     @Column(nullable = false)
-    private String nameProject;
+    private String name;
 
-    @NotEmpty(message = "nameProjectShort_vacio")
     @Column(nullable = false)
-    private String nameProjectShort;
+    private String nameShort;
 
     @Column(name = "user_manager")
     private Long userId;

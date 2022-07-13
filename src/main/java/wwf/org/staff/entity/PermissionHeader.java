@@ -23,7 +23,6 @@ public class PermissionHeader {
     // Se definira si es para timesheet, permisos, rodados, etc...
     private Long workflowId;
 
-    @NotEmpty(message = "permission_vacio")
     @Column(nullable = false)
     private String permission;
 

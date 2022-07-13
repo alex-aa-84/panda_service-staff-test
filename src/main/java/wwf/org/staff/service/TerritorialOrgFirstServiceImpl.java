@@ -42,7 +42,7 @@ public class TerritorialOrgFirstServiceImpl implements TerritorialOrgFirstServic
             return null;
         }
 
-        territorialOrgFirstDB.setCountryId(territorialOrgFirst.getCountryId());
+        territorialOrgFirstDB.setTerritorialOrgConfig(territorialOrgFirst.getTerritorialOrgConfig());
         territorialOrgFirstDB.setName(territorialOrgFirst.getName());
 
         territorialOrgFirstDB.setAttribute1(territorialOrgFirst.getAttribute1());
@@ -76,7 +76,7 @@ public class TerritorialOrgFirstServiceImpl implements TerritorialOrgFirstServic
     }
 
     @Override
-    public TerritorialOrgFirst findByCountryIdAndName(Long countryId, String name) {
-        return territorialOrgFirstRepository.findByCountryIdAndName(countryId, name);
+    public TerritorialOrgFirst findByTerritorialOrgConfigIdAndName(Long territorialOrgConfigId, String name) {
+        return territorialOrgFirstRepository.findByTerritorialOrgConfigIdAndName(territorialOrgConfigId, name);
     }
 }

@@ -2,6 +2,8 @@ package wwf.org.staff.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
@@ -20,13 +22,18 @@ public class TerritorialOrgFive {
     @Column(unique = true, nullable = false)
     private Long id;
 
-    @NotNull(message = "territorialOrgFour_nula")
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JoinColumn(referencedColumnName = "id", name = "territorialOrgConfigId")
+    @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
+    private TerritorialOrgConfig territorialOrgConfig;
+
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(referencedColumnName = "id", name = "territorialOrgFourId")
     @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
     private TerritorialOrgFour territorialOrgFour;
 
-    @NotEmpty(message = "name_territorio_generico_vacio")
     @Column(nullable = false)
     private String name;
 

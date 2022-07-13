@@ -17,13 +17,11 @@ public class FundingSource {
     @Column(unique = true, nullable = false)
     private Long id;
 
-    @NotEmpty(message = "numberFundingSource_vacio")
     @Column(unique = true, nullable = false)
     private String numberFundingSource;
 
-    @NotEmpty(message = "nameFundingSource_vacio")
     @Column(nullable = false)
-    private String nameFundingSource;
+    private String name;
 
     @Column(name = "user_manager")
     private Long userId;

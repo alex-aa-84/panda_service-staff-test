@@ -11,5 +11,5 @@ public interface AttachmentTypeService {
     public AttachmentType createAttachmentType(AttachmentType attachmentType);
     public AttachmentType updateAttachmentType(AttachmentType attachmentType);
     public Boolean deleteAttachmentType(Long id);
-    public AttachmentType findByAttachmentType(String attachmentType);
+    public AttachmentType findByName(String name);
 }

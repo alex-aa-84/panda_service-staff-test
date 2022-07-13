@@ -11,5 +11,5 @@ public interface DocumentTypeService {
     public DocumentType createDocumentType(DocumentType documentType);
     public DocumentType updateDocumentType(DocumentType documentType);
     public Boolean deleteDocumentType(Long id);
-    public DocumentType findByDocumentType(String documentType);
+    public DocumentType findByName(String name);
 }

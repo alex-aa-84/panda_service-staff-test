@@ -11,5 +11,5 @@ public interface OtherInformationTypeService {
     public OtherInformationType createOtherInformationType(OtherInformationType otherInformationType);
     public OtherInformationType updateOtherInformationType(OtherInformationType otherInformationType);
     public Boolean deleteOtherInformationType(Long id);
-    public OtherInformationType findByOtherInformationType(String otherInformationType);
+    public OtherInformationType findByName(String name);
 }

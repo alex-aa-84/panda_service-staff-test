@@ -23,8 +23,7 @@ public class JobSetting {
     private String code;
 
     private Long userIdSupervisor;
-
-    @NotNull(message = "permissionHeader_nula")
+    
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(referencedColumnName = "id")
     @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})

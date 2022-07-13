@@ -11,5 +11,5 @@ public interface CivilStatusService {
     public CivilStatus createCivilStatus(CivilStatus civilStatus);
     public CivilStatus updateCivilStatus(CivilStatus civilStatus);
     public Boolean deleteCivilStatus(Long id);
-    public CivilStatus findByCivilStatus(String civilStatus);
+    public CivilStatus findByName(String name);
 }

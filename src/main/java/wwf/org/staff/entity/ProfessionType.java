@@ -16,9 +16,8 @@ public class ProfessionType {
     @Column(unique = true, nullable = false)
     private Long id;
 
-    @NotEmpty(message = "professionType_vacia")
     @Column(unique = true, nullable = false)
-    private String professionType;
+    private String name;
 
     private String description;
     private Integer attribute1;

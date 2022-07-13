@@ -7,7 +7,7 @@ import javax.validation.constraints.NotEmpty;
 import java.util.Date;
 
 @Entity
-@Table(name = "ts_timesheet_wip_status",  uniqueConstraints = {
+@Table(name = "ts_timesheet_cycle",  uniqueConstraints = {
         @UniqueConstraint(columnNames = {"fiscalYear", "monthFiscalYear"})
 })
 @Data
@@ -17,16 +17,13 @@ public class TimesheetCycle {
     @Column(unique = true, nullable = false)
     private Long id;
 
-    @NotEmpty(message = "fiscalYear_vacio")
     @Column(nullable = false)
     private Integer fiscalYear;
 
-    @NotEmpty(message = "fiscalYear_vacio")
     @Column(nullable = false)
     private Integer monthFiscalYear;
 
     //0 ó 1, 1 es el mes en curso ó seleccionado
-    @NotEmpty(message = "onGoing_vacio")
     @Column(nullable = false)
     private Number onGoing;
 

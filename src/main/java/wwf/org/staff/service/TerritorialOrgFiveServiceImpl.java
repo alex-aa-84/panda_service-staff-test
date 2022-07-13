@@ -77,7 +77,7 @@ public class TerritorialOrgFiveServiceImpl implements TerritorialOrgFiveService 
     }
 
     @Override
-    public TerritorialOrgFive findByTerritorialOrgFourIdAndName(TerritorialOrgFour territorialOrgFour, String name) {
-        return territorialOrgFiveRepository.findByTerritorialOrgFourIdAndName(territorialOrgFour.getId(), name);
+    public TerritorialOrgFive findByTerritorialOrgFourIdAndName(Long territorialOrgFourId, String name) {
+        return territorialOrgFiveRepository.findByTerritorialOrgFourIdAndName(territorialOrgFourId, name);
     }
 }

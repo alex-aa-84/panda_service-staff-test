@@ -20,7 +20,6 @@ public class Family {
 
     private Long userId;
 
-    @NotNull(message = "relationship_nula")
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(referencedColumnName = "id")
     @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})

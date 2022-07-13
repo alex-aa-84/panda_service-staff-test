@@ -5,6 +5,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.Date;
 
 @Entity
@@ -16,7 +17,6 @@ public class AttachmentFile {
     @Column(unique = true, nullable = false)
     private Long id;
 
-    @NotNull(message = "staffModule_nula")
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(referencedColumnName = "id")
     @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
@@ -24,7 +24,7 @@ public class AttachmentFile {
 
     private Long referenceId;
 
-    private String mane;
+    private String name;
 
     private String locationFile;
 
@@ -54,4 +54,8 @@ public class AttachmentFile {
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date last_update_date;
+
+    @Column(unique = true, nullable = false)
+    @Size(min=32, max = 32)
+    private String ctrlMd5;
 }

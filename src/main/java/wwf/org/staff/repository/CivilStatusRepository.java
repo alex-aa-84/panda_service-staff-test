@@ -5,5 +5,5 @@ import wwf.org.staff.entity.CivilStatus;
 
 public interface CivilStatusRepository extends JpaRepository<CivilStatus, Long> {
 
-    public CivilStatus findByCivilStatus(String civilStatus);
+    public CivilStatus findByName(String name);
 }

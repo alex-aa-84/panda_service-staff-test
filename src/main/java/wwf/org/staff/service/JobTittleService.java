@@ -11,5 +11,5 @@ public interface JobTittleService {
     public JobTittle createJobTittle(JobTittle jobTittle);
     public JobTittle updateJobTittle(JobTittle jobTittle);
     public Boolean deleteJobTittle(Long id);
-    public JobTittle findByJobTitle(String jobTitle);
+    public JobTittle findByName(String name);
 }
