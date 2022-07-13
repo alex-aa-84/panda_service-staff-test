@@ -4,11 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
-import wwf.org.staff.entity.WorkflowWipStatus;
-import wwf.org.staff.service.TimesheetVersionService;
+import wwf.org.staff.entity.AttachmentFile;
+import wwf.org.staff.service.AttachmentFileService;
 import wwf.org.staff.serviceApi.FormatMessage;
 
 import javax.validation.Valid;
@@ -17,17 +16,17 @@ import java.util.List;
 @CrossOrigin(origins = {"${settings.cors_origin}", "${settings.cors_origin_pro}"}, maxAge = 3600,
         allowedHeaders={"Origin", "X-Requested-With", "Content-Type", "Accept", "x-client-key", "x-client-token", "x-client-secret", "Authorization"}, methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.OPTIONS, RequestMethod.HEAD, RequestMethod.DELETE, RequestMethod.PUT})
 @RestController
-@RequestMapping(value="/admstaffwwf/timesheetwipstatus")
-public class TimesheetWipStatusController {
-
+@RequestMapping(value="/admstaffwwf/attachmentfile")
+public class AttachmentFileController {
     @Autowired
-    private TimesheetVersionService service;
+    private AttachmentFileService service;
+
 
     private FormatMessage formatMessage = new FormatMessage();
 
     @GetMapping
-    public ResponseEntity<List<WorkflowWipStatus>> listData(){
-        List<WorkflowWipStatus> data = service.listAllTimesheetWipStatus();
+    public ResponseEntity<List<AttachmentFile>> listData(){
+        List<AttachmentFile> data = service.listAllAttachmentFile();
         if(data.isEmpty()){
             return ResponseEntity.noContent().build();
         }
@@ -36,8 +35,8 @@ public class TimesheetWipStatusController {
     }
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<WorkflowWipStatus> getData(@PathVariable("id") Long id){
-        WorkflowWipStatus data = service.getTimesheetWipStatus(id);
+    public ResponseEntity<AttachmentFile> getData(@PathVariable("id") Long id){
+        AttachmentFile data = service.getAttachmentFile(id);
         if(null == data){
             return ResponseEntity.notFound().build();
         }
@@ -45,30 +44,23 @@ public class TimesheetWipStatusController {
     }
 
     @PostMapping()
-    public ResponseEntity<WorkflowWipStatus> createData(@Valid @RequestBody WorkflowWipStatus data, BindingResult result){
-
-        WorkflowWipStatus dataBD = service.findByTimesheetWipStatus(data.getTimesheetWipStatus());
-
-        if (null != dataBD){
-            FieldError err = new FieldError("Error", "registroExistente", "registroExistenteBD");
-            result.addError(err);
-        }
+    public ResponseEntity<AttachmentFile> createData(@Valid @RequestBody AttachmentFile data, BindingResult result){
 
         if(result.hasErrors()){
             throw  new ResponseStatusException(HttpStatus.BAD_REQUEST, formatMessage.format(result));
         }
 
-        return ResponseEntity.status(HttpStatus.CREATED).body(service.createTimesheetWipStatus(data));
+        return ResponseEntity.status(HttpStatus.CREATED).body(service.createAttachmentFile(data));
     }
 
     @PutMapping()
-    public ResponseEntity<WorkflowWipStatus> updateData(@Valid @RequestBody WorkflowWipStatus data, BindingResult result){
+    public ResponseEntity<AttachmentFile> updateDate(@Valid @RequestBody AttachmentFile data, BindingResult result){
 
         if(result.hasErrors()){
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, formatMessage.format(result));
         }
 
-        WorkflowWipStatus dataUp = service.updateTimesheetWipStatus(data);
+        AttachmentFile dataUp = service.updateAttachmentFile(data);
         if(null == dataUp){
             return ResponseEntity.notFound().build();
         }
@@ -78,7 +70,7 @@ public class TimesheetWipStatusController {
     @DeleteMapping(value = "/{id}")
     public ResponseEntity<Boolean> deleteData(@PathVariable("id") Long id){
 
-        Boolean action = service.deleteTimesheetWipStatus(id);
+        Boolean action = service.deleteAttachmentFile(id);
 
         if ( action){
             return ResponseEntity.ok(action);
@@ -87,5 +79,4 @@ public class TimesheetWipStatusController {
         }
 
     }
-
 }

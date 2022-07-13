@@ -48,7 +48,7 @@ public class JobTitleController {
     @PostMapping()
     public ResponseEntity<JobTittle> createData(@Valid @RequestBody JobTittle data, BindingResult result){
 
-        JobTittle dataBD = service.findByJobTitle(data.getJobTitle());
+        JobTittle dataBD = service.findByName(data.getName());
 
         if (null != dataBD){
             FieldError err = new FieldError("Error", "registroExistente", "registroExistenteBD");

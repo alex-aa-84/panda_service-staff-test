@@ -47,7 +47,7 @@ public class OtherInformationTypeController {
     @PostMapping()
     public ResponseEntity<OtherInformationType> createData(@Valid @RequestBody OtherInformationType data, BindingResult result){
 
-        OtherInformationType dataBD = service.findByOtherInformationType(data.getOtherInformationType());
+        OtherInformationType dataBD = service.findByName(data.getName());
 
         if (null != dataBD){
             FieldError err = new FieldError("Error", "registroExistente", "registroExistenteBD");

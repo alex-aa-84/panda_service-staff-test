@@ -47,7 +47,7 @@ public class ProjectsController {
     @PostMapping()
     public ResponseEntity<Projects> createData(@Valid @RequestBody Projects data, BindingResult result){
 
-        Projects dataBD = service.findByNumberProject(data.getNumberProject());
+        Projects dataBD = service.findByFundingSourceIdAndNumberProject(data.getFundingSource().getId(), data.getNumberProject());
 
         if (null != dataBD){
             FieldError err = new FieldError("Error", "registroExistente", "registroExistenteBD");

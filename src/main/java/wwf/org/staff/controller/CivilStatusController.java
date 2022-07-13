@@ -48,7 +48,7 @@ public class CivilStatusController {
     @PostMapping()
     public ResponseEntity<CivilStatus> createData(@Valid @RequestBody CivilStatus data, BindingResult result){
 
-        CivilStatus dataBD = service.findByCivilStatus(data.getCivilStatus());
+        CivilStatus dataBD = service.findByName(data.getName());
 
         if (null != dataBD){
             FieldError err = new FieldError("Error", "registroExistente", "registroExistenteBD");

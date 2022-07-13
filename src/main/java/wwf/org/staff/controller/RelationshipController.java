@@ -48,7 +48,7 @@ public class RelationshipController {
     @PostMapping()
     public ResponseEntity<Relationship> createData(@Valid @RequestBody Relationship data, BindingResult result){
 
-        Relationship dataBD = service.findByRelationship(data.getRelationship());
+        Relationship dataBD = service.findByName(data.getName());
 
         if (null != dataBD){
             FieldError err = new FieldError("Error", "registroExistente", "registroExistenteBD");

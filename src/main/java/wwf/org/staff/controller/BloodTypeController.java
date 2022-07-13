@@ -48,7 +48,7 @@ public class BloodTypeController {
     @PostMapping()
     public ResponseEntity<BloodType> createData(@Valid @RequestBody BloodType data, BindingResult result){
 
-        BloodType dataBD = service.findByBloodType(data.getBloodType());
+        BloodType dataBD = service.findByName(data.getName());
 
         if (null != dataBD){
             FieldError err = new FieldError("Error", "registroExistente", "registroExistenteBD");

@@ -47,7 +47,7 @@ public class TimesheetTypeController {
     @PostMapping()
     public ResponseEntity<TimesheetType> createData(@Valid @RequestBody TimesheetType data, BindingResult result){
 
-        TimesheetType dataBD = service.findByTimesheetType(data.getTimesheetType());
+        TimesheetType dataBD = service.findByName(data.getName());
 
         if (null != dataBD){
             FieldError err = new FieldError("Error", "registroExistente", "registroExistenteBD");

@@ -47,7 +47,7 @@ public class TimesheetStatusController {
     @PostMapping()
     public ResponseEntity<TimesheetStatus> createData(@Valid @RequestBody TimesheetStatus data, BindingResult result){
 
-        TimesheetStatus dataBD = service.findByTimesheetStatus(data.getTimesheetStatus());
+        TimesheetStatus dataBD = service.findByName(data.getName());
 
         if (null != dataBD){
             FieldError err = new FieldError("Error", "registroExistente", "registroExistenteBD");

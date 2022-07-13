@@ -47,7 +47,7 @@ public class ProfessionTypeController {
     @PostMapping()
     public ResponseEntity<ProfessionType> createData(@Valid @RequestBody ProfessionType data, BindingResult result){
 
-        ProfessionType dataBD = service.findByProfessionType(data.getProfessionType());
+        ProfessionType dataBD = service.findByName(data.getName());
 
         if (null != dataBD){
             FieldError err = new FieldError("Error", "registroExistente", "registroExistenteBD");

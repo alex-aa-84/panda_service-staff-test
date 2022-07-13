@@ -47,7 +47,7 @@ public class AddressTypeController {
     @PostMapping()
     public ResponseEntity<AddressType> createData(@Valid @RequestBody AddressType data, BindingResult result){
 
-        AddressType dataBD = service.findByAddressType(data.getAddressType());
+        AddressType dataBD = service.findByName(data.getName());
 
         if (null != dataBD){
             FieldError err = new FieldError("Error", "registroExistente", "registroExistenteBD");

@@ -47,7 +47,7 @@ public class TerritorialOrgFiveController {
     @PostMapping()
     public ResponseEntity<TerritorialOrgFive> createData(@Valid @RequestBody TerritorialOrgFive data, BindingResult result){
 
-        TerritorialOrgFive dataBD = service.findByTerritorialOrgFourIdAndName(data.getTerritorialOrgFour(), data.getName());
+        TerritorialOrgFive dataBD = service.findByTerritorialOrgFourIdAndName(data.getTerritorialOrgFour().getId(), data.getName());
 
         if (null != dataBD){
             FieldError err = new FieldError("Error", "registroExistente", "registroExistenteBD");

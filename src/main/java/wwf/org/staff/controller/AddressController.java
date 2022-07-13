@@ -48,13 +48,6 @@ public class AddressController {
     @PostMapping()
     public ResponseEntity<Address> createData(@Valid @RequestBody Address data, BindingResult result){
 
-        Address dataBD = service.findByNeighborhoodAndStreetAndNumber(data.getNeighborhood(), data.getStreet(), data.getNumber());
-
-        if (null != dataBD){
-            FieldError err = new FieldError("Error", "registroExistente", "registroExistenteBD");
-            result.addError(err);
-        }
-
         if(result.hasErrors()){
             throw  new ResponseStatusException(HttpStatus.BAD_REQUEST, formatMessage.format(result));
         }

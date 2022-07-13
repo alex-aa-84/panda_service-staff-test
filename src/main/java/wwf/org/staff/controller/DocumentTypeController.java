@@ -47,7 +47,7 @@ public class DocumentTypeController {
     @PostMapping()
     public ResponseEntity<DocumentType> createData(@Valid @RequestBody DocumentType data, BindingResult result){
 
-        DocumentType dataBD = service.findByDocumentType(data.getDocumentType());
+        DocumentType dataBD = service.findByName(data.getName());
 
         if (null != dataBD){
             FieldError err = new FieldError("Error", "registroExistente", "registroExistenteBD");

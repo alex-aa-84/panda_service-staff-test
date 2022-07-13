@@ -84,7 +84,7 @@ public class ProjectsServiceImpl implements ProjectsService{
     }
 
     @Override
-    public Projects findByFundingSourceIdAndNumberProject(String fundingSourceId, String numberProject) {
+    public Projects findByFundingSourceIdAndNumberProject(Long fundingSourceId, String numberProject) {
         return repository.findByFundingSourceIdAndNumberProject(fundingSourceId, numberProject);
     }
 }

@@ -26,7 +26,7 @@ public class RequestPermitDays {
     @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
     private RequestPermitPeriods requestPermitPeriods;
 
-    private Integer calendarId;
+    private Long calendarId;
 
     private Integer attribute1;
     private Integer attribute2;

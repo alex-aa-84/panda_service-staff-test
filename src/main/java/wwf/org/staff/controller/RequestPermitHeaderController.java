@@ -7,8 +7,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
-import wwf.org.staff.entity.PermissionHeader;
-import wwf.org.staff.service.PermissionHeaderService;
+import wwf.org.staff.entity.RequestPermitHeader;
+import wwf.org.staff.service.RequestPermitHeaderService;
 import wwf.org.staff.serviceApi.FormatMessage;
 
 import javax.validation.Valid;
@@ -17,18 +17,16 @@ import java.util.List;
 @CrossOrigin(origins = {"${settings.cors_origin}", "${settings.cors_origin_pro}"}, maxAge = 3600,
         allowedHeaders={"Origin", "X-Requested-With", "Content-Type", "Accept", "x-client-key", "x-client-token", "x-client-secret", "Authorization"}, methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.OPTIONS, RequestMethod.HEAD, RequestMethod.DELETE, RequestMethod.PUT})
 @RestController
-@RequestMapping(value="/admstaffwwf/permissionheader")
-public class PermissionHeaderController {
-
+@RequestMapping(value="/admstaffwwf/requestpermitheader")
+public class RequestPermitHeaderController {
     @Autowired
-    private PermissionHeaderService service;
-
+    private RequestPermitHeaderService service;
 
     private FormatMessage formatMessage = new FormatMessage();
 
     @GetMapping
-    public ResponseEntity<List<PermissionHeader>> listData(){
-        List<PermissionHeader> data = service.listAllPermissionHeader();
+    public ResponseEntity<List<RequestPermitHeader>> listData(){
+        List<RequestPermitHeader> data = service.listAllRequestPermitHeader();
         if(data.isEmpty()){
             return ResponseEntity.noContent().build();
         }
@@ -37,8 +35,8 @@ public class PermissionHeaderController {
     }
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<PermissionHeader> getData(@PathVariable("id") Long id){
-        PermissionHeader data = service.getPermissionHeader(id);
+    public ResponseEntity<RequestPermitHeader> getData(@PathVariable("id") Long id){
+        RequestPermitHeader data = service.getRequestPermitHeader(id);
         if(null == data){
             return ResponseEntity.notFound().build();
         }
@@ -46,30 +44,23 @@ public class PermissionHeaderController {
     }
 
     @PostMapping()
-    public ResponseEntity<PermissionHeader> createData(@Valid @RequestBody PermissionHeader data, BindingResult result){
-
-        PermissionHeader dataBD = service.findByWorkflowIdAndPermission(data.getWorkflowId(), data.getPermission());
-
-        if (null != dataBD){
-            FieldError err = new FieldError("Error", "registroExistente", "registroExistenteBD");
-            result.addError(err);
-        }
+    public ResponseEntity<RequestPermitHeader> createData(@Valid @RequestBody RequestPermitHeader data, BindingResult result){
 
         if(result.hasErrors()){
             throw  new ResponseStatusException(HttpStatus.BAD_REQUEST, formatMessage.format(result));
         }
 
-        return ResponseEntity.status(HttpStatus.CREATED).body(service.createPermissionHeader(data));
+        return ResponseEntity.status(HttpStatus.CREATED).body(service.createRequestPermitHeader(data));
     }
 
     @PutMapping()
-    public ResponseEntity<PermissionHeader> updateDate(@Valid @RequestBody PermissionHeader data, BindingResult result){
+    public ResponseEntity<RequestPermitHeader> updateData(@Valid @RequestBody RequestPermitHeader data, BindingResult result){
 
         if(result.hasErrors()){
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, formatMessage.format(result));
         }
 
-        PermissionHeader dataUp = service.updatePermissionHeader(data);
+        RequestPermitHeader dataUp = service.updateRequestPermitHeader(data);
         if(null == dataUp){
             return ResponseEntity.notFound().build();
         }
@@ -79,7 +70,7 @@ public class PermissionHeaderController {
     @DeleteMapping(value = "/{id}")
     public ResponseEntity<Boolean> deleteData(@PathVariable("id") Long id){
 
-        Boolean action = service.deletePermissionHeader(id);
+        Boolean action = service.deleteRequestPermitHeader(id);
 
         if ( action){
             return ResponseEntity.ok(action);
@@ -88,4 +79,5 @@ public class PermissionHeaderController {
         }
 
     }
+
 }

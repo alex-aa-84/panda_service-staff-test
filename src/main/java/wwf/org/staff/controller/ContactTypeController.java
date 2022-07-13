@@ -48,7 +48,7 @@ public class ContactTypeController {
     @PostMapping()
     public ResponseEntity<ContactType> createData(@Valid @RequestBody ContactType data, BindingResult result){
 
-        ContactType dataBD = service.findByContactType(data.getContactType());
+        ContactType dataBD = service.findByName(data.getName());
 
         if (null != dataBD){
             FieldError err = new FieldError("Error", "registroExistente", "registroExistenteBD");

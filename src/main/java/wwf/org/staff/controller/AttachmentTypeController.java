@@ -47,7 +47,7 @@ public class AttachmentTypeController {
     @PostMapping()
     public ResponseEntity<AttachmentType> createData(@Valid @RequestBody AttachmentType data, BindingResult result){
 
-        AttachmentType dataBD = service.findByAttachmentType(data.getAttachmentType());
+        AttachmentType dataBD = service.findByName(data.getName());
 
         if (null != dataBD){
             FieldError err = new FieldError("Error", "registroExistente", "registroExistenteBD");
