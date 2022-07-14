@@ -80,7 +80,7 @@ public class PermissionSubmoduleServiceImpl implements PermissionSubmoduleServic
     }
 
     @Override
-    public PermissionSubmodule findByPermissionModuleIdAndSubmoduleAndRoute(Long permissionModuleId, String submodule, String route) {
-        return permissionSubmoduleRepository.findByPermissionModuleIdAndSubmoduleAndRoute(permissionModuleId, submodule, route);
+    public PermissionSubmodule findByPermissionModuleIdAndStaffModuleId(Long permissionModuleId, Long staffModuleId) {
+        return permissionSubmoduleRepository.findByPermissionModuleIdAndStaffModuleId(permissionModuleId, staffModuleId);
     }
 }

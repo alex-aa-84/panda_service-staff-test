@@ -47,7 +47,7 @@ public class ProjectsSheetsController {
     @PostMapping()
     public ResponseEntity<ProjectsSheets> createData(@Valid @RequestBody ProjectsSheets data, BindingResult result){
 
-        ProjectsSheets dataBD = service.findByFiscalYearAndMonthFiscalYearAndUserIdAndProjectId(data.getFiscalYear(), data.getMonthFiscalYear(), data.getUserId(), data.getProjects().getId());
+        ProjectsSheets dataBD = service.findByFiscalYearAndMonthFiscalYearAndUserIdAndProjectsId(data.getFiscalYear(), data.getMonthFiscalYear(), data.getUserId(), data.getProjects().getId());
 
         if (null != dataBD){
             FieldError err = new FieldError("Error", "registroExistente", "registroExistenteBD");

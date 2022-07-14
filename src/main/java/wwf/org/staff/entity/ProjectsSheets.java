@@ -10,7 +10,7 @@ import java.util.Date;
 
 @Entity
 @Table(name = "ts_projects_sheets",  uniqueConstraints = {
-        @UniqueConstraint(columnNames = {"fiscalYear", "monthFiscalYear", "userId", "projectId"})
+        @UniqueConstraint(columnNames = {"fiscalYear", "monthFiscalYear", "userId", "projectsId"})
 })
 @Data
 public class ProjectsSheets {
@@ -34,7 +34,7 @@ public class ProjectsSheets {
     private Long userId;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(referencedColumnName = "id", nullable = false, name = "projectId")
+    @JoinColumn(referencedColumnName = "id", nullable = false, name = "projectsId")
     @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
     private Projects projects;
 

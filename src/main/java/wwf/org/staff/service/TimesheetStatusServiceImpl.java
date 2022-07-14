@@ -44,7 +44,7 @@ public class TimesheetStatusServiceImpl implements TimesheetStatusService{
             return null;
         }
 
-        bd.setTimesheetStatus(value.getTimesheetStatus());
+        bd.setName(value.getName());
 
         bd.setDescription(value.getDescription());
 
@@ -79,7 +79,7 @@ public class TimesheetStatusServiceImpl implements TimesheetStatusService{
     }
 
     @Override
-    public TimesheetStatus findByTimesheetStatus(String val) {
-        return repository.findByTimesheetStatus(val);
+    public TimesheetStatus findByName(String val) {
+        return repository.findByName(val);
     }
 }

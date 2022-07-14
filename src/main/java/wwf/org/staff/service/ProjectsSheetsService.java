@@ -14,5 +14,5 @@ public interface ProjectsSheetsService {
     public ProjectsSheets updateProjectsSheets(ProjectsSheets value);
     public Boolean deleteProjectsSheets(Long id);
 
-    public ProjectsSheets findByFiscalYearAndMonthFiscalYearAndUserIdAndProjectId(Integer year, Integer month, Long user, Long projectId);
+    public ProjectsSheets findByFiscalYearAndMonthFiscalYearAndUserIdAndProjectsId(Integer year, Integer month, Long user, Long projectsId);
 }

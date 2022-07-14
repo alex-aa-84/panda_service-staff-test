@@ -1,12 +1,16 @@
 package wwf.org.staff.service;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import wwf.org.staff.entity.RequestPermitPeriods;
 import wwf.org.staff.repository.RequestPermitPeriodRepository;
 
 import java.util.Date;
 import java.util.List;
 
+@Service
+@RequiredArgsConstructor
 public class RequestPermitPeriodServiceImpl implements RequestPermitPeriodService {
     @Autowired
     private RequestPermitPeriodRepository requestPermitPeriod;

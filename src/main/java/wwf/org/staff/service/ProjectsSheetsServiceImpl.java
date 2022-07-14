@@ -88,8 +88,8 @@ public class ProjectsSheetsServiceImpl implements ProjectsSheetsService{
     }
 
     @Override
-    public ProjectsSheets findByFiscalYearAndMonthFiscalYearAndUserIdAndProjectId(Integer year, Integer month, Long user, Long projectId) {
-        return repository.findByFiscalYearAndMonthFiscalYearAndUserIdAndProjectId(year, month, user, projectId);
+    public ProjectsSheets findByFiscalYearAndMonthFiscalYearAndUserIdAndProjectsId(Integer year, Integer month, Long user, Long projectsId) {
+        return repository.findByFiscalYearAndMonthFiscalYearAndUserIdAndProjectsId(year, month, user, projectsId);
     }
 
 
