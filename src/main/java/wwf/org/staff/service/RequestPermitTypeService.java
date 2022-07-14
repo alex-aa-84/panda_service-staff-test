@@ -1,16 +1,16 @@
 package wwf.org.staff.service;
 
-import wwf.org.staff.entity.RequestPermitType;
+import wwf.org.staff.entity.RequestType;
 
 import java.util.List;
 
 public interface RequestPermitTypeService {
-    public List<RequestPermitType> listAllRequestPermitType();
-    public RequestPermitType getRequestPermitType(Long id);
+    public List<RequestType> listAllRequestPermitType();
+    public RequestType getRequestPermitType(Long id);
 
-    public RequestPermitType createRequestPermitType(RequestPermitType requestPermitType);
-    public RequestPermitType updateRequestPermitType(RequestPermitType requestPermitType);
+    public RequestType createRequestPermitType(RequestType requestType);
+    public RequestType updateRequestPermitType(RequestType requestType);
     public Boolean deleteRequestPermitType(Long id);
 
-    public RequestPermitType findByName(String name);
+    public RequestType findByName(String name);
 }

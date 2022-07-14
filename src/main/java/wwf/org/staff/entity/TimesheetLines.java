@@ -22,30 +22,13 @@ public class TimesheetLines {
     @JoinColumn(referencedColumnName = "id")
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
-    private TimesheetHeader timesheetHeader;
+    private TimesheetDetails timesheetDetails;
 
-    private Long timesheetTypeId;
-
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(referencedColumnName = "id")
-    @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
-    private RequestPermitType requestPermitType;
-
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(referencedColumnName = "id")
-    @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
-    private ProjectsSheets projectsSheets;
-
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(referencedColumnName = "id")
-    @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
-    private RequestPermitHeader requestPermitHeader;
-
+    @Column(nullable = false)
     private Integer calendarId;
 
+    @Column(nullable = false)
     private Long workedHours;
-
-    private Boolean disabledField;
 
     private Integer attribute1;
     private Integer attribute2;

@@ -3,7 +3,7 @@ package wwf.org.staff.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import wwf.org.staff.entity.RequestPermitType;
+import wwf.org.staff.entity.RequestType;
 import wwf.org.staff.repository.RequestPermitTypeRepository;
 
 import java.util.Date;
@@ -17,57 +17,57 @@ public class RequestPermitTypeServiceImpl implements RequestPermitTypeService {
     private RequestPermitTypeRepository requestPermitTypeRepository;
 
     @Override
-    public List<RequestPermitType> listAllRequestPermitType() {
+    public List<RequestType> listAllRequestPermitType() {
         return requestPermitTypeRepository.findAll();
     }
 
     @Override
-    public RequestPermitType getRequestPermitType(Long id) {
+    public RequestType getRequestPermitType(Long id) {
         return requestPermitTypeRepository.findById(id).orElse(null);
     }
 
     @Override
-    public RequestPermitType createRequestPermitType(RequestPermitType requestPermitType) {
-        requestPermitType.setStatus("CREATED");
-        requestPermitType.setCreation_date(new Date());
-        requestPermitType.setLast_update_date(new Date());
+    public RequestType createRequestPermitType(RequestType requestType) {
+        requestType.setStatus("CREATED");
+        requestType.setCreation_date(new Date());
+        requestType.setLast_update_date(new Date());
 
-        return requestPermitTypeRepository.save(requestPermitType);
+        return requestPermitTypeRepository.save(requestType);
     }
 
     @Override
-    public RequestPermitType updateRequestPermitType(RequestPermitType requestPermitType) {
-        RequestPermitType requestPermitTypeDB = getRequestPermitType(requestPermitType.getId());
-        if(null == requestPermitTypeDB){
+    public RequestType updateRequestPermitType(RequestType requestType) {
+        RequestType requestTypeDB = getRequestPermitType(requestType.getId());
+        if(null == requestTypeDB){
             return null;
         }
 
-        requestPermitTypeDB.setName(requestPermitType.getName());
-        requestPermitTypeDB.setDescription(requestPermitType.getDescription());
+        requestTypeDB.setName(requestType.getName());
+        requestTypeDB.setDescription(requestType.getDescription());
 
-        requestPermitTypeDB.setAttribute1(requestPermitType.getAttribute1());
-        requestPermitTypeDB.setAttribute2(requestPermitType.getAttribute2());
-        requestPermitTypeDB.setAttribute3(requestPermitType.getAttribute3());
-        requestPermitTypeDB.setAttribute4(requestPermitType.getAttribute4());
-        requestPermitTypeDB.setAttribute5(requestPermitType.getAttribute5());
-        requestPermitTypeDB.setAttribute6(requestPermitType.getAttribute6());
-        requestPermitTypeDB.setAttribute7(requestPermitType.getAttribute7());
-        requestPermitTypeDB.setAttribute8(requestPermitType.getAttribute8());
-        requestPermitTypeDB.setAttribute9(requestPermitType.getAttribute9());
-        requestPermitTypeDB.setAttribute10(requestPermitType.getAttribute10());
+        requestTypeDB.setAttribute1(requestType.getAttribute1());
+        requestTypeDB.setAttribute2(requestType.getAttribute2());
+        requestTypeDB.setAttribute3(requestType.getAttribute3());
+        requestTypeDB.setAttribute4(requestType.getAttribute4());
+        requestTypeDB.setAttribute5(requestType.getAttribute5());
+        requestTypeDB.setAttribute6(requestType.getAttribute6());
+        requestTypeDB.setAttribute7(requestType.getAttribute7());
+        requestTypeDB.setAttribute8(requestType.getAttribute8());
+        requestTypeDB.setAttribute9(requestType.getAttribute9());
+        requestTypeDB.setAttribute10(requestType.getAttribute10());
 
-        requestPermitTypeDB.setStatus(requestPermitType.getStatus());
+        requestTypeDB.setStatus(requestType.getStatus());
 
-        requestPermitTypeDB.setLast_update_by(requestPermitType.getLast_update_by());
-        requestPermitTypeDB.setLast_update_date(new Date());
+        requestTypeDB.setLast_update_by(requestType.getLast_update_by());
+        requestTypeDB.setLast_update_date(new Date());
 
-        return requestPermitTypeRepository.save(requestPermitTypeDB);
+        return requestPermitTypeRepository.save(requestTypeDB);
     }
 
     @Override
     public Boolean deleteRequestPermitType(Long id) {
-        RequestPermitType requestPermitTypeDB = getRequestPermitType(id);
-        if(null == requestPermitTypeDB){
+        RequestType requestTypeDB = getRequestPermitType(id);
+        if(null == requestTypeDB){
             return false;
         }
 
@@ -76,7 +76,7 @@ public class RequestPermitTypeServiceImpl implements RequestPermitTypeService {
     }
 
     @Override
-    public RequestPermitType findByName(String name) {
+    public RequestType findByName(String name) {
         return requestPermitTypeRepository.findByName(name);
     }
 

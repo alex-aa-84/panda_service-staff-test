@@ -48,7 +48,7 @@ public class TimesheetHeader {
     private List<TimesheetSignature> timesheetSignatures;
 
     @OneToMany(mappedBy = "timesheetHeader", cascade = CascadeType.ALL)
-    private List<TimesheetLines> timesheetLines;
+    private List<TimesheetDetails> timesheetDetails;
 
     private Integer attribute1;
     private Integer attribute2;

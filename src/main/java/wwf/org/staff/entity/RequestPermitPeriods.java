@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
@@ -32,7 +33,18 @@ public class RequestPermitPeriods {
     @Temporal(TemporalType.DATE)
     private Date dateTo;
 
-    private Integer days;
+    @Column(precision = 10, scale = 2)
+    private Double hours;
+
+    /// Aqui acumulara el total de todos
+    @Column(precision = 10, scale = 2)
+    private Double total;
+
+    //l es linea y r es rango de fecha
+    private String type;
+
+    // 0 ó 1
+    private Boolean midday;
 
     @OneToMany(mappedBy = "requestPermitPeriods", cascade = CascadeType.ALL)
     private List<RequestPermitDays> requestPermitDays;

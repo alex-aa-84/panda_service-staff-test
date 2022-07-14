@@ -23,12 +23,10 @@ public class RequestPermitHeader {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(referencedColumnName = "id")
     @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
-    private RequestPermitType requestPermitType;
+    private RequestType requestType;
 
     @Temporal(TemporalType.DATE)
     private Date dateRequest;
-
-    private Integer days;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(referencedColumnName = "id")
@@ -44,6 +42,8 @@ public class RequestPermitHeader {
     @JoinColumn(referencedColumnName = "id")
     @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
     private WorkflowWipStatus workflowWipStatus;
+
+    private Boolean flagHours;
 
     private String observation;
 

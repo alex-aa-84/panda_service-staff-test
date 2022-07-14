@@ -1,10 +1,9 @@
 package wwf.org.staff.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import wwf.org.staff.entity.Profession;
-import wwf.org.staff.entity.RequestPermitType;
+import wwf.org.staff.entity.RequestType;
 
-public interface RequestPermitTypeRepository extends JpaRepository<RequestPermitType, Long> {
+public interface RequestPermitTypeRepository extends JpaRepository<RequestType, Long> {
 
-    public RequestPermitType findByName(String name);
+    public RequestType findByName(String name);
 }

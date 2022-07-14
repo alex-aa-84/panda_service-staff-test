@@ -44,7 +44,10 @@ public class RequestPermitPeriodServiceImpl implements RequestPermitPeriodServic
         requestPermitPeriodsDB.setRequestPermitHeader(requestPermitPeriods.getRequestPermitHeader());
         requestPermitPeriodsDB.setDateFrom(requestPermitPeriods.getDateFrom());
         requestPermitPeriodsDB.setDateTo(requestPermitPeriods.getDateTo());
-        requestPermitPeriodsDB.setDays(requestPermitPeriods.getDays());
+        requestPermitPeriodsDB.setHours(requestPermitPeriods.getHours());
+        requestPermitPeriodsDB.setTotal(requestPermitPeriods.getTotal());
+        requestPermitPeriodsDB.setType(requestPermitPeriods.getType());
+        requestPermitPeriodsDB.setMidday(requestPermitPeriods.getMidday());
 
         requestPermitPeriodsDB.setAttribute1(requestPermitPeriods.getAttribute1());
         requestPermitPeriodsDB.setAttribute2(requestPermitPeriods.getAttribute2());

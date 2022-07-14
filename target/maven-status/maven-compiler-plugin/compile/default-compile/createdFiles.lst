@@ -5,10 +5,12 @@ wwf\org\staff\entity\TerritorialOrgThree.class
 wwf\org\staff\service\AttachmentFileServiceImpl.class
 wwf\org\staff\repository\AttachmentTypeRepository.class
 wwf\org\staff\controller\PermissionSubmoduleController.class
+wwf\org\staff\service\TimesheetDetailServiceImpl.class
 wwf\org\staff\controller\DocumentController.class
 wwf\org\staff\controller\DocumentTypeController.class
 wwf\org\staff\repository\AttachmentFileRepository.class
 wwf\org\staff\service\AddressTypeService.class
+wwf\org\staff\service\AdditionalOrganizationTypeServiceImpl.class
 wwf\org\staff\repository\DocumentTypeRepository.class
 wwf\org\staff\repository\JobSettingRepository.class
 wwf\org\staff\repository\PermissionSubmoduleRepository.class
@@ -16,16 +18,16 @@ wwf\org\staff\entity\JobSetting.class
 wwf\org\staff\entity\Holidays.class
 wwf\org\staff\service\FamilyService.class
 wwf\org\staff\entity\ImageConfig.class
-wwf\org\staff\service\LegalRestService.class
 wwf\org\staff\service\TerritorialOrgFirstServiceImpl.class
 wwf\org\staff\entity\ContactType.class
+wwf\org\staff\controller\AdditionalOrganizationController.class
 wwf\org\staff\service\AttachmentServiceImpl.class
 wwf\org\staff\service\OtherInformationTypeService.class
 wwf\org\staff\controller\BloodTypeController.class
 wwf\org\staff\repository\WorkflowWipStatusRepository.class
 wwf\org\staff\service\JobSettingService.class
+wwf\org\staff\controller\AdditionalOrganizationTypeController.class
 wwf\org\staff\entity\TimesheetHeader.class
-wwf\org\staff\service\LegalRestServiceImpl.class
 wwf\org\staff\service\RequestPermitHeaderServiceImpl.class
 wwf\org\staff\service\ImageConfigServiceImpl.class
 wwf\org\staff\service\HolidaysTypeService.class
@@ -33,6 +35,8 @@ wwf\org\staff\service\TimesheetHeaderService.class
 wwf\org\staff\controller\FamilyController.class
 wwf\org\staff\service\TerritorialOrgTwoServiceImpl.class
 wwf\org\staff\controller\HolidaysController.class
+wwf\org\staff\repository\AdditionalOrganizationTypeRepository.class
+wwf\org\staff\service\AdditionalOrganizationServiceImpl.class
 wwf\org\staff\service\RequestPermitHeaderService.class
 wwf\org\staff\controller\TerritorialOrgFourController.class
 wwf\org\staff\service\JobTittleService.class
@@ -66,6 +70,7 @@ wwf\org\staff\service\ProfessionService.class
 wwf\org\staff\controller\NotesController.class
 wwf\org\staff\controller\TimesheetHeaderController.class
 wwf\org\staff\entity\WorkflowWipStatus.class
+wwf\org\staff\controller\TimesheetDetailController.class
 wwf\org\staff\entity\AttachmentFile.class
 wwf\org\staff\entity\Document.class
 wwf\org\staff\service\TimesheetSignatureServiceImpl.class
@@ -94,7 +99,6 @@ wwf\org\staff\service\TerritorialOrgTwoService.class
 wwf\org\staff\entity\TerritorialOrgFive.class
 wwf\org\staff\service\WorkflowStepService.class
 wwf\org\staff\service\ContactServiceImpl.class
-wwf\org\staff\repository\LegalRestRepository.class
 wwf\org\staff\service\RequestPermitTypeServiceImpl.class
 wwf\org\staff\serviceApi\ImageByteCompress.class
 wwf\org\staff\service\PersonalInformationService.class
@@ -112,6 +116,7 @@ wwf\org\staff\service\RequestPermitPeriodService.class
 wwf\org\staff\service\ProjectsService.class
 wwf\org\staff\controller\ProjectsController.class
 wwf\org\staff\service\JobSettingServiceImpl.class
+wwf\org\staff\repository\TimesheetDetailRepository.class
 wwf\org\staff\service\FundingSourceService.class
 wwf\org\staff\controller\WorkflowWipStatusController.class
 wwf\org\staff\repository\HolidaysTypeRepository.class
@@ -121,7 +126,6 @@ wwf\org\staff\repository\RequestPermitTypeRepository.class
 wwf\org\staff\service\RequestPermitSignatureService.class
 wwf\org\staff\service\TerritorialOrgFiveService.class
 wwf\org\staff\service\OtherInformationService.class
-wwf\org\staff\entity\LegalRest.class
 wwf\org\staff\entity\PermissionHeader.class
 wwf\org\staff\repository\TimesheetHeaderRepository.class
 wwf\org\staff\repository\ImageConfigRepository.class
@@ -130,6 +134,7 @@ wwf\org\staff\repository\TimesheetSignatureRepository.class
 wwf\org\staff\service\TimesheetSignatureService.class
 wwf\org\staff\entity\DocumentType.class
 wwf\org\staff\repository\AddressTypeRepository.class
+wwf\org\staff\entity\RequestType.class
 wwf\org\staff\service\RequestPermitPeriodServiceImpl.class
 wwf\org\staff\service\TerritorialOrgFirstService.class
 wwf\org\staff\service\TerritorialOrgConfigService.class
@@ -152,7 +157,6 @@ wwf\org\staff\repository\OtherInformationTypeRepository.class
 wwf\org\staff\service\JobTittleServiceImpl.class
 wwf\org\staff\entity\PersonalInformation.class
 wwf\org\staff\entity\Relationship.class
-wwf\org\staff\entity\RequestPermitType.class
 wwf\org\staff\service\BloodTypeService.class
 wwf\org\staff\repository\TerritorialOrgThreeRepository.class
 wwf\org\staff\controller\RelationshipController.class
@@ -163,6 +167,7 @@ wwf\org\staff\service\DocumentService.class
 wwf\org\staff\service\PermissionHeaderService.class
 wwf\org\staff\controller\TerritorialOrgFirstController.class
 wwf\org\staff\entity\TerritorialOrgConfig.class
+wwf\org\staff\service\AdditionalOrganizationService.class
 wwf\org\staff\controller\OtherInformationController.class
 wwf\org\staff\entity\Address.class
 wwf\org\staff\service\TerritorialOrgConfigServiceImpl.class
@@ -177,7 +182,6 @@ wwf\org\staff\controller\RequestPermitPeriodsController.class
 wwf\org\staff\entity\TerritorialOrgFour.class
 wwf\org\staff\repository\TerritorialOrgFourRepository.class
 wwf\org\staff\service\WorkflowStepServiceImpl.class
-wwf\org\staff\controller\LegalRestController.class
 wwf\org\staff\controller\JobSettingController.class
 wwf\org\staff\entity\Attachment.class
 wwf\org\staff\service\TimesheetCycleServiceImpl.class
@@ -202,9 +206,11 @@ wwf\org\staff\service\DocumentServiceImpl.class
 wwf\org\staff\service\TimesheetLineService.class
 wwf\org\staff\service\ProfessionServiceImpl.class
 wwf\org\staff\controller\TerritorialOrgTwoController.class
+wwf\org\staff\entity\AdditionalOrganization.class
 wwf\org\staff\repository\TimesheetCycleRepository.class
 wwf\org\staff\repository\PermissionHeaderRepository.class
 wwf\org\staff\service\HolidaysService.class
+wwf\org\staff\entity\TimesheetDetails.class
 wwf\org\staff\service\ContactService.class
 wwf\org\staff\service\RequestPermitDaysService.class
 wwf\org\staff\service\WorkflowWipStatusServiceImpl.class
@@ -229,15 +235,19 @@ wwf\org\staff\entity\ProfessionType.class
 wwf\org\staff\service\ContactTypeService.class
 wwf\org\staff\service\BloodTypeServiceImpl.class
 wwf\org\staff\serviceApi\MD5Util.class
+wwf\org\staff\repository\AdditionalOrganizationRepository.class
 wwf\org\staff\controller\PermissionHeaderController.class
+wwf\org\staff\entity\AdditionalOrganizationType.class
 wwf\org\staff\service\TerritorialOrgThreeServiceImpl.class
 wwf\org\staff\service\PermissionModuleServiceImpl.class
 wwf\org\staff\entity\TimesheetLines.class
 wwf\org\staff\service\PermissionSubmoduleServiceImpl.class
 wwf\org\staff\service\PermissionHeaderServiceImpl.class
 wwf\org\staff\service\RelationshipService.class
+wwf\org\staff\service\TimesheetDetailService.class
 wwf\org\staff\service\FundingSourceServiceImpl.class
 wwf\org\staff\entity\TimesheetSignature.class
+wwf\org\staff\service\AdditionalOrganizationTypeService.class
 wwf\org\staff\entity\Profession.class
 wwf\org\staff\repository\FamilyRepository.class
 wwf\org\staff\service\RequestPermitDaysServiceImpl.class

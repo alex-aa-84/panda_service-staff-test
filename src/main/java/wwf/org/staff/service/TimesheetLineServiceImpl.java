@@ -4,7 +4,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import wwf.org.staff.entity.TimesheetLines;
-import wwf.org.staff.entity.TimesheetLines;
 import wwf.org.staff.repository.TimesheetLineRepository;
 
 import java.util.Date;
@@ -43,14 +42,9 @@ public class TimesheetLineServiceImpl implements TimesheetLineService {
             return null;
         }
 
-        timesheetLineDB.setTimesheetHeader(timesheetLine.getTimesheetHeader());
-        timesheetLineDB.setTimesheetTypeId(timesheetLine.getTimesheetTypeId());
-        timesheetLineDB.setRequestPermitType(timesheetLine.getRequestPermitType());
-        timesheetLineDB.setProjectsSheets(timesheetLine.getProjectsSheets());
-        timesheetLineDB.setRequestPermitHeader(timesheetLine.getRequestPermitHeader());
+        timesheetLineDB.setTimesheetDetails(timesheetLine.getTimesheetDetails());
         timesheetLineDB.setCalendarId(timesheetLine.getCalendarId());
         timesheetLineDB.setWorkedHours(timesheetLine.getWorkedHours());
-        timesheetLineDB.setDisabledField(timesheetLine.getDisabledField());
 
         timesheetLineDB.setAttribute1(timesheetLine.getAttribute1());
         timesheetLineDB.setAttribute2(timesheetLine.getAttribute2());

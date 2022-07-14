@@ -7,8 +7,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
-import wwf.org.staff.entity.LegalRest;
-import wwf.org.staff.service.LegalRestService;
+import wwf.org.staff.entity.AdditionalOrganization;
+import wwf.org.staff.service.AdditionalOrganizationService;
 import wwf.org.staff.serviceApi.FormatMessage;
 
 import javax.validation.Valid;
@@ -17,18 +17,17 @@ import java.util.List;
 @CrossOrigin(origins = {"${settings.cors_origin}", "${settings.cors_origin_pro}"}, maxAge = 3600,
         allowedHeaders={"Origin", "X-Requested-With", "Content-Type", "Accept", "x-client-key", "x-client-token", "x-client-secret", "Authorization"}, methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.OPTIONS, RequestMethod.HEAD, RequestMethod.DELETE, RequestMethod.PUT})
 @RestController
-@RequestMapping(value="/admstaffwwf/legalrest")
-public class LegalRestController {
+@RequestMapping(value="/admstaffwwf/additionalorg")
+public class AdditionalOrganizationController {
 
     @Autowired
-    private LegalRestService service;
-
+    private AdditionalOrganizationService service;
 
     private FormatMessage formatMessage = new FormatMessage();
 
     @GetMapping
-    public ResponseEntity<List<LegalRest>> listData(){
-        List<LegalRest> data = service.listAllLegalRest();
+    public ResponseEntity<List<AdditionalOrganization>> listData(){
+        List<AdditionalOrganization> data = service.listAllAdditionalOrganization();
         if(data.isEmpty()){
             return ResponseEntity.noContent().build();
         }
@@ -37,8 +36,8 @@ public class LegalRestController {
     }
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<LegalRest> getData(@PathVariable("id") Long id){
-        LegalRest data = service.getLegalRest(id);
+    public ResponseEntity<AdditionalOrganization> getData(@PathVariable("id") Long id){
+        AdditionalOrganization data = service.getAdditionalOrganization(id);
         if(null == data){
             return ResponseEntity.notFound().build();
         }
@@ -46,9 +45,9 @@ public class LegalRestController {
     }
 
     @PostMapping()
-    public ResponseEntity<LegalRest> createData(@Valid @RequestBody LegalRest data, BindingResult result){
+    public ResponseEntity<AdditionalOrganization> createData(@Valid @RequestBody AdditionalOrganization data, BindingResult result){
 
-        LegalRest dataBD = service.findByUserIdAndStartDateAndEndDate(data.getUserId(), data.getStartDate(), data.getEndDate());
+        AdditionalOrganization dataBD = service.findByTenantIdAndadditionalOrganizationTypeIdAndFromTimeAndUntilTimeAndFromMonthAndUntilMonthAndValue(data.getTenantId(), data.getAdditionalOrganizationType().getId(), data.getFromTime(), data.getUntilTime(), data.getFromMonth(), data.getUntilMonth(), data.getValue());
 
         if (null != dataBD){
             FieldError err = new FieldError("Error", "registroExistente", "registroExistenteBD");
@@ -59,17 +58,17 @@ public class LegalRestController {
             throw  new ResponseStatusException(HttpStatus.BAD_REQUEST, formatMessage.format(result));
         }
 
-        return ResponseEntity.status(HttpStatus.CREATED).body(service.createLegalRest(data));
+        return ResponseEntity.status(HttpStatus.CREATED).body(service.createAdditionalOrganization(data));
     }
 
     @PutMapping()
-    public ResponseEntity<LegalRest> updateDate(@Valid @RequestBody LegalRest data, BindingResult result){
+    public ResponseEntity<AdditionalOrganization> updateData(@Valid @RequestBody AdditionalOrganization data, BindingResult result){
 
         if(result.hasErrors()){
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, formatMessage.format(result));
         }
 
-        LegalRest dataUp = service.updateLegalRest(data);
+        AdditionalOrganization dataUp = service.updateAdditionalOrganization(data);
         if(null == dataUp){
             return ResponseEntity.notFound().build();
         }
@@ -79,12 +78,14 @@ public class LegalRestController {
     @DeleteMapping(value = "/{id}")
     public ResponseEntity<Boolean> deleteData(@PathVariable("id") Long id){
 
-        Boolean action = service.deleteLegalRest(id);
+        Boolean action = service.deleteAdditionalOrganization(id);
 
         if ( action){
             return ResponseEntity.ok(action);
         }else{
             return ResponseEntity.notFound().build();
         }
+
     }
+
 }

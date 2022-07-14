@@ -7,7 +7,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
-import wwf.org.staff.entity.RequestPermitType;
+import wwf.org.staff.entity.RequestType;
 import wwf.org.staff.service.RequestPermitTypeService;
 import wwf.org.staff.serviceApi.FormatMessage;
 
@@ -25,8 +25,8 @@ public class RequestPermitTypeController {
     private FormatMessage formatMessage = new FormatMessage();
 
     @GetMapping
-    public ResponseEntity<List<RequestPermitType>> listData(){
-        List<RequestPermitType> data = service.listAllRequestPermitType();
+    public ResponseEntity<List<RequestType>> listData(){
+        List<RequestType> data = service.listAllRequestPermitType();
         if(data.isEmpty()){
             return ResponseEntity.noContent().build();
         }
@@ -35,8 +35,8 @@ public class RequestPermitTypeController {
     }
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<RequestPermitType> getData(@PathVariable("id") Long id){
-        RequestPermitType data = service.getRequestPermitType(id);
+    public ResponseEntity<RequestType> getData(@PathVariable("id") Long id){
+        RequestType data = service.getRequestPermitType(id);
         if(null == data){
             return ResponseEntity.notFound().build();
         }
@@ -44,9 +44,9 @@ public class RequestPermitTypeController {
     }
 
     @PostMapping()
-    public ResponseEntity<RequestPermitType> createData(@Valid @RequestBody RequestPermitType data, BindingResult result){
+    public ResponseEntity<RequestType> createData(@Valid @RequestBody RequestType data, BindingResult result){
 
-        RequestPermitType dataBD = service.findByName(data.getName());
+        RequestType dataBD = service.findByName(data.getName());
 
         if (null != dataBD){
             FieldError err = new FieldError("Error", "registroExistente", "registroExistenteBD");
@@ -61,13 +61,13 @@ public class RequestPermitTypeController {
     }
 
     @PutMapping()
-    public ResponseEntity<RequestPermitType> updateData(@Valid @RequestBody RequestPermitType data, BindingResult result){
+    public ResponseEntity<RequestType> updateData(@Valid @RequestBody RequestType data, BindingResult result){
 
         if(result.hasErrors()){
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, formatMessage.format(result));
         }
 
-        RequestPermitType dataUp = service.updateRequestPermitType(data);
+        RequestType dataUp = service.updateRequestPermitType(data);
         if(null == dataUp){
             return ResponseEntity.notFound().build();
         }

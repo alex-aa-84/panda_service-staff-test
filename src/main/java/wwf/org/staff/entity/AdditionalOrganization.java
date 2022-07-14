@@ -4,35 +4,36 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @Entity
-@Table(name="rp_legal_rest", uniqueConstraints = {
-        @UniqueConstraint(columnNames = {"userId", "startDate", "endDate"})
+@Table(name="ad_additional_organization", uniqueConstraints = {
+        @UniqueConstraint(columnNames = {"tenantId", "additionalOrganizationTypeId", "fromTime", "untilTime", "fromMonth", "untilMonth", "value"})
 })
 @Data
-public class LegalRest {
-    ///Descanso Legal
-
+public class AdditionalOrganization {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(unique = true, nullable = false)
     private Long id;
 
-    private Long userId;
+    private Long tenantId;
 
-    @Temporal(TemporalType.DATE)
-    private Date startDate;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(referencedColumnName = "id", name = "additionalOrganizationTypeId")
+    @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
+    private AdditionalOrganizationType additionalOrganizationType;
 
-    @Temporal(TemporalType.DATE)
-    private Date endDate;
+    // En caso que el tipo sea de formato hora.. se carga en entero
+    private Integer fromTime; //Desde hora
+    private Integer untilTime; // Hasta hora
 
-    private Integer antiquity;
-    private Integer accrued;
-    private Integer used;
-    private String observation;
+    private Integer fromMonth; // Mes desde
+    private Integer untilMonth; // Mes Hasta
 
+    private Integer value; // En caso que sea necesario el valor
+
+    private String description;
     private Integer attribute1;
     private Integer attribute2;
     private Integer attribute3;

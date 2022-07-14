@@ -43,12 +43,12 @@ public class RequestPermitHeaderServiceImpl implements RequestPermitHeaderServic
         }
 
         requestPermitHeaderDB.setUserId(requestPermitHeader.getUserId());
-        requestPermitHeaderDB.setRequestPermitType(requestPermitHeader.getRequestPermitType());
+        requestPermitHeaderDB.setRequestType(requestPermitHeader.getRequestType());
         requestPermitHeaderDB.setDateRequest(requestPermitHeader.getDateRequest());
-        requestPermitHeaderDB.setDays(requestPermitHeader.getDays());
         requestPermitHeaderDB.setWorkflowSteps(requestPermitHeader.getWorkflowSteps());
         requestPermitHeaderDB.setLastUpdateWorkflowSteps(requestPermitHeader.getLastUpdateWorkflowSteps());
         requestPermitHeaderDB.setWorkflowWipStatus(requestPermitHeader.getWorkflowWipStatus());
+        requestPermitHeaderDB.setFlagHours(requestPermitHeader.getFlagHours());
         requestPermitHeaderDB.setObservation(requestPermitHeader.getObservation());
 
         requestPermitHeaderDB.setAttribute1(requestPermitHeader.getAttribute1());

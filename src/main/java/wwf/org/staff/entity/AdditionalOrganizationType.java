@@ -3,18 +3,18 @@ package wwf.org.staff.entity;
 import lombok.Data;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
 import java.util.Date;
 
 @Entity
-@Table(name="rp_request_permit_type")
+@Table(name="ad_additional_organization")
 @Data
-public class RequestPermitType {
+public class AdditionalOrganizationType {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(unique = true, nullable = false)
     private Long id;
 
+    //Carga Horaria Diaria, Vacaciones, Acepta medio dia como vacaciones.
     @Column(unique = true, nullable = false)
     private String name;
 
