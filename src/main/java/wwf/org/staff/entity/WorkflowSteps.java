@@ -21,7 +21,7 @@ public class WorkflowSteps {
     private Long workflowId;
 
     @Column(nullable = false)
-    private Number step;
+    private Integer step;
 
     @Column(nullable = false)
     private String nameStep;

@@ -41,7 +41,7 @@ public class NotesServiceImpl implements NotesService {
             return null;
         }
 
-        notesDB.setStaffModule(notes.getStaffModule());
+        notesDB.setSubmodulesId(notes.getSubmodulesId());
         notesDB.setReferenceId(notes.getReferenceId());
         notesDB.setNote(notes.getNote());
 

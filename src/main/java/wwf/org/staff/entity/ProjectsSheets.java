@@ -19,10 +19,7 @@ public class ProjectsSheets {
     @Column(unique = true, nullable = false)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(referencedColumnName = "id", nullable = false)
-    @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
-    private TimesheetVersion timesheetVersion;
+    private Long timesheetVersionId;
 
     @Column(nullable = false)
     private Integer fiscalYear;

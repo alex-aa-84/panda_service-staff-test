@@ -45,7 +45,7 @@ public class ProjectsSheetsServiceImpl implements ProjectsSheetsService{
             return null;
         }
 
-        bd.setTimesheetVersion(value.getTimesheetVersion());
+        bd.setTimesheetVersionId(value.getTimesheetVersionId());
         bd.setFiscalYear(value.getFiscalYear());
         bd.setMonthFiscalYear(value.getMonthFiscalYear());
         bd.setUserId(value.getUserId());

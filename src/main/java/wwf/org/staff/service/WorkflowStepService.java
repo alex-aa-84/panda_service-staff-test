@@ -13,5 +13,5 @@ public interface WorkflowStepService {
     public WorkflowSteps updateWorkflowSteps(WorkflowSteps workflowSteps);
     public Boolean deleteWorkflowSteps(Long id);
 
-    public WorkflowSteps findByWorkflowIdAndStepAndWorkflowStateId(Long workflowId, Number step, Long workflowStateId);
+    public WorkflowSteps findByWorkflowIdAndStepAndWorkflowStateId(Long workflowId, Integer step, Long workflowStateId);
 }

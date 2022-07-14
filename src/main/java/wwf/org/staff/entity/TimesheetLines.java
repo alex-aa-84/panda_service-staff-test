@@ -24,10 +24,7 @@ public class TimesheetLines {
     @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
     private TimesheetHeader timesheetHeader;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(referencedColumnName = "id")
-    @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
-    private TimesheetType timesheetType;
+    private Long timesheetTypeId;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(referencedColumnName = "id")

@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>wwf.org</groupId>
 	<artifactId>serviceStaffApiTs</artifactId>
-	<version>v1.1</version>
+	<version>v1.3</version>
 
 	<packaging>war</packaging>
 
@@ -77,12 +77,12 @@
 
 		<!--Para no generar conflicto entre server y el servidor enbebido-->
 
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-tomcat</artifactId>
 			<scope>provided</scope>
 		</dependency>
-
 
 	</dependencies>
 	<!--

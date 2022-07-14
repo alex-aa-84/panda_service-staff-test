@@ -46,7 +46,7 @@ public class TimesheetHeaderServiceImpl implements TimesheetHeaderService {
         tmesheetHeaderDB.setWorkflowSteps(tmesheetHeader.getWorkflowSteps());
         tmesheetHeaderDB.setLastUpdateWorkflowSteps(tmesheetHeader.getLastUpdateWorkflowSteps());
         tmesheetHeaderDB.setWorkflowWipStatus(tmesheetHeader.getWorkflowWipStatus());
-        tmesheetHeaderDB.setTimesheetStatus(tmesheetHeader.getTimesheetStatus());
+        tmesheetHeaderDB.setTimesheetStatusId(tmesheetHeader.getTimesheetStatusId());
         tmesheetHeaderDB.setObservation(tmesheetHeader.getObservation());
 
         tmesheetHeaderDB.setAttribute1(tmesheetHeader.getAttribute1());

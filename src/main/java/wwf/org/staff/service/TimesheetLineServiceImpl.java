@@ -44,7 +44,7 @@ public class TimesheetLineServiceImpl implements TimesheetLineService {
         }
 
         timesheetLineDB.setTimesheetHeader(timesheetLine.getTimesheetHeader());
-        timesheetLineDB.setTimesheetType(timesheetLine.getTimesheetType());
+        timesheetLineDB.setTimesheetTypeId(timesheetLine.getTimesheetTypeId());
         timesheetLineDB.setRequestPermitType(timesheetLine.getRequestPermitType());
         timesheetLineDB.setProjectsSheets(timesheetLine.getProjectsSheets());
         timesheetLineDB.setRequestPermitHeader(timesheetLine.getRequestPermitHeader());

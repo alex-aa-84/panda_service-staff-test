@@ -12,7 +12,7 @@ import java.util.Date;
 
 @Entity
 @Table(name="per_permission_submodules", uniqueConstraints = {
-        @UniqueConstraint(columnNames = {"permissionModuleId", "staffModuleId"})
+        @UniqueConstraint(columnNames = {"permissionModuleId", "submodulesId"})
 })
 @Data
 public class PermissionSubmodule {
@@ -27,11 +27,7 @@ public class PermissionSubmodule {
     @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
     private PermissionModule permissionModule;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    @JoinColumn(referencedColumnName = "id", name = "staffModuleId")
-    @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
-    private StaffModule staffModule;
+    private Long submodulesId;
 
     private String description;
     private Integer attribute1;

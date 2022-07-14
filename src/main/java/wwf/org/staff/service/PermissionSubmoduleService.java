@@ -12,5 +12,5 @@ public interface PermissionSubmoduleService {
     public PermissionSubmodule createPermissionSubmodule(PermissionSubmodule permissionSubmodule);
     public PermissionSubmodule updatePermissionSubmodule(PermissionSubmodule permissionSubmodule);
     public Boolean deletePermissionSubmodule(Long id);
-    public PermissionSubmodule findByPermissionModuleIdAndStaffModuleId(Long permissionModuleId, Long staffModuleId);
+    public PermissionSubmodule findByPermissionModuleIdAndSubmodulesId(Long permissionModuleId, Long submodulesId);
 }

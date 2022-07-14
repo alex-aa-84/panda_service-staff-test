@@ -25,7 +25,7 @@ public class TimesheetCycle {
 
     //0 ó 1, 1 es el mes en curso ó seleccionado
     @Column(nullable = false)
-    private Number onGoing;
+    private Integer onGoing;
 
     private String description;
     private Integer attribute1;

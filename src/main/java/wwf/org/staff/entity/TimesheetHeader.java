@@ -40,11 +40,7 @@ public class TimesheetHeader {
     @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
     private WorkflowWipStatus workflowWipStatus;
 
-    //Puede estar en estado Actual o Desfasado, en caso que se haga una modificación.
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(referencedColumnName = "id")
-    @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
-    private TimesheetStatus timesheetStatus;
+    private Long timesheetStatusId;
 
     private String observation;
 

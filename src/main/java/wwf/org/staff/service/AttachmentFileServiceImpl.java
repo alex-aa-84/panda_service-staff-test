@@ -45,7 +45,7 @@ public class AttachmentFileServiceImpl implements AttachmentFileService {
             return null;
         }
 
-        attachmentFileDB.setStaffModule(attachmentFile.getStaffModule());
+        attachmentFileDB.setSubmodulesId(attachmentFile.getSubmodulesId());
         attachmentFileDB.setReferenceId(attachmentFile.getReferenceId());
         attachmentFileDB.setName(attachmentFile.getName());
         attachmentFileDB.setLocationFile(attachmentFile.getLocationFile());
