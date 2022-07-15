@@ -29,11 +29,15 @@ public class WorkflowSteps {
     @Column(nullable = false)
     private Long workflowStateId;
 
+    // Responsable de Este Workflow Firma
     @Column(nullable = false)
-    private Long nextWorkflowStateId;
+    private Long workflowSignatureId;
 
     @Column(nullable = false)
-    private Long rejectionWorkflowStateId;
+    private Long nextWorkflowStepId;
+
+    @Column(nullable = false)
+    private Long rejectionWorkflowStepId;
 
     @Column(nullable = false)
     private Long sendEmail;

@@ -27,54 +27,55 @@ public class WorkflowStepServiceImpl implements WorkflowStepService {
     }
 
     @Override
-    public WorkflowSteps createWorkflowSteps(WorkflowSteps relationship) {
-        relationship.setStatus("CREATED");
-        relationship.setCreation_date(new Date());
-        relationship.setLast_update_date(new Date());
+    public WorkflowSteps createWorkflowSteps(WorkflowSteps value) {
+        value.setStatus("CREATED");
+        value.setCreation_date(new Date());
+        value.setLast_update_date(new Date());
 
-        return repository.save(relationship);
+        return repository.save(value);
     }
 
     @Override
-    public WorkflowSteps updateWorkflowSteps(WorkflowSteps relationship) {
-        WorkflowSteps relationshipDB = getWorkflowSteps(relationship.getId());
-        if(null == relationshipDB){
+    public WorkflowSteps updateWorkflowSteps(WorkflowSteps value) {
+        WorkflowSteps valueDB = getWorkflowSteps(value.getId());
+        if(null == valueDB){
             return null;
         }
 
-        relationshipDB.setWorkflowId(relationship.getWorkflowId());
-        relationshipDB.setStep(relationship.getStep());
-        relationshipDB.setNameStep(relationship.getNameStep());
-        relationshipDB.setWorkflowStateId(relationship.getWorkflowStateId());
-        relationshipDB.setNextWorkflowStateId(relationship.getNextWorkflowStateId());
-        relationshipDB.setRejectionWorkflowStateId(relationship.getRejectionWorkflowStateId());
-        relationshipDB.setSendEmail(relationship.getSendEmail());
+        valueDB.setWorkflowId(value.getWorkflowId());
+        valueDB.setStep(value.getStep());
+        valueDB.setNameStep(value.getNameStep());
+        valueDB.setWorkflowStateId(value.getWorkflowStateId());
+        valueDB.setWorkflowSignatureId(value.getWorkflowSignatureId());
+        valueDB.setNextWorkflowStepId(value.getNextWorkflowStepId());
+        valueDB.setRejectionWorkflowStepId(value.getRejectionWorkflowStepId());
+        valueDB.setSendEmail(value.getSendEmail());
 
-        relationshipDB.setDescription(relationship.getDescription());
+        valueDB.setDescription(value.getDescription());
 
-        relationshipDB.setAttribute1(relationship.getAttribute1());
-        relationshipDB.setAttribute2(relationship.getAttribute2());
-        relationshipDB.setAttribute3(relationship.getAttribute3());
-        relationshipDB.setAttribute4(relationship.getAttribute4());
-        relationshipDB.setAttribute5(relationship.getAttribute5());
-        relationshipDB.setAttribute6(relationship.getAttribute6());
-        relationshipDB.setAttribute7(relationship.getAttribute7());
-        relationshipDB.setAttribute8(relationship.getAttribute8());
-        relationshipDB.setAttribute9(relationship.getAttribute9());
-        relationshipDB.setAttribute10(relationship.getAttribute10());
+        valueDB.setAttribute1(value.getAttribute1());
+        valueDB.setAttribute2(value.getAttribute2());
+        valueDB.setAttribute3(value.getAttribute3());
+        valueDB.setAttribute4(value.getAttribute4());
+        valueDB.setAttribute5(value.getAttribute5());
+        valueDB.setAttribute6(value.getAttribute6());
+        valueDB.setAttribute7(value.getAttribute7());
+        valueDB.setAttribute8(value.getAttribute8());
+        valueDB.setAttribute9(value.getAttribute9());
+        valueDB.setAttribute10(value.getAttribute10());
 
-        relationshipDB.setStatus(relationship.getStatus());
+        valueDB.setStatus(value.getStatus());
 
-        relationshipDB.setLast_update_by(relationship.getLast_update_by());
-        relationshipDB.setLast_update_date(new Date());
+        valueDB.setLast_update_by(value.getLast_update_by());
+        valueDB.setLast_update_date(new Date());
 
-        return repository.save(relationshipDB);
+        return repository.save(valueDB);
     }
 
     @Override
     public Boolean deleteWorkflowSteps(Long id) {
-        WorkflowSteps relationshipDB = getWorkflowSteps(id);
-        if(null == relationshipDB){
+        WorkflowSteps valueDB = getWorkflowSteps(id);
+        if(null == valueDB){
             return false;
         }
 
