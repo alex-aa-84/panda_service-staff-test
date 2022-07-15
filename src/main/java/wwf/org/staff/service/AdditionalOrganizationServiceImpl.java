@@ -83,8 +83,8 @@ public class AdditionalOrganizationServiceImpl implements AdditionalOrganization
     }
 
     @Override
-    public AdditionalOrganization findByTenantIdAndadditionalOrganizationTypeIdAndFromTimeAndUntilTimeAndFromMonthAndUntilMonthAndValue(Long tenantId, Long additionalOrganizationTypeId, Integer fromTime, Integer untilTime, Integer fromMonth, Integer untilMonth, Integer value) {
-        return repository.findByTenantIdAndadditionalOrganizationTypeIdAndFromTimeAndUntilTimeAndFromMonthAndUntilMonthAndValue(tenantId, additionalOrganizationTypeId, fromTime, untilTime, fromMonth, untilMonth, value);
+    public AdditionalOrganization findByTenantIdAndAdditionalOrganizationTypeIdAndFromTimeAndUntilTimeAndFromMonthAndUntilMonthAndValue(Long tenantId, Long additionalOrganizationTypeId, Integer fromTime, Integer untilTime, Integer fromMonth, Integer untilMonth, Integer value) {
+        return repository.findByTenantIdAndAdditionalOrganizationTypeIdAndFromTimeAndUntilTimeAndFromMonthAndUntilMonthAndValue(tenantId, additionalOrganizationTypeId, fromTime, untilTime, fromMonth, untilMonth, value);
     }
 
 

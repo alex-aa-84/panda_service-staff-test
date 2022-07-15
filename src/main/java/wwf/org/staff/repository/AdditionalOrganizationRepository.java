@@ -5,7 +5,7 @@ import wwf.org.staff.entity.AdditionalOrganization;
 import wwf.org.staff.entity.AdditionalOrganizationType;
 
 public interface AdditionalOrganizationRepository extends JpaRepository<AdditionalOrganization, Long> {
-    public AdditionalOrganization findByTenantIdAndadditionalOrganizationTypeIdAndFromTimeAndUntilTimeAndFromMonthAndUntilMonthAndValue(
+    public AdditionalOrganization findByTenantIdAndAdditionalOrganizationTypeIdAndFromTimeAndUntilTimeAndFromMonthAndUntilMonthAndValue(
             Long tenantId, Long additionalOrganizationTypeId, Integer fromTime, Integer untilTime, Integer fromMonth, Integer untilMonth, Integer value
     );
 }

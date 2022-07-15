@@ -47,7 +47,7 @@ public class AdditionalOrganizationController {
     @PostMapping()
     public ResponseEntity<AdditionalOrganization> createData(@Valid @RequestBody AdditionalOrganization data, BindingResult result){
 
-        AdditionalOrganization dataBD = service.findByTenantIdAndadditionalOrganizationTypeIdAndFromTimeAndUntilTimeAndFromMonthAndUntilMonthAndValue(data.getTenantId(), data.getAdditionalOrganizationType().getId(), data.getFromTime(), data.getUntilTime(), data.getFromMonth(), data.getUntilMonth(), data.getValue());
+        AdditionalOrganization dataBD = service.findByTenantIdAndAdditionalOrganizationTypeIdAndFromTimeAndUntilTimeAndFromMonthAndUntilMonthAndValue(data.getTenantId(), data.getAdditionalOrganizationType().getId(), data.getFromTime(), data.getUntilTime(), data.getFromMonth(), data.getUntilMonth(), data.getValue());
 
         if (null != dataBD){
             FieldError err = new FieldError("Error", "registroExistente", "registroExistenteBD");

@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name="ad_additional_organization")
+@Table(name="ad_additional_organization_type")
 @Data
 public class AdditionalOrganizationType {
     @Id

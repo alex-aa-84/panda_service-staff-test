@@ -12,7 +12,7 @@ public interface AdditionalOrganizationService {
     public AdditionalOrganization updateAdditionalOrganization(AdditionalOrganization address);
     public Boolean deleteAdditionalOrganization(Long id);
 
-    public AdditionalOrganization findByTenantIdAndadditionalOrganizationTypeIdAndFromTimeAndUntilTimeAndFromMonthAndUntilMonthAndValue(
+    public AdditionalOrganization findByTenantIdAndAdditionalOrganizationTypeIdAndFromTimeAndUntilTimeAndFromMonthAndUntilMonthAndValue(
             Long tenantId, Long additionalOrganizationTypeId, Integer fromTime, Integer untilTime, Integer fromMonth, Integer untilMonth, Integer value
     );
 }
