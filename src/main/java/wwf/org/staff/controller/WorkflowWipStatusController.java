@@ -17,7 +17,7 @@ import java.util.List;
 @CrossOrigin(origins = {"${settings.cors_origin}", "${settings.cors_origin_pro}"}, maxAge = 3600,
         allowedHeaders={"Origin", "X-Requested-With", "Content-Type", "Accept", "x-client-key", "x-client-token", "x-client-secret", "Authorization"}, methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.OPTIONS, RequestMethod.HEAD, RequestMethod.DELETE, RequestMethod.PUT})
 @RestController
-@RequestMapping(value="/admstaffwwf/timesheetwipstatus")
+@RequestMapping(value="/admstaffwwf/workflowwipstatus")
 public class WorkflowWipStatusController {
 
     @Autowired
