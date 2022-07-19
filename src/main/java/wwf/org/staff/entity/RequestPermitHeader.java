@@ -47,12 +47,6 @@ public class RequestPermitHeader {
 
     private String observation;
 
-    @OneToMany(mappedBy = "requestPermitHeader", cascade = CascadeType.ALL)
-    private List<RequestPermitSignature> requestPermitSignatures;
-
-    @OneToMany(mappedBy = "requestPermitHeader", cascade = CascadeType.ALL)
-    private List<RequestPermitPeriods> requestPermitPeriods;
-
     private Integer attribute1;
     private Integer attribute2;
     private Integer attribute3;

@@ -48,7 +48,6 @@ public class FundingSourceServiceImpl implements FundingSourceService{
         bd.setUserId(value.getUserId());
         bd.setContractStartDate(bd.getContractStartDate());
         bd.setContractEndDate(value.getContractEndDate());
-        bd.setProjects(value.getProjects());
         bd.setDescription(value.getDescription());
 
         bd.setAttribute1(value.getAttribute1());

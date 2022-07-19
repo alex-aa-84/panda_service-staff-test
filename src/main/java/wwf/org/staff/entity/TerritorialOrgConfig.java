@@ -22,21 +22,6 @@ public class TerritorialOrgConfig {
     @Column(nullable = false, unique = true)
     private String name;
 
-    @OneToMany(mappedBy = "territorialOrgConfig", cascade = CascadeType.ALL)
-    private List<TerritorialOrgFirst> territorialOrgFirst;
-
-    @OneToMany(mappedBy = "territorialOrgConfig", cascade = CascadeType.ALL)
-    private List<TerritorialOrgTwo> territorialOrgTwo;
-
-    @OneToMany(mappedBy = "territorialOrgConfig", cascade = CascadeType.ALL)
-    private List<TerritorialOrgThree> territorialOrgThree;
-
-    @OneToMany(mappedBy = "territorialOrgConfig", cascade = CascadeType.ALL)
-    private List<TerritorialOrgFour> territorialOrgFour;
-
-    @OneToMany(mappedBy = "territorialOrgConfig", cascade = CascadeType.ALL)
-    private List<TerritorialOrgFive> territorialOrgFive;
-
     private Integer attribute1;
     private Integer attribute2;
     private Integer attribute3;

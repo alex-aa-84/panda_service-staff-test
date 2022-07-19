@@ -44,12 +44,6 @@ public class TimesheetHeader {
 
     private String observation;
 
-    @OneToMany(mappedBy = "timesheetHeader", cascade = CascadeType.ALL)
-    private List<TimesheetSignature> timesheetSignatures;
-
-    @OneToMany(mappedBy = "timesheetHeader", cascade = CascadeType.ALL)
-    private List<TimesheetDetails> timesheetDetails;
-
     private Integer attribute1;
     private Integer attribute2;
     private Integer attribute3;

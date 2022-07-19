@@ -46,9 +46,6 @@ public class RequestPermitPeriods {
     // 0 ó 1
     private Boolean midday;
 
-    @OneToMany(mappedBy = "requestPermitPeriods", cascade = CascadeType.ALL)
-    private List<RequestPermitDays> requestPermitDays;
-
     private Integer attribute1;
     private Integer attribute2;
     private Integer attribute3;

@@ -36,9 +36,6 @@ public class TimesheetDetails {
     @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
     private RequestType requestType;
 
-    @OneToMany(mappedBy = "timesheetDetails", cascade = CascadeType.ALL)
-    private List<TimesheetLines> timesheetLines;
-
     private Integer attribute1;
     private Integer attribute2;
     private Integer attribute3;

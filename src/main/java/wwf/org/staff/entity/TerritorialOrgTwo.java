@@ -38,9 +38,6 @@ public class TerritorialOrgTwo {
     @Column(nullable = false)
     private String name;
 
-    @OneToMany(mappedBy = "territorialOrgTwo", cascade = CascadeType.ALL)
-    private List<TerritorialOrgThree> territorialOrgThree;
-
     private Integer attribute1;
     private Integer attribute2;
     private Integer attribute3;

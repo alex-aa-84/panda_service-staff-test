@@ -32,10 +32,6 @@ public class FundingSource {
     @Temporal(TemporalType.DATE)
     private Date contractEndDate ;
 
-    @OneToMany(mappedBy = "fundingSource", cascade={CascadeType.PERSIST, CascadeType.REMOVE})
-    @Cascade(org.hibernate.annotations.CascadeType.REMOVE)
-    private List<Projects> projects;
-
     private String description;
     private Integer attribute1;
     private Integer attribute2;
