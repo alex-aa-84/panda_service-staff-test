@@ -6,4 +6,5 @@ import wwf.org.staff.entity.TimesheetCycle;
 public interface TimesheetCycleRepository extends JpaRepository<TimesheetCycle, Long> {
 
     public TimesheetCycle findByFiscalYearAndMonthFiscalYear(Integer year, Integer month);
-}
+    public TimesheetCycle findByOnGoing(Integer onGoing);
+} 

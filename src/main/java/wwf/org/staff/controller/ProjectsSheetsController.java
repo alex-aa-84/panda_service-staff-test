@@ -8,7 +8,9 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import wwf.org.staff.entity.ProjectsSheets;
+import wwf.org.staff.entity.TimesheetCycle;
 import wwf.org.staff.service.ProjectsSheetsService;
+import wwf.org.staff.service.TimesheetCycleService;
 import wwf.org.staff.serviceApi.FormatMessage;
 
 import javax.validation.Valid;
@@ -22,6 +24,9 @@ public class ProjectsSheetsController {
 
     @Autowired
     private ProjectsSheetsService service;
+
+    @Autowired
+    private TimesheetCycleService serviceTC;
 
     private FormatMessage formatMessage = new FormatMessage();
 
@@ -44,10 +49,29 @@ public class ProjectsSheetsController {
         return ResponseEntity.ok(data);
     }
 
+    @GetMapping(value = "cycle/{year}/{month}")
+    public ResponseEntity<List<ProjectsSheets>> getData(@PathVariable("year") Integer year, @PathVariable("month") Integer month){
+        List<ProjectsSheets> data = service.findByFiscalYearAndMonthFiscalYear(year, month);
+        if(null == data){
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(data);
+    }
+
+    @GetMapping(value = "timesheet/{userId}/{cicleId}")
+    public ResponseEntity<List<ProjectsSheets>> getActiveUserCycle(@PathVariable("userId") Long userId, @PathVariable("cicleId") Long cicleId){
+        TimesheetCycle timesheetCycle = serviceTC.getTimesheetCycle(cicleId);
+        List<ProjectsSheets> data = service.findActiveUserCycle(userId, timesheetCycle);
+        if(null == data){
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(data);
+    }
+
     @PostMapping()
     public ResponseEntity<ProjectsSheets> createData(@Valid @RequestBody ProjectsSheets data, BindingResult result){
 
-        ProjectsSheets dataBD = service.findByFiscalYearAndMonthFiscalYearAndUserIdAndProjectsId(data.getFiscalYear(), data.getMonthFiscalYear(), data.getUserId(), data.getProjects().getId());
+        ProjectsSheets dataBD = service.findByFiscalYearAndMonthFiscalYearAndUserIdAndProjectsFundingSourceId(data.getFiscalYear(), data.getMonthFiscalYear(), data.getUserId(), data.getProjectsFundingSource().getId());
 
         if (null != dataBD){
             FieldError err = new FieldError("Error", "registroExistente", "registroExistenteBD");

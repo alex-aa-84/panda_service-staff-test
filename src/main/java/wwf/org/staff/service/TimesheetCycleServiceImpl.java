@@ -84,5 +84,10 @@ public class TimesheetCycleServiceImpl implements TimesheetCycleService {
         return repository.findByFiscalYearAndMonthFiscalYear(year, month);
     }
 
+    @Override
+    public TimesheetCycle findByOnGoing(Integer onGoing) {
+        return repository.findByOnGoing(onGoing);
+    }
+
 
 }

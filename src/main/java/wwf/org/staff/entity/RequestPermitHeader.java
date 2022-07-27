@@ -25,7 +25,7 @@ public class RequestPermitHeader {
     @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
     private RequestType requestType;
 
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date dateRequest;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
@@ -33,7 +33,7 @@ public class RequestPermitHeader {
     @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
     private WorkflowSteps workflowSteps;
 
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date lastUpdateWorkflowSteps;
 
     //Bloqueado cuando el workflowSteps tien los estados cerrados y
@@ -56,7 +56,7 @@ public class RequestPermitHeader {
     private String attribute7;
     private String attribute8;
 
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date attribute9 ;
 
     @Temporal(TemporalType.TIMESTAMP)

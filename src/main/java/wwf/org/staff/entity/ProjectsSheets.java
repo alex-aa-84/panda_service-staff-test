@@ -4,13 +4,12 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
+
 import java.util.Date;
 
 @Entity
 @Table(name = "ts_projects_sheets",  uniqueConstraints = {
-        @UniqueConstraint(columnNames = {"fiscalYear", "monthFiscalYear", "userId", "projectsId"})
+        @UniqueConstraint(columnNames = {"fiscalYear", "monthFiscalYear", "userId", "projectsFundingSourceId"})
 })
 @Data
 public class ProjectsSheets {
@@ -31,9 +30,9 @@ public class ProjectsSheets {
     private Long userId;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(referencedColumnName = "id", nullable = false, name = "projectsId")
+    @JoinColumn(referencedColumnName = "id", nullable = false, name = "projectsFundingSourceId")
     @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
-    private Projects projects;
+    private ProjectsFundingSource projectsFundingSource;
 
     @Column(nullable = false)
     private Integer budgetHours;
@@ -43,10 +42,10 @@ public class ProjectsSheets {
 
     @Column(nullable = false)
     private Integer usedHours;
-
+    
     // Este campo se llena si el tipo de timesheet es mensual
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(referencedColumnName = "id")
+    @JoinColumn(referencedColumnName = "id", name = "timesheetCycleId")
     @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
     private TimesheetCycle timesheetCycle;
 
@@ -60,7 +59,7 @@ public class ProjectsSheets {
     private String attribute7;
     private String attribute8;
 
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date attribute9 ;
 
     @Temporal(TemporalType.TIMESTAMP)

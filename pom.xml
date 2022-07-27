@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.6.7</version>
+		<version>2.6.9</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>wwf.org</groupId>
@@ -18,9 +18,16 @@
 	<description>Api Service Staff WWF Mundo</description>
 	<properties>
 		<java.version>17</java.version>
-		<spring-cloud.version>2021.0.2</spring-cloud.version>
+		<spring-cloud.version>2021.0.3</spring-cloud.version>
 	</properties>
 	<dependencies>
+
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-openfeign</artifactId>
+		</dependency>
+
+
 		<!--
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -37,6 +44,14 @@
 			<artifactId>spring-boot-starter-oauth2-resource-server</artifactId>
 		</dependency>
 
+		<!-- Para Feing
+		<dependency>
+			<groupId>org.springframework.security.oauth</groupId>
+			<artifactId>spring-security-oauth2</artifactId>
+			<version>2.5.2.RELEASE</version>
+		</dependency>
+		 ////////////// -->
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-validation</artifactId>
@@ -45,6 +60,7 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
+
 		<!--
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
@@ -77,15 +93,21 @@
 
 		<!--Para no generar conflicto entre server y el servidor enbebido-->
 
-
+<!--
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-tomcat</artifactId>
 			<scope>provided</scope>
 		</dependency>
+		-->
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-tomcat</artifactId>
+		</dependency>
 
 	</dependencies>
-	<!--
+
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
@@ -97,7 +119,7 @@
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
-	-->
+
 	<build>
 		<plugins>
 			<plugin>
@@ -114,9 +136,16 @@
 			</plugin>
 
 			<!--
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+
+
 			Evita excepciones al Deployar la aplicación en Azure.
 			Cuando intenta realizar pruebas de Test ignora las expcepciones
 			-->
+
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
@@ -125,6 +154,7 @@
 					<testFailureIgnore>true</testFailureIgnore>
 				</configuration>
 			</plugin>
+
 		</plugins>
 	</build>
 

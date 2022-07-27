@@ -3,7 +3,6 @@ package wwf.org.staff.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import wwf.org.staff.entity.Projects;
 import wwf.org.staff.entity.ProjectsSheets;
 import wwf.org.staff.repository.ProjectsSheetsRepository;
 
@@ -49,7 +48,7 @@ public class ProjectsSheetsServiceImpl implements ProjectsSheetsService{
         bd.setFiscalYear(value.getFiscalYear());
         bd.setMonthFiscalYear(value.getMonthFiscalYear());
         bd.setUserId(value.getUserId());
-        bd.setProjects(value.getProjects());
+        bd.setProjectsFundingSource(value.getProjectsFundingSource());
         bd.setBudgetHours(value.getBudgetHours());
         bd.setAvailableHours(value.getAvailableHours());
         bd.setUsedHours(value.getUsedHours());
@@ -88,9 +87,21 @@ public class ProjectsSheetsServiceImpl implements ProjectsSheetsService{
     }
 
     @Override
-    public ProjectsSheets findByFiscalYearAndMonthFiscalYearAndUserIdAndProjectsId(Integer year, Integer month, Long user, Long projectsId) {
-        return repository.findByFiscalYearAndMonthFiscalYearAndUserIdAndProjectsId(year, month, user, projectsId);
+    public ProjectsSheets findByFiscalYearAndMonthFiscalYearAndUserIdAndProjectsFundingSourceId(Integer year, Integer month, Long user, Long projectsFundingSourceId) {
+        return repository.findByFiscalYearAndMonthFiscalYearAndUserIdAndProjectsFundingSourceId(year, month, user, projectsFundingSourceId);
     }
+
+    @Override
+    public List<ProjectsSheets> findByFiscalYearAndMonthFiscalYear(Integer year, Integer month) {
+        return repository.findByFiscalYearAndMonthFiscalYear(year, month);
+    }
+
+    @Override
+    public List<ProjectsSheets> findActiveUserCycle(Long userId, Long timesheetCycleId) {
+        return repository.findActiveUserCycle(userId, timesheetCycleId);
+    }
+
+    
 
 
 }

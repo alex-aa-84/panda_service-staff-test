@@ -2,6 +2,7 @@ package wwf.org.staff.entity;
 
 import lombok.Data;
 import org.hibernate.annotations.Cascade;
+import wwf.org.staff.model.User;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
@@ -26,11 +27,14 @@ public class FundingSource {
     @Column(name = "user_manager")
     private Long userId;
 
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date contractStartDate ;
 
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date contractEndDate ;
+
+    @Transient
+    private User user;
 
     private String description;
     private Integer attribute1;
@@ -42,7 +46,7 @@ public class FundingSource {
     private String attribute7;
     private String attribute8;
 
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date attribute9 ;
 
     @Temporal(TemporalType.TIMESTAMP)

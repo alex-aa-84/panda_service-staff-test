@@ -14,4 +14,5 @@ public interface TimesheetCycleService {
     public Boolean deleteTimesheetCycle(Long id);
 
     public TimesheetCycle findByFiscalYearAndMonthFiscalYear(Integer year, Integer month);
+    public TimesheetCycle findByOnGoing(Integer onGoing);
 }

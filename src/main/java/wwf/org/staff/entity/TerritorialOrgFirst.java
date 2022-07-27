@@ -42,7 +42,7 @@ public class TerritorialOrgFirst {
     private String attribute7;
     private String attribute8;
 
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date attribute9 ;
 
     @Temporal(TemporalType.TIMESTAMP)

@@ -14,23 +14,15 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name = "ts_projects",  uniqueConstraints = {
-        @UniqueConstraint(columnNames = {"fundingSourceId", "numberProject"})
-})
+@Table(name = "ts_projects")
 @Data
 public class Projects {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(unique = true, nullable = false)
     private Long id;
-    
-    @ManyToOne(fetch = FetchType.LAZY, optional = false, cascade = {CascadeType.ALL})
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    @JoinColumn(referencedColumnName = "id", name = "fundingSourceId")
-    @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
-    private FundingSource fundingSource;
 
-    @Column(nullable = false)
+    @Column(unique = true,nullable = false)
     private String numberProject;
 
     @Column(nullable = false)
@@ -42,10 +34,10 @@ public class Projects {
     @Column(name = "user_manager")
     private Long userId;
 
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date contractStartDate;
 
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date contractEndDate;
 
     private String description;
@@ -58,7 +50,7 @@ public class Projects {
     private String attribute7;
     private String attribute8;
 
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date attribute9 ;
 
     @Temporal(TemporalType.TIMESTAMP)

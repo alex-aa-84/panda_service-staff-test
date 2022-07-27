@@ -27,7 +27,7 @@ public class Document {
     @Column(unique = true, nullable = false)
     private String document;
 
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date expirationDate ;
 
     private String description;
@@ -40,7 +40,7 @@ public class Document {
     private String attribute7;
     private String attribute8;
 
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date attribute9 ;
 
     @Temporal(TemporalType.TIMESTAMP)

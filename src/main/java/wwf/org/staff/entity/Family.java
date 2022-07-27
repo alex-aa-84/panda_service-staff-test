@@ -28,7 +28,7 @@ public class Family {
     @Column(nullable = false)
     private String name;
 
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date birthDate;
 
     private String description;
@@ -42,7 +42,7 @@ public class Family {
     private String attribute7;
     private String attribute8;
 
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date attribute9 ;
 
     @Temporal(TemporalType.TIMESTAMP)

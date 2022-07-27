@@ -27,10 +27,10 @@ public class RequestPermitPeriods {
     @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
     private RequestPermitHeader requestPermitHeader;
 
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date dateFrom;
 
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date dateTo;
 
     @Column(precision = 10, scale = 2)
@@ -55,7 +55,7 @@ public class RequestPermitPeriods {
     private String attribute7;
     private String attribute8;
 
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date attribute9 ;
 
     @Temporal(TemporalType.TIMESTAMP)

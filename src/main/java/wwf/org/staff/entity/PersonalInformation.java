@@ -27,7 +27,7 @@ public class PersonalInformation {
     private String surnameMaternal;
     private String surnameMarried;
 
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date birthDate;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
@@ -51,7 +51,7 @@ public class PersonalInformation {
     private String attribute7;
     private String attribute8;
 
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date attribute9 ;
 
     @Temporal(TemporalType.TIMESTAMP)

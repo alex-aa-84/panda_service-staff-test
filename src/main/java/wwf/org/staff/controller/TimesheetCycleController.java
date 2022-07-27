@@ -44,6 +44,15 @@ public class TimesheetCycleController {
         return ResponseEntity.ok(data);
     }
 
+    @GetMapping(value = "/ongoing")
+    public ResponseEntity<TimesheetCycle> getOnGoing(){
+        TimesheetCycle data = service.findByOnGoing(1);
+        if(null == data){
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(data);
+    }
+
     @PostMapping()
     public ResponseEntity<TimesheetCycle> createData(@Valid @RequestBody TimesheetCycle data, BindingResult result){
 

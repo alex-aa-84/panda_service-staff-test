@@ -34,10 +34,10 @@ public class JobSetting {
     @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
     private JobTittle jobTittle;
 
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date employmentStartDate;
 
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date employmentEndDate;
 
     private Integer workload;
@@ -53,7 +53,7 @@ public class JobSetting {
     private String attribute7;
     private String attribute8;
 
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date attribute9 ;
 
     @Temporal(TemporalType.TIMESTAMP)
