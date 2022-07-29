@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import wwf.org.staff.entity.ProjectsSheets;
+import wwf.org.staff.entity.TimesheetCycle;
 import wwf.org.staff.repository.ProjectsSheetsRepository;
 
 import java.util.Date;
@@ -97,11 +98,10 @@ public class ProjectsSheetsServiceImpl implements ProjectsSheetsService{
     }
 
     @Override
-    public List<ProjectsSheets> findActiveUserCycle(Long userId, Long timesheetCycleId) {
-        return repository.findActiveUserCycle(userId, timesheetCycleId);
+    public List<ProjectsSheets> findActiveUserCycle(Long userId, TimesheetCycle timesheetCycle) {
+        return repository.findActiveUserCycle(userId, timesheetCycle);
     }
 
     
-
 
 }

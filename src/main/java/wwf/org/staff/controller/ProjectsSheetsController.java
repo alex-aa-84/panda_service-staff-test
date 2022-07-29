@@ -61,10 +61,17 @@ public class ProjectsSheetsController {
     @GetMapping(value = "timesheet/{userId}/{cicleId}")
     public ResponseEntity<List<ProjectsSheets>> getActiveUserCycle(@PathVariable("userId") Long userId, @PathVariable("cicleId") Long cicleId){
         TimesheetCycle timesheetCycle = serviceTC.getTimesheetCycle(cicleId);
+
+        if(null == timesheetCycle){
+            return ResponseEntity.notFound().build();
+        }
+
         List<ProjectsSheets> data = service.findActiveUserCycle(userId, timesheetCycle);
+        
         if(null == data){
             return ResponseEntity.notFound().build();
         }
+
         return ResponseEntity.ok(data);
     }
 
