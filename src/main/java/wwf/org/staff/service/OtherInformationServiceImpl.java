@@ -80,4 +80,10 @@ public class OtherInformationServiceImpl implements OtherInformationService {
         otherInformationRepository.deleteById(id);
         return true;
     }
+
+    @Override
+    public List<OtherInformation> findByUserId(Long id) {
+        // TODO Auto-generated method stub
+        return otherInformationRepository.findByUserId(id);
+    }
 }

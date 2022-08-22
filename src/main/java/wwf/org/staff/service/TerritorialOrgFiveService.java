@@ -1,5 +1,6 @@
 package wwf.org.staff.service;
 
+import wwf.org.staff.entity.TerritorialOrgConfig;
 import wwf.org.staff.entity.TerritorialOrgFive;
 import wwf.org.staff.entity.TerritorialOrgFour;
 
@@ -13,4 +14,6 @@ public interface TerritorialOrgFiveService {
     public TerritorialOrgFive updateTerritorialOrgFive(TerritorialOrgFive territorialOrgFive);
     public Boolean deleteTerritorialOrgFive(Long id);
     public TerritorialOrgFive findByTerritorialOrgFourIdAndName(Long territorialOrgFourId, String name);
+    public List<TerritorialOrgFive> findByTerritorialOrgConfig(TerritorialOrgConfig territorialOrgConfig);
+    public List<TerritorialOrgFive> findByTerritorialOrgFour(TerritorialOrgFour territorialOrgFour);
 }

@@ -3,7 +3,6 @@ package wwf.org.staff.entity;
 import lombok.Data;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
 import java.util.Date;
 
 @Entity

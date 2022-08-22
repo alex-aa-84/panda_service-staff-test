@@ -11,4 +11,5 @@ public interface OtherInformationService {
     public OtherInformation createOtherInformation(OtherInformation otherInformation);
     public OtherInformation updateOtherInformation(OtherInformation otherInformation);
     public Boolean deleteOtherInformation(Long id);
+    public List<OtherInformation> findByUserId(Long id);
 }

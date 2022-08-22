@@ -6,10 +6,7 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 import java.util.Date;
-import java.util.List;
 
 @Entity
 @Table(name="to_territorial_org_first", uniqueConstraints = {
@@ -23,7 +20,7 @@ public class TerritorialOrgFirst {
     @Column(unique = true, nullable = false)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+    @ManyToOne(fetch = FetchType.LAZY)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(referencedColumnName = "id", name = "territorialOrgConfigId")
     @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})

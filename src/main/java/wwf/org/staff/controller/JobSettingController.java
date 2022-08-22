@@ -45,6 +45,15 @@ public class JobSettingController {
         return ResponseEntity.ok(data);
     }
 
+    @GetMapping(value = "/user/{id}")
+    public ResponseEntity<JobSetting> getDataUser(@PathVariable("id") Long id){
+        JobSetting data = service.findByUserId(id);
+        if(null == data){
+            return ResponseEntity.ok().build();
+        }
+        return ResponseEntity.ok(data);
+    }
+
     @PostMapping()
     public ResponseEntity<JobSetting> createData(@Valid @RequestBody JobSetting data, BindingResult result){
 

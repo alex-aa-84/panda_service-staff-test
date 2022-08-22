@@ -4,8 +4,6 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @Entity
@@ -30,12 +28,12 @@ public class PersonalInformation {
     @Temporal(TemporalType.TIMESTAMP)
     private Date birthDate;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(referencedColumnName = "id")
     @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
     private CivilStatus civilStatus;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(referencedColumnName = "id")
     @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
     private BloodType bloodType;

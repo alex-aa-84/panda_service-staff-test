@@ -7,8 +7,14 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
+
+import wwf.org.staff.entity.TerritorialOrgConfig;
 import wwf.org.staff.entity.TerritorialOrgFour;
+import wwf.org.staff.entity.TerritorialOrgThree;
+import wwf.org.staff.entity.TerritorialOrgTwo;
+import wwf.org.staff.service.TerritorialOrgConfigService;
 import wwf.org.staff.service.TerritorialOrgFourService;
+import wwf.org.staff.service.TerritorialOrgThreeService;
 import wwf.org.staff.serviceApi.FormatMessage;
 
 import javax.validation.Valid;
@@ -22,6 +28,12 @@ public class TerritorialOrgFourController {
 
     @Autowired
     private TerritorialOrgFourService service;
+
+    @Autowired
+    private TerritorialOrgConfigService serviceOrg;
+
+    @Autowired
+    private TerritorialOrgThreeService serviceBefore;
 
 
     private FormatMessage formatMessage = new FormatMessage();
@@ -39,6 +51,32 @@ public class TerritorialOrgFourController {
     @GetMapping(value = "/{id}")
     public ResponseEntity<TerritorialOrgFour> getData(@PathVariable("id") Long id){
         TerritorialOrgFour data = service.getTerritorialOrgFour(id);
+        if(null == data){
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(data);
+    }
+
+    @GetMapping(value = "org/{id}")
+    public ResponseEntity<List<TerritorialOrgFour>> getDataId(@PathVariable("id") Long id){
+        TerritorialOrgConfig territorialOrgConfig = serviceOrg.getTerritorialOrgConfig(id);
+
+        List<TerritorialOrgFour> data = service.findByTerritorialOrgConfig(territorialOrgConfig);
+
+
+        if(null == data){
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(data);
+    }
+
+    @GetMapping(value = "before/{id}")
+    public ResponseEntity<List<TerritorialOrgFour>> getDataBeforeId(@PathVariable("id") Long id){
+        TerritorialOrgThree before = serviceBefore.getTerritorialOrgThree(id);
+
+        List<TerritorialOrgFour> data = service.findByTerritorialOrgThree(before);
+
+
         if(null == data){
             return ResponseEntity.notFound().build();
         }

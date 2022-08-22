@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @Entity
@@ -17,6 +16,7 @@ public class JobSetting {
     @Column(unique = true, nullable = false)
     private Long id;
 
+    @Column(unique = true, nullable = false)
     private Long userId;
 
     @Column(unique = true, nullable = false)

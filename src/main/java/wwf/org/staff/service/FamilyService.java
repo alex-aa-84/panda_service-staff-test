@@ -11,4 +11,5 @@ public interface FamilyService {
     public Family createFamily(Family family);
     public Family updateFamily(Family family);
     public Boolean deleteFamily(Long id);
+    public List<Family> findByUserId(Long id);
 }

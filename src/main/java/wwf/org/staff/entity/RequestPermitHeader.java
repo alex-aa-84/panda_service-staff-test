@@ -6,7 +6,6 @@ import lombok.Data;
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.util.Date;
-import java.util.List;
 
 @Entity
 @Table(name="rp_request_permit_header")
@@ -16,6 +15,9 @@ public class RequestPermitHeader {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(unique = true, nullable = false)
     private Long id;
+
+    @Column(unique = true, nullable = false)
+    private String numberSolict;
 
     @Column(nullable = false)
     private Long userId;

@@ -82,4 +82,10 @@ public class DocumentServiceImpl implements DocumentService{
     public Document findByDocument(String document) {
         return documentRepository.findByDocument(document);
     }
+
+    @Override
+    public List<Document> findByUserId(Long id) {
+        // TODO Auto-generated method stub
+        return documentRepository.findByUserId(id);
+    }
 }

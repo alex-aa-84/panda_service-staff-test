@@ -88,4 +88,9 @@ public class WorkflowStepServiceImpl implements WorkflowStepService {
         return repository.findByWorkflowIdAndStepAndWorkflowStateId(workflowId, step, workflowStateId);
     }
 
+    @Override
+    public WorkflowSteps findByWorkflowIdAndStep(Long workflowid, Integer step) {
+        return repository.findByWorkflowIdAndStep(workflowid, step);
+    }
+
 }

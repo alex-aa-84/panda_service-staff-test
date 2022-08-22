@@ -7,7 +7,10 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
+
+import wwf.org.staff.entity.TerritorialOrgConfig;
 import wwf.org.staff.entity.TerritorialOrgFirst;
+import wwf.org.staff.service.TerritorialOrgConfigService;
 import wwf.org.staff.service.TerritorialOrgFirstService;
 import wwf.org.staff.serviceApi.FormatMessage;
 
@@ -22,6 +25,9 @@ public class TerritorialOrgFirstController {
 
     @Autowired
     private TerritorialOrgFirstService service;
+
+    @Autowired
+    private TerritorialOrgConfigService serviceOrg;
 
 
     private FormatMessage formatMessage = new FormatMessage();
@@ -39,6 +45,19 @@ public class TerritorialOrgFirstController {
     @GetMapping(value = "/{id}")
     public ResponseEntity<TerritorialOrgFirst> getData(@PathVariable("id") Long id){
         TerritorialOrgFirst data = service.getTerritorialOrgFirst(id);
+        if(null == data){
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(data);
+    }
+
+    @GetMapping(value = "org/{id}")
+    public ResponseEntity<List<TerritorialOrgFirst>> getDataId(@PathVariable("id") Long id){
+        TerritorialOrgConfig territorialOrgConfig = serviceOrg.getTerritorialOrgConfig(id);
+
+        List<TerritorialOrgFirst> data = service.findByTerritorialOrgConfig(territorialOrgConfig);
+
+
         if(null == data){
             return ResponseEntity.notFound().build();
         }

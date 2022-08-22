@@ -3,6 +3,8 @@ package wwf.org.staff.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import wwf.org.staff.entity.TerritorialOrgConfig;
 import wwf.org.staff.entity.TerritorialOrgFour;
 import wwf.org.staff.entity.TerritorialOrgThree;
 import wwf.org.staff.repository.TerritorialOrgFourRepository;
@@ -80,4 +82,18 @@ public class TerritorialOrgFourServiceImpl implements TerritorialOrgFourService 
     public TerritorialOrgFour findByTerritorialOrgThreeIdAndName(Long territorialOrgThreeId, String name) {
         return territorialOrgFourRepository.findByTerritorialOrgThreeIdAndName(territorialOrgThreeId, name);
     }
+
+    @Override
+    public List<TerritorialOrgFour> findByTerritorialOrgConfig(TerritorialOrgConfig territorialOrgConfig) {
+        // TODO Auto-generated method stub
+        return territorialOrgFourRepository.findByTerritorialOrgConfig(territorialOrgConfig);
+    }
+
+    @Override
+    public List<TerritorialOrgFour> findByTerritorialOrgThree(TerritorialOrgThree territorialOrgThree) {
+        // TODO Auto-generated method stub
+        return territorialOrgFourRepository.findByTerritorialOrgThree(territorialOrgThree);
+    }
+
+    
 }

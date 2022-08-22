@@ -44,6 +44,10 @@ public class RequestPermitTypeServiceImpl implements RequestPermitTypeService {
 
         requestTypeDB.setName(requestType.getName());
         requestTypeDB.setDescription(requestType.getDescription());
+        requestTypeDB.setOrden(requestType.getOrden());
+        requestTypeDB.setCode(requestType.getCode());
+        requestTypeDB.setFlagHours(requestType.getFlagHours());
+        requestTypeDB.setFlagHalfDay(requestType.getFlagHalfDay());
 
         requestTypeDB.setAttribute1(requestType.getAttribute1());
         requestTypeDB.setAttribute2(requestType.getAttribute2());
@@ -78,6 +82,12 @@ public class RequestPermitTypeServiceImpl implements RequestPermitTypeService {
     @Override
     public RequestType findByName(String name) {
         return requestPermitTypeRepository.findByName(name);
+    }
+
+    @Override
+    public List<RequestType> findActiveRequestTypes() {
+        // TODO Auto-generated method stub
+        return requestPermitTypeRepository.findActiveRequestTypes();
     }
 
 }

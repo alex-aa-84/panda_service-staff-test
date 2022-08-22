@@ -81,4 +81,10 @@ public class PermissionModuleServiceImpl implements PermissionModuleService {
     public PermissionModule findByPermissionHeaderIdAndModuleId(Long permissionHeaderId, Long moduleId) {
         return permissionModuleRepository.findByPermissionHeaderIdAndModuleId(permissionHeaderId, moduleId);
     }
+
+    @Override
+    public List<PermissionModule> findByPermissionHeader(PermissionHeader permissionHeader) {
+        // TODO Auto-generated method stub
+        return permissionModuleRepository.findByPermissionHeader(permissionHeader);
+    }
 }

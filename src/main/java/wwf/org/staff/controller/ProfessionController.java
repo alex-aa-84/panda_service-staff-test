@@ -45,6 +45,15 @@ public class ProfessionController {
         return ResponseEntity.ok(data);
     }
 
+    @GetMapping(value = "/user/{id}")
+    public ResponseEntity<List<Profession>> getDataUser(@PathVariable("id") Long id){
+        List<Profession> data = service.findByUserId(id);
+        if(null == data){
+            return ResponseEntity.ok().build();
+        }
+        return ResponseEntity.ok(data);
+    }
+
     @PostMapping()
     public ResponseEntity<Profession> createData(@Valid @RequestBody Profession data, BindingResult result){
 

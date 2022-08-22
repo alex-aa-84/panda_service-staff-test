@@ -44,6 +44,15 @@ public class OtherInformationController {
         return ResponseEntity.ok(data);
     }
 
+    @GetMapping(value = "/user/{id}")
+    public ResponseEntity<List<OtherInformation>> getDataUser(@PathVariable("id") Long id){
+        List<OtherInformation> data = service.findByUserId(id);
+        if(null == data){
+            return ResponseEntity.ok().build();
+        }
+        return ResponseEntity.ok(data);
+    }
+
     @PostMapping()
     public ResponseEntity<OtherInformation> createData(@Valid @RequestBody OtherInformation data, BindingResult result){
 

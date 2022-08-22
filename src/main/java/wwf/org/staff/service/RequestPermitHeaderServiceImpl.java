@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import wwf.org.staff.entity.RequestPermitHeader;
 import wwf.org.staff.repository.RequestPermitHeaderRepository;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -32,7 +33,22 @@ public class RequestPermitHeaderServiceImpl implements RequestPermitHeaderServic
         requestPermitHeader.setCreation_date(new Date());
         requestPermitHeader.setLast_update_date(new Date());
 
-        return requestPermitHeaderRepository.save(requestPermitHeader);
+        RequestPermitHeader header = requestPermitHeaderRepository.save(requestPermitHeader);
+       
+        return generateNumberRequest(header);
+    }
+
+    @Override
+    public RequestPermitHeader generateNumberRequest(RequestPermitHeader header) {
+
+        Date date = new Date();
+
+        SimpleDateFormat getYearFormat = new SimpleDateFormat("yyyy");
+        String currentYear = getYearFormat.format(date);
+        
+        header.setNumberSolict("RP-"+header.getId()+"-"+currentYear);
+        
+        return requestPermitHeaderRepository.save(header);
     }
 
     @Override
@@ -79,6 +95,18 @@ public class RequestPermitHeaderServiceImpl implements RequestPermitHeaderServic
 
         requestPermitHeaderRepository.deleteById(id);
         return true;
+    }
+
+    @Override
+    public RequestPermitHeader findByNumberSolict(String numberSolict) {
+        // TODO Auto-generated method stub
+        return requestPermitHeaderRepository.findByNumberSolict(numberSolict);
+    }
+
+    @Override
+    public List<RequestPermitHeader> findByUserId(Long userId) {
+        // TODO Auto-generated method stub
+        return requestPermitHeaderRepository.findByUserId(userId);
     }
 
 }

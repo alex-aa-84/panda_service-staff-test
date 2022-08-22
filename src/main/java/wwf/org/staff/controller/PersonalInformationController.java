@@ -39,7 +39,16 @@ public class PersonalInformationController {
     public ResponseEntity<PersonalInformation> getData(@PathVariable("id") Long id){
         PersonalInformation data = service.getPersonalInformation(id);
         if(null == data){
-            return ResponseEntity.notFound().build();
+            return ResponseEntity.ok().build();
+        }
+        return ResponseEntity.ok(data);
+    }
+
+    @GetMapping(value = "/user/{id}")
+    public ResponseEntity<PersonalInformation> getDataUser(@PathVariable("id") Long id){
+        PersonalInformation data = service.findByUserId(id);
+        if(null == data){
+            return ResponseEntity.ok().build();
         }
         return ResponseEntity.ok(data);
     }

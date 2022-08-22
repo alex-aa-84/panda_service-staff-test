@@ -87,4 +87,10 @@ public class JobSettingServiceImpl implements JobSettingService {
     public JobSetting findByCode(String code) {
         return jobSettingRepository.findByCode(code);
     }
+
+    @Override
+    public JobSetting findByUserId(Long id) {
+        // TODO Auto-generated method stub
+        return jobSettingRepository.findByUserId(id);
+    }
 }

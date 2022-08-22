@@ -9,6 +9,11 @@ public interface RequestPermitHeaderService {
     public RequestPermitHeader getRequestPermitHeader(Long id);
 
     public RequestPermitHeader createRequestPermitHeader(RequestPermitHeader requestPermitHeader);
+
+    public RequestPermitHeader generateNumberRequest(RequestPermitHeader header);
     public RequestPermitHeader updateRequestPermitHeader(RequestPermitHeader requestPermitHeader);
     public Boolean deleteRequestPermitHeader(Long id);
+
+    public RequestPermitHeader findByNumberSolict(String numberSolict);
+    public List<RequestPermitHeader> findByUserId(Long userId);
 }

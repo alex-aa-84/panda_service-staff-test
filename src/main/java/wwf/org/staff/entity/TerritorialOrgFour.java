@@ -23,14 +23,14 @@ public class TerritorialOrgFour {
     @Column(unique = true, nullable = false)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+    @ManyToOne(fetch = FetchType.LAZY)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(referencedColumnName = "id", name = "territorialOrgConfigId")
     @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
     private TerritorialOrgConfig territorialOrgConfig;
 
     @NotNull(message = "territorialOrgThree_nula")
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+    @ManyToOne(fetch = FetchType.LAZY)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(referencedColumnName = "id", name = "territorialOrgThreeId")
     @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})

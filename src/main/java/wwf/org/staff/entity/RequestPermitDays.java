@@ -7,7 +7,6 @@ import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.List;
 
 @Entity
 @Table(name="rp_request_permit_days", uniqueConstraints = {
@@ -19,7 +18,7 @@ public class RequestPermitDays {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(unique = true, nullable = false)
     private Long id;
-
+    
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(referencedColumnName = "id", name = "requestPermitPeriodsId")
     @OnDelete(action = OnDeleteAction.CASCADE)

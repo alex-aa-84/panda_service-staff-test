@@ -14,4 +14,6 @@ public interface ProfessionService {
 
     public Profession findByName(String name);
 
+    public List<Profession> findByUserId(Long id);
+
 }

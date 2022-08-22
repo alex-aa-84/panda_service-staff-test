@@ -19,10 +19,15 @@ public class RequestType {
 
     private String description;
 
+    @Column(unique = true, nullable = false)
     private String code;
 
     @Column(nullable = false)
     private Integer orden;
+
+    private Boolean flagHours;
+
+    private Boolean flagHalfDay;
 
     private Integer attribute1;
     private Integer attribute2;

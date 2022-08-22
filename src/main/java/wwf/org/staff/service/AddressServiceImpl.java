@@ -95,4 +95,10 @@ public class AddressServiceImpl implements AddressService{
         addressRepository.deleteById(id);
         return true;
     }
+
+    @Override
+    public List<Address> findByUserId(Long id) {
+        // TODO Auto-generated method stub
+        return addressRepository.findByUserId(id);
+    }
 }

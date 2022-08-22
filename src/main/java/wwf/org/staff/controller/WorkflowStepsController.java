@@ -45,6 +45,15 @@ public class WorkflowStepsController {
         return ResponseEntity.ok(data);
     }
 
+    @GetMapping(value = "/{workflowId}/{step}")
+    public ResponseEntity<WorkflowSteps> getDataStep(@PathVariable("workflowId") Long workflowid, @PathVariable("step") Integer step){
+        WorkflowSteps data = service.findByWorkflowIdAndStep(workflowid, step);
+        if(null == data){
+            return ResponseEntity.ok().build();
+        }
+        return ResponseEntity.ok(data);
+    }
+
     @PostMapping()
     public ResponseEntity<WorkflowSteps> createData(@Valid @RequestBody WorkflowSteps data, BindingResult result){
 

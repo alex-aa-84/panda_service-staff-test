@@ -27,46 +27,46 @@ public class TerritorialOrgConfigServiceImpl implements TerritorialOrgConfigServ
     }
 
     @Override
-    public TerritorialOrgConfig createTerritorialOrgConfig(TerritorialOrgConfig relationship) {
-        relationship.setStatus("CREATED");
-        relationship.setCreation_date(new Date());
-        relationship.setLast_update_date(new Date());
+    public TerritorialOrgConfig createTerritorialOrgConfig(TerritorialOrgConfig terri) {
+        terri.setStatus("CREATED");
+        terri.setCreation_date(new Date());
+        terri.setLast_update_date(new Date());
 
-        return territorialOrgConfigRepository.save(relationship);
+        return territorialOrgConfigRepository.save(terri);
     }
 
     @Override
-    public TerritorialOrgConfig updateTerritorialOrgConfig(TerritorialOrgConfig relationship) {
-        TerritorialOrgConfig relationshipDB = getTerritorialOrgConfig(relationship.getId());
-        if(null == relationshipDB){
+    public TerritorialOrgConfig updateTerritorialOrgConfig(TerritorialOrgConfig terri) {
+        TerritorialOrgConfig terriDB = getTerritorialOrgConfig(terri.getId());
+        if(null == terriDB){
             return null;
         }
 
-        relationshipDB.setName(relationship.getName());
+        terriDB.setName(terri.getName());
+        terriDB.setCountryId(terri.getCountryId());
+        terriDB.setAttribute1(terri.getAttribute1());
+        terriDB.setAttribute2(terri.getAttribute2());
+        terriDB.setAttribute3(terri.getAttribute3());
+        terriDB.setAttribute4(terri.getAttribute4());
+        terriDB.setAttribute5(terri.getAttribute5());
+        terriDB.setAttribute6(terri.getAttribute6());
+        terriDB.setAttribute7(terri.getAttribute7());
+        terriDB.setAttribute8(terri.getAttribute8());
+        terriDB.setAttribute9(terri.getAttribute9());
+        terriDB.setAttribute10(terri.getAttribute10());
 
-        relationshipDB.setAttribute1(relationship.getAttribute1());
-        relationshipDB.setAttribute2(relationship.getAttribute2());
-        relationshipDB.setAttribute3(relationship.getAttribute3());
-        relationshipDB.setAttribute4(relationship.getAttribute4());
-        relationshipDB.setAttribute5(relationship.getAttribute5());
-        relationshipDB.setAttribute6(relationship.getAttribute6());
-        relationshipDB.setAttribute7(relationship.getAttribute7());
-        relationshipDB.setAttribute8(relationship.getAttribute8());
-        relationshipDB.setAttribute9(relationship.getAttribute9());
-        relationshipDB.setAttribute10(relationship.getAttribute10());
+        terriDB.setStatus(terri.getStatus());
 
-        relationshipDB.setStatus(relationship.getStatus());
+        terriDB.setLast_update_by(terri.getLast_update_by());
+        terriDB.setLast_update_date(new Date());
 
-        relationshipDB.setLast_update_by(relationship.getLast_update_by());
-        relationshipDB.setLast_update_date(new Date());
-
-        return territorialOrgConfigRepository.save(relationshipDB);
+        return territorialOrgConfigRepository.save(terriDB);
     }
 
     @Override
     public Boolean deleteTerritorialOrgConfig(Long id) {
-        TerritorialOrgConfig relationshipDB = getTerritorialOrgConfig(id);
-        if(null == relationshipDB){
+        TerritorialOrgConfig terriDB = getTerritorialOrgConfig(id);
+        if(null == terriDB){
             return false;
         }
 

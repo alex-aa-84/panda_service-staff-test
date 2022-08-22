@@ -81,4 +81,10 @@ public class ProfessionServiceImpl implements ProfessionService {
     public Profession findByName(String name) {
         return professionRepository.findByName(name);
     }
+
+    @Override
+    public List<Profession> findByUserId(Long id) {
+        // TODO Auto-generated method stub
+        return professionRepository.findByUserId(id);
+    }
 }

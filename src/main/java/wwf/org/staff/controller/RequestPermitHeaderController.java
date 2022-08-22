@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import wwf.org.staff.entity.RequestPermitHeader;
@@ -37,6 +36,24 @@ public class RequestPermitHeaderController {
     @GetMapping(value = "/{id}")
     public ResponseEntity<RequestPermitHeader> getData(@PathVariable("id") Long id){
         RequestPermitHeader data = service.getRequestPermitHeader(id);
+        if(null == data){
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(data);
+    }
+
+    @GetMapping(value = "user/{id}")
+    public ResponseEntity<List<RequestPermitHeader>> getDataUser(@PathVariable("id") Long id){
+        List<RequestPermitHeader> data = service.findByUserId(id);
+        if(null == data){
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(data);
+    }
+
+    @GetMapping(value = "numbersolict/{numbersolict}")
+    public ResponseEntity<RequestPermitHeader> getDataNumberSolict(@PathVariable("numbersolict") String numbersolict){
+        RequestPermitHeader data = service.findByNumberSolict(numbersolict);
         if(null == data){
             return ResponseEntity.notFound().build();
         }

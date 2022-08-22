@@ -43,6 +43,15 @@ public class RequestPermitTypeController {
         return ResponseEntity.ok(data);
     }
 
+    @GetMapping(value = "/active")
+    public ResponseEntity<List<RequestType>> getDataActive(){
+        List<RequestType> data = service.findActiveRequestTypes();
+        if(null == data){
+            return ResponseEntity.ok().build();
+        }
+        return ResponseEntity.ok(data);
+    }
+
     @PostMapping()
     public ResponseEntity<RequestType> createData(@Valid @RequestBody RequestType data, BindingResult result){
 

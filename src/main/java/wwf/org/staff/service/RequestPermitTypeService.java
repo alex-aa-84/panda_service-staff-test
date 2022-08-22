@@ -13,4 +13,6 @@ public interface RequestPermitTypeService {
     public Boolean deleteRequestPermitType(Long id);
 
     public RequestType findByName(String name);
+
+    public List<RequestType> findActiveRequestTypes();
 }

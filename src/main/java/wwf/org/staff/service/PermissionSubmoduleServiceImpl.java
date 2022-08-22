@@ -72,15 +72,21 @@ public class PermissionSubmoduleServiceImpl implements PermissionSubmoduleServic
     public Boolean deletePermissionSubmodule(Long id) {
         PermissionSubmodule permissionSubmoduleDB = getPermissionSubmodule(id);
         if(null == permissionSubmoduleDB){
-            return true;
+            return false;
         }
 
         permissionSubmoduleRepository.deleteById(id);
-        return false;
+        return true;
     }
 
     @Override
     public PermissionSubmodule findByPermissionModuleIdAndSubmodulesId(Long permissionModuleId, Long submodulesId) {
         return permissionSubmoduleRepository.findByPermissionModuleIdAndSubmodulesId(permissionModuleId, submodulesId);
+    }
+
+    @Override
+    public List<PermissionSubmodule> findByPermissionModule(PermissionModule permissionModule) {
+        // TODO Auto-generated method stub
+        return permissionSubmoduleRepository.findByPermissionModule(permissionModule);
     }
 }

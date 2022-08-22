@@ -5,12 +5,10 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
-import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.util.Date;
-import java.util.List;
 
 @Entity
 @Table(name="rp_request_permit_periods")

@@ -13,4 +13,5 @@ public interface PermissionModuleService {
     public PermissionModule updatePermissionModule(PermissionModule permissionModule);
     public Boolean deletePermissionModule(Long id);
     public PermissionModule findByPermissionHeaderIdAndModuleId(Long permissionHeaderId, Long moduleId);
+    public List<PermissionModule> findByPermissionHeader(PermissionHeader permissionHeader);
 }

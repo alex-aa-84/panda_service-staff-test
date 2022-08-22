@@ -80,4 +80,10 @@ public class ContactServiceImpl implements ContactService{
         contactRepository.deleteById(id);
         return true;
     }
+
+    @Override
+    public List<Contact> findByUserId(Long id) {
+        // TODO Auto-generated method stub
+        return contactRepository.findByUserId(id);
+    }
 }

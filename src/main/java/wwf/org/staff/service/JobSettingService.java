@@ -13,4 +13,6 @@ public interface JobSettingService {
     public Boolean deleteJobSetting(Long id);
 
     public JobSetting findByCode(String code);
+
+    public JobSetting findByUserId(Long id);
 }

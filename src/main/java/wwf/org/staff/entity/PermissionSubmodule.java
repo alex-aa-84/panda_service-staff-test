@@ -6,8 +6,6 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @Entity
@@ -21,7 +19,7 @@ public class PermissionSubmodule {
     @Column(unique = true, nullable = false)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+    @ManyToOne(fetch = FetchType.LAZY)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(referencedColumnName = "id", name = "permissionModuleId")
     @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})

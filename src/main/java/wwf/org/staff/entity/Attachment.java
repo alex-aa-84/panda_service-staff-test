@@ -27,7 +27,7 @@ public class Attachment {
     @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
     private AttachmentType attachmentType;
 
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+    @OneToOne(fetch = FetchType.LAZY)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(referencedColumnName = "id")
     @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})

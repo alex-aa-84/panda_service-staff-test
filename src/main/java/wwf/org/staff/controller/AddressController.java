@@ -45,6 +45,15 @@ public class AddressController {
         return ResponseEntity.ok(data);
     }
 
+    @GetMapping(value = "/user/{id}")
+    public ResponseEntity<List<Address>> getDataUser(@PathVariable("id") Long id){
+        List<Address> data = service.findByUserId(id);
+        if(null == data){
+            return ResponseEntity.ok().build();
+        }
+        return ResponseEntity.ok(data);
+    }
+
     @PostMapping()
     public ResponseEntity<Address> createData(@Valid @RequestBody Address data, BindingResult result){
 

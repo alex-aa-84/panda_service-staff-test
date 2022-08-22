@@ -7,7 +7,12 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
+
+import wwf.org.staff.entity.TerritorialOrgConfig;
+import wwf.org.staff.entity.TerritorialOrgFirst;
 import wwf.org.staff.entity.TerritorialOrgTwo;
+import wwf.org.staff.service.TerritorialOrgConfigService;
+import wwf.org.staff.service.TerritorialOrgFirstService;
 import wwf.org.staff.service.TerritorialOrgTwoService;
 import wwf.org.staff.serviceApi.FormatMessage;
 
@@ -22,6 +27,12 @@ public class TerritorialOrgTwoController {
 
     @Autowired
     private TerritorialOrgTwoService service;
+
+    @Autowired
+    private TerritorialOrgConfigService serviceOrg;
+
+    @Autowired
+    private TerritorialOrgFirstService serviceBefore;
 
     private FormatMessage formatMessage = new FormatMessage();
 
@@ -38,6 +49,32 @@ public class TerritorialOrgTwoController {
     @GetMapping(value = "/{id}")
     public ResponseEntity<TerritorialOrgTwo> getData(@PathVariable("id") Long id){
         TerritorialOrgTwo data = service.getTerritorialOrgTwo(id);
+        if(null == data){
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(data);
+    }
+
+    @GetMapping(value = "org/{id}")
+    public ResponseEntity<List<TerritorialOrgTwo>> getDataId(@PathVariable("id") Long id){
+        TerritorialOrgConfig territorialOrgConfig = serviceOrg.getTerritorialOrgConfig(id);
+
+        List<TerritorialOrgTwo> data = service.findByTerritorialOrgConfig(territorialOrgConfig);
+
+
+        if(null == data){
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(data);
+    }
+
+    @GetMapping(value = "before/{id}")
+    public ResponseEntity<List<TerritorialOrgTwo>> getDataBeforeId(@PathVariable("id") Long id){
+        TerritorialOrgFirst before = serviceBefore.getTerritorialOrgFirst(id);
+
+        List<TerritorialOrgTwo> data = service.findByTerritorialOrgFirst(before);
+
+
         if(null == data){
             return ResponseEntity.notFound().build();
         }

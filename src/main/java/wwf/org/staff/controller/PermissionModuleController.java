@@ -7,7 +7,10 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
+
+import wwf.org.staff.entity.PermissionHeader;
 import wwf.org.staff.entity.PermissionModule;
+import wwf.org.staff.service.PermissionHeaderService;
 import wwf.org.staff.service.PermissionModuleService;
 import wwf.org.staff.serviceApi.FormatMessage;
 
@@ -23,6 +26,9 @@ public class PermissionModuleController {
     @Autowired
     private PermissionModuleService service;
 
+    @Autowired
+    private PermissionHeaderService servicePHS;
+    
     private FormatMessage formatMessage = new FormatMessage();
 
     @GetMapping
@@ -42,6 +48,16 @@ public class PermissionModuleController {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(data);
+    }
+
+    @GetMapping(value = "list/{id}")
+    public ResponseEntity<List<PermissionModule>> getList(@PathVariable("id") Long id){
+        PermissionHeader permissionHeader = servicePHS.getPermissionHeader(id);
+        List<PermissionModule> list = service.findByPermissionHeader(permissionHeader);
+        if(null == list){
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(list);
     }
 
     @PostMapping()

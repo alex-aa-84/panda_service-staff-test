@@ -12,4 +12,5 @@ public interface DocumentService {
     public Document updateDocument(Document document);
     public Boolean deleteDocument(Long id);
     public Document findByDocument(String document);
+    public List<Document> findByUserId(Long id);
 }

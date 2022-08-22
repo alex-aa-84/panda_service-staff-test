@@ -81,4 +81,10 @@ public class FamilyServiceImpl implements FamilyService{
         familyRepository.deleteById(id);
         return true;
     }
+
+    @Override
+    public List<Family> findByUserId(Long id) {
+        // TODO Auto-generated method stub
+        return familyRepository.findByUserId(id);
+    }
 }
