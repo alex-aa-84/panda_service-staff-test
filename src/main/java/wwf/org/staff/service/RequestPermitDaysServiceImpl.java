@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import wwf.org.staff.entity.RequestPermitDays;
 import wwf.org.staff.repository.RequestPermitDaysRepository;
+import wwf.org.staff.serviceApi.MD5Util;
 
 import java.util.Date;
 import java.util.List;
@@ -27,56 +28,53 @@ public class RequestPermitDaysServiceImpl implements RequestPermitDaysService {
     }
 
     @Override
-    public RequestPermitDays createRequestPermitDays(RequestPermitDays relationship) {
-        relationship.setStatus("CREATED");
-        relationship.setCreation_date(new Date());
-        relationship.setLast_update_date(new Date());
+    public RequestPermitDays createRequestPermitDays(RequestPermitDays requestPermitDay) {
+        requestPermitDay.setStatus("CREATED");
+        requestPermitDay.setCreation_date(new Date());
+        requestPermitDay.setLast_update_date(new Date());
 
-        return requestPermitDays.save(relationship);
+        /*String md5 = MD5Util.string2MD5("primero");
+        requestPermitDay.setCtrlMd5(md5);*/
+
+        return requestPermitDays.save(requestPermitDay);
     }
 
     @Override
-    public RequestPermitDays updateRequestPermitDays(RequestPermitDays relationship) {
-        RequestPermitDays relationshipDB = getRequestPermitDays(relationship.getId());
-        if(null == relationshipDB){
+    public RequestPermitDays updateRequestPermitDays(RequestPermitDays requestPermitDay) {
+        RequestPermitDays requestPermitDayDB = getRequestPermitDays(requestPermitDay.getId());
+        if(null == requestPermitDayDB){
             return null;
         }
 
-        relationshipDB.setRequestPermitPeriods(relationship.getRequestPermitPeriods());
-        relationshipDB.setCalendarId(relationship.getCalendarId());
+        requestPermitDayDB.setCalendarId(requestPermitDay.getCalendarId());
 
-        relationshipDB.setAttribute1(relationship.getAttribute1());
-        relationshipDB.setAttribute2(relationship.getAttribute2());
-        relationshipDB.setAttribute3(relationship.getAttribute3());
-        relationshipDB.setAttribute4(relationship.getAttribute4());
-        relationshipDB.setAttribute5(relationship.getAttribute5());
-        relationshipDB.setAttribute6(relationship.getAttribute6());
-        relationshipDB.setAttribute7(relationship.getAttribute7());
-        relationshipDB.setAttribute8(relationship.getAttribute8());
-        relationshipDB.setAttribute9(relationship.getAttribute9());
-        relationshipDB.setAttribute10(relationship.getAttribute10());
+        requestPermitDayDB.setAttribute1(requestPermitDay.getAttribute1());
+        requestPermitDayDB.setAttribute2(requestPermitDay.getAttribute2());
+        requestPermitDayDB.setAttribute3(requestPermitDay.getAttribute3());
+        requestPermitDayDB.setAttribute4(requestPermitDay.getAttribute4());
+        requestPermitDayDB.setAttribute5(requestPermitDay.getAttribute5());
+        requestPermitDayDB.setAttribute6(requestPermitDay.getAttribute6());
+        requestPermitDayDB.setAttribute7(requestPermitDay.getAttribute7());
+        requestPermitDayDB.setAttribute8(requestPermitDay.getAttribute8());
+        requestPermitDayDB.setAttribute9(requestPermitDay.getAttribute9());
+        requestPermitDayDB.setAttribute10(requestPermitDay.getAttribute10());
 
-        relationshipDB.setStatus(relationship.getStatus());
+        requestPermitDayDB.setStatus(requestPermitDay.getStatus());
 
-        relationshipDB.setLast_update_by(relationship.getLast_update_by());
-        relationshipDB.setLast_update_date(new Date());
+        requestPermitDayDB.setLast_update_by(requestPermitDay.getLast_update_by());
+        requestPermitDayDB.setLast_update_date(new Date());
 
-        return requestPermitDays.save(relationshipDB);
+        return requestPermitDays.save(requestPermitDayDB);
     }
 
     @Override
     public Boolean deleteRequestPermitDays(Long id) {
-        RequestPermitDays relationshipDB = getRequestPermitDays(id);
-        if(null == relationshipDB){
+        RequestPermitDays requestPermitDayDB = getRequestPermitDays(id);
+        if(null == requestPermitDayDB){
             return false;
         }
 
         requestPermitDays.deleteById(id);
         return true;
-    }
-
-    @Override
-    public RequestPermitDays findByRequestPermitPeriodsIdAndCalendarId(Long requestPermitPeriods, Long calendarId) {
-        return requestPermitDays.findByRequestPermitPeriodsIdAndCalendarId(requestPermitPeriods, calendarId);
     }
 }

@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import wwf.org.staff.entity.RequestPermitDays;
 import wwf.org.staff.service.RequestPermitDaysService;
-import wwf.org.staff.service.RequestPermitDaysService;
 import wwf.org.staff.serviceApi.FormatMessage;
 
 import javax.validation.Valid;
@@ -47,12 +46,12 @@ public class RequestPermitDaysController {
     @PostMapping()
     public ResponseEntity<RequestPermitDays> createData(@Valid @RequestBody RequestPermitDays data, BindingResult result){
 
-        RequestPermitDays dataBD = service.findByRequestPermitPeriodsIdAndCalendarId(data.getRequestPermitPeriods().getId(), data.getCalendarId());
+        //RequestPermitDays dataBD = service.findByRequestPermitPeriodsIdAndCalendarId(data.getRequestPermitPeriods().getId(), data.getCalendarId());
 
-        if (null != dataBD){
+        /*if (null != dataBD){
             FieldError err = new FieldError("Error", "registroExistente", "registroExistenteBD");
             result.addError(err);
-        }
+        }*/
 
         if(result.hasErrors()){
             throw  new ResponseStatusException(HttpStatus.BAD_REQUEST, formatMessage.format(result));

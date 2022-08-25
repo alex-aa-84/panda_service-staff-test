@@ -1,17 +1,13 @@
 package wwf.org.staff.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.util.Date;
 
 @Entity
-@Table(name="rp_request_permit_days", uniqueConstraints = {
-        @UniqueConstraint(columnNames = {"requestPermitPeriodsId", "calendarId"})
-})
+@Table(name="rp_request_permit_days")
 @Data
 public class RequestPermitDays {
     @Id
@@ -19,12 +15,6 @@ public class RequestPermitDays {
     @Column(unique = true, nullable = false)
     private Long id;
     
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(referencedColumnName = "id", name = "requestPermitPeriodsId")
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
-    private RequestPermitPeriods requestPermitPeriods;
-
     private Long calendarId;
 
     private Integer attribute1;
@@ -52,4 +42,8 @@ public class RequestPermitDays {
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date last_update_date;
+
+    @Column(unique = true, nullable = false)
+    @Size(min=32, max = 32)
+    private String ctrlMd5;
 }

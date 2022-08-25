@@ -32,6 +32,8 @@ public class AttachmentFileServiceImpl implements AttachmentFileService {
         attachmentFile.setCreation_date(new Date());
         attachmentFile.setLast_update_date(new Date());
 
+        attachmentFile.setReference(attachmentFile.getReference().toLowerCase().trim());
+
         String md5 = MD5Util.string2MD5(attachmentFile.toString());
         attachmentFile.setCtrlMd5(md5);
 
@@ -45,10 +47,11 @@ public class AttachmentFileServiceImpl implements AttachmentFileService {
             return null;
         }
 
-        attachmentFileDB.setSubmodulesId(attachmentFile.getSubmodulesId());
+        attachmentFileDB.setReference(attachmentFile.getReference().toLowerCase().trim());
         attachmentFileDB.setReferenceId(attachmentFile.getReferenceId());
-        attachmentFileDB.setName(attachmentFile.getName());
-        attachmentFileDB.setLocationFile(attachmentFile.getLocationFile());
+        attachmentFileDB.setFileName(attachmentFile.getFileName());
+        attachmentFileDB.setFileLocation(attachmentFile.getFileLocation());
+        attachmentFileDB.setFileExtension(attachmentFile.getFileExtension());
         attachmentFileDB.setDescription(attachmentFile.getDescription());
 
         attachmentFileDB.setAttribute1(attachmentFile.getAttribute1());
@@ -79,6 +82,12 @@ public class AttachmentFileServiceImpl implements AttachmentFileService {
 
         attachmentFileRepository.deleteById(id);
         return true;
+    }
+
+    @Override
+    public List<AttachmentFile> findByReferenceAndReferenceId(String reference, Long referenceId) {
+        // TODO Auto-generated method stub
+        return attachmentFileRepository.findByReferenceAndReferenceId(reference, referenceId);
     }
 
 }

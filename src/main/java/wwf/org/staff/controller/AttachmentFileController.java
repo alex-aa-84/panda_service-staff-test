@@ -43,6 +43,12 @@ public class AttachmentFileController {
         return ResponseEntity.ok(data);
     }
 
+    @GetMapping(value = "/{reference}/{referenceId}")
+    public ResponseEntity<List<AttachmentFile>> getAttachmentReference(@PathVariable("reference") String reference, @PathVariable("referenceId") Long referenceId){
+        List<AttachmentFile> data = service.findByReferenceAndReferenceId(reference, referenceId);
+        return ResponseEntity.ok(data);
+    }
+
     @PostMapping()
     public ResponseEntity<AttachmentFile> createData(@Valid @RequestBody AttachmentFile data, BindingResult result){
 

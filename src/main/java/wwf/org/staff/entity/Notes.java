@@ -18,7 +18,7 @@ public class Notes {
     @Column(unique = true, nullable = false)
     private Long id;
 
-    private Long submodulesId;
+    private String reference;
 
     private Long referenceId;
 

@@ -11,6 +11,7 @@ import java.net.MalformedURLException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.stream.Stream;
 
 @Service
 public class FilseServiceImpl implements FileService{
@@ -81,6 +82,17 @@ public class FilseServiceImpl implements FileService{
         } catch (IOException e) {
             e.printStackTrace();
             return "nop";
+        }
+    }
+
+    @Override
+    public Stream<Path> loadAll() {
+        // TODO Auto-generated method stub
+        try{
+            return Files.walk(this.path,1).filter(path -> !path.equals(this.path))
+                    .map(this.path::relativize);
+        }catch (RuntimeException | IOException e){
+            throw new RuntimeException("No se pueden cargar los archivos ");
         }
     }
 }

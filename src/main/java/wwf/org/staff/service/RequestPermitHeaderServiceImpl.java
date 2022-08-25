@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import wwf.org.staff.entity.RequestPermitHeader;
 import wwf.org.staff.repository.RequestPermitHeaderRepository;
+import wwf.org.staff.serviceApi.MD5Util;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -28,12 +29,40 @@ public class RequestPermitHeaderServiceImpl implements RequestPermitHeaderServic
     }
 
     @Override
-    public RequestPermitHeader createRequestPermitHeader(RequestPermitHeader requestPermitHeader) {
-        requestPermitHeader.setStatus("CREATED");
-        requestPermitHeader.setCreation_date(new Date());
-        requestPermitHeader.setLast_update_date(new Date());
+    public RequestPermitHeader createRequestPermitHeader(RequestPermitHeader r) {
+        r.setStatus("CREATED");
+        r.setCreation_date(new Date());
+        r.setLast_update_date(new Date());
 
-        RequestPermitHeader header = requestPermitHeaderRepository.save(requestPermitHeader);
+        r.setCtrlMd5(generateMd5(r.toString()));
+
+        r.getRequestPermitPeriods().stream().forEach((p)->{
+            p.setStatus("CREATED");
+            p.setCreation_date(new Date());
+            p.setLast_update_date(new Date());
+            p.setCtrlMd5(generateMd5(p.toString()));
+            p.getRequestPermitDays().stream().forEach((d)->{
+                d.setStatus("CREATED");
+                d.setCreation_date(new Date());
+                d.setLast_update_date(new Date());
+                d.setCreate_by(p.getCreate_by());
+                d.setLast_update_by(p.getLast_update_by());
+                d.setCtrlMd5(generateMd5(d.toString()));
+            });
+        });
+
+        r.getRequestPermitSignatures().stream().forEach((p)->{
+            p.setStatus("CREATED");
+            p.setCreation_date(new Date());
+            p.setLast_update_date(new Date());
+            p.setCreate_by(r.getCreate_by());
+            p.setLast_update_by(r.getLast_update_by());
+            p.setCtrlMd5(generateMd5(p.toString()));
+        });
+
+
+
+        RequestPermitHeader header = requestPermitHeaderRepository.save(r);
        
         return generateNumberRequest(header);
     }
@@ -49,6 +78,13 @@ public class RequestPermitHeaderServiceImpl implements RequestPermitHeaderServic
         header.setNumberSolict("RP-"+header.getId()+"-"+currentYear);
         
         return requestPermitHeaderRepository.save(header);
+    }
+
+    @Override
+    public String generateMd5(String text) {
+
+        String md5 = MD5Util.string2MD5(text);
+        return md5;
     }
 
     @Override
@@ -107,6 +143,42 @@ public class RequestPermitHeaderServiceImpl implements RequestPermitHeaderServic
     public List<RequestPermitHeader> findByUserId(Long userId) {
         // TODO Auto-generated method stub
         return requestPermitHeaderRepository.findByUserId(userId);
+    }
+
+    @Override
+    public List<RequestPermitHeader> findStatusRequest(Number state, Long userId) {
+        // TODO Auto-generated method stub
+        return requestPermitHeaderRepository.findStatusRequest(state, userId);
+    }
+
+    @Override
+    public List<RequestPermitHeader> findStatusRequestTo(Number state, Date dateTo, Long userId) {
+        // TODO Auto-generated method stub
+        return requestPermitHeaderRepository.findStatusRequestTo(state, dateTo, userId);
+    }
+
+    @Override
+    public List<RequestPermitHeader> findStatusRequestFrom(Number state, Date dateFrom, Long userId) {
+        // TODO Auto-generated method stub
+        return requestPermitHeaderRepository.findStatusRequestFrom(state, dateFrom, userId);
+    }
+
+    @Override
+    public List<RequestPermitHeader> findStatusRequestFromTo(Number state, Date dateFrom, Date dateTo, Long userId) {
+        // TODO Auto-generated method stub
+        return requestPermitHeaderRepository.findStatusRequestFromTo(state, dateFrom, dateTo, userId);
+    }
+
+    @Override
+    public List<RequestPermitHeader> findStatusRequestDate(Date dateFrom, Date dateTo, Long userId) {
+        // TODO Auto-generated method stub
+        return requestPermitHeaderRepository.findStatusRequestDate(dateFrom, dateTo, userId);
+    }
+
+    @Override
+    public List<RequestPermitHeader> findStatusRequestPendientes(Long userId) {
+        // TODO Auto-generated method stub
+        return requestPermitHeaderRepository.findStatusRequestPendientes(userId);
     }
 
 }

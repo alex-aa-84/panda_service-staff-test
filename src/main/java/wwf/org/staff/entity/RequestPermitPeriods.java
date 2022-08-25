@@ -9,6 +9,7 @@ import org.hibernate.annotations.OnDeleteAction;
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name="rp_request_permit_periods")
@@ -18,12 +19,6 @@ public class RequestPermitPeriods {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(unique = true, nullable = false)
     private Long id;
-
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(referencedColumnName = "id")
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
-    private RequestPermitHeader requestPermitHeader;
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date dateFrom;
@@ -43,6 +38,11 @@ public class RequestPermitPeriods {
 
     // 0 ó 1
     private Boolean midday;
+
+    @OneToMany(targetEntity = RequestPermitDays.class, cascade = CascadeType.ALL)
+    @JoinColumn(name="request_permit_periods_id", referencedColumnName = "id")
+    private List<RequestPermitDays> requestPermitDays;
+
 
     private Integer attribute1;
     private Integer attribute2;

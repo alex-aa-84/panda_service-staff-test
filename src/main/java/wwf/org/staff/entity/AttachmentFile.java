@@ -1,15 +1,13 @@
 package wwf.org.staff.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Date;
 
 @Entity
-@Table(name="at_attachments_file")
+@Table(name="nm_attachments_file")
 @Data
 public class AttachmentFile {
     @Id
@@ -17,14 +15,16 @@ public class AttachmentFile {
     @Column(unique = true, nullable = false)
     private Long id;
 
-    private Long submodulesId;
+    private String reference;
 
     private Long referenceId;
 
-    private String name;
+    private String fileName;
 
-    private String locationFile;
+    private String fileExtension;
 
+    private String fileLocation;
+    
     private String description;
     private Integer attribute1;
     private Integer attribute2;

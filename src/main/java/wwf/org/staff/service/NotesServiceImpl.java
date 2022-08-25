@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import wwf.org.staff.entity.Notes;
 import wwf.org.staff.repository.NotesRepository;
+import wwf.org.staff.serviceApi.MD5Util;
 
 import java.util.Date;
 import java.util.List;
@@ -27,9 +28,13 @@ public class NotesServiceImpl implements NotesService {
 
     @Override
     public Notes createNotes(Notes notes) {
+        notes.setReference(notes.getReference().toLowerCase().trim());
         notes.setStatus("CREATED");
         notes.setCreation_date(new Date());
         notes.setLast_update_date(new Date());
+
+        String md5 = MD5Util.string2MD5(notes.toString());
+        notes.setCtrlMd5(md5);
 
         return notesRepository.save(notes);
     }
@@ -41,7 +46,7 @@ public class NotesServiceImpl implements NotesService {
             return null;
         }
 
-        notesDB.setSubmodulesId(notes.getSubmodulesId());
+        notesDB.setReference(notes.getReference().toLowerCase().trim());
         notesDB.setReferenceId(notes.getReferenceId());
         notesDB.setNote(notes.getNote());
 
@@ -73,5 +78,12 @@ public class NotesServiceImpl implements NotesService {
 
         notesRepository.deleteById(id);
         return true;
+    }
+
+    @Override
+    public List<Notes> findByReferenceAndReferenceId(String reference, Long referenceId) {
+        // TODO Auto-generated method stub
+        reference = reference.toLowerCase().trim();
+        return notesRepository.findByReferenceAndReferenceId(reference, referenceId);
     }
 }

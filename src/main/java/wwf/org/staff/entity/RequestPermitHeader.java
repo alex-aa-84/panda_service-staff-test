@@ -6,9 +6,12 @@ import lombok.Data;
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.util.Date;
+import java.util.List;
 
 @Entity
-@Table(name="rp_request_permit_header")
+@Table(name="rp_request_permit_header", uniqueConstraints = {
+        @UniqueConstraint(columnNames = {"userId", "requestTypeId", "dateRequest"})
+})
 @Data
 public class RequestPermitHeader {
     @Id
@@ -16,14 +19,13 @@ public class RequestPermitHeader {
     @Column(unique = true, nullable = false)
     private Long id;
 
-    @Column(unique = true, nullable = false)
     private String numberSolict;
 
     @Column(nullable = false)
     private Long userId;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(referencedColumnName = "id")
+    @JoinColumn(referencedColumnName = "id", name = "requestTypeId")
     @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
     private RequestType requestType;
 
@@ -48,6 +50,14 @@ public class RequestPermitHeader {
     private Boolean flagHours;
 
     private String observation;
+
+    @OneToMany(targetEntity = RequestPermitPeriods.class, cascade = CascadeType.ALL)
+    @JoinColumn(name="request_permit_header_id", referencedColumnName = "id")
+    private List<RequestPermitPeriods> requestPermitPeriods;
+
+    @OneToMany(targetEntity = RequestPermitSignature.class, cascade = CascadeType.ALL)
+    @JoinColumn(name="request_permit_header_id", referencedColumnName = "id")
+    private List<RequestPermitSignature> requestPermitSignatures;
 
     private Integer attribute1;
     private Integer attribute2;

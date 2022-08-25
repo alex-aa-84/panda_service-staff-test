@@ -13,4 +13,6 @@ public interface AttachmentFileService {
     public AttachmentFile updateAttachmentFile(AttachmentFile attachmentFile);
     public Boolean deleteAttachmentFile(Long id);
 
+    public List<AttachmentFile> findByReferenceAndReferenceId(String reference, Long referenceId);
+
 }

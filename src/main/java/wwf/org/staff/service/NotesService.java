@@ -11,4 +11,6 @@ public interface NotesService {
     public Notes createNotes(Notes notes);
     public Notes updateNotes(Notes notes);
     public Boolean deleteNotes(Long id);
+
+    public List<Notes> findByReferenceAndReferenceId(String reference, Long referenceId);
 }

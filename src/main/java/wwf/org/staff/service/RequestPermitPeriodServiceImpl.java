@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import wwf.org.staff.entity.RequestPermitPeriods;
 import wwf.org.staff.repository.RequestPermitPeriodRepository;
+import wwf.org.staff.serviceApi.MD5Util;
 
 import java.util.Date;
 import java.util.List;
@@ -31,6 +32,9 @@ public class RequestPermitPeriodServiceImpl implements RequestPermitPeriodServic
         requestPermitPeriods.setCreation_date(new Date());
         requestPermitPeriods.setLast_update_date(new Date());
 
+        /*String md5 = MD5Util.string2MD5("tercero");
+        requestPermitPeriods.setCtrlMd5(md5);*/
+
         return requestPermitPeriod.save(requestPermitPeriods);
     }
 
@@ -41,7 +45,6 @@ public class RequestPermitPeriodServiceImpl implements RequestPermitPeriodServic
             return null;
         }
 
-        requestPermitPeriodsDB.setRequestPermitHeader(requestPermitPeriods.getRequestPermitHeader());
         requestPermitPeriodsDB.setDateFrom(requestPermitPeriods.getDateFrom());
         requestPermitPeriodsDB.setDateTo(requestPermitPeriods.getDateTo());
         requestPermitPeriodsDB.setHours(requestPermitPeriods.getHours());

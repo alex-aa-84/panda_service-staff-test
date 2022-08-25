@@ -45,6 +45,12 @@ public class NotesController {
         return ResponseEntity.ok(data);
     }
 
+    @GetMapping(value = "/{reference}/{referenceId}")
+    public ResponseEntity<List<Notes>> getNotesReference(@PathVariable("reference") String reference, @PathVariable("referenceId") Long referenceId){
+        List<Notes> data = service.findByReferenceAndReferenceId(reference, referenceId);
+        return ResponseEntity.ok(data);
+    }
+
     @PostMapping()
     public ResponseEntity<Notes> createData(@Valid @RequestBody Notes data, BindingResult result){
 

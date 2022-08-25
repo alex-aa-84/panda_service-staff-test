@@ -11,6 +11,4 @@ public interface RequestPermitDaysService {
     public RequestPermitDays createRequestPermitDays(RequestPermitDays requestPermitDays);
     public RequestPermitDays updateRequestPermitDays(RequestPermitDays requestPermitDays);
     public Boolean deleteRequestPermitDays(Long id);
-
-    public RequestPermitDays findByRequestPermitPeriodsIdAndCalendarId(Long requestPermitPeriods, Long calendarId);
 }
