@@ -43,7 +43,7 @@ public class RequestPermitHeaderController {
     }
 
     @GetMapping(value = "user/{id}")
-    public ResponseEntity<List<RequestPermitHeader>> getDataUser(@PathVariable("id") Long id){
+    public ResponseEntity<List<RequestPermitHader>> getDataUser(@PathVariable("id") Long id){
         List<RequestPermitHeader> data = service.findByUserId(id);
         if(null == data){
             return ResponseEntity.notFound().build();
